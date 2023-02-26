@@ -1,0 +1,31 @@
+@media screen {
+
+}
+
+
+#num {
+	height: 90px;
+}
+
+#hideDiv {
+	display: none;
+}
+
+.a{
+  width: 250px;
+  height: 40px;
+  border-style: solid;
+  border-width: medium;
+  margin: auto;
+  border-color: #91ACCC;
+  font-size: 20px;	
+}
+
+#quizTbl{
+    margin-bottom: 100px;
+}
+
+#quizListDiv{
+	margin-top: 300px;
+    margin-bottom: 300px;
+}

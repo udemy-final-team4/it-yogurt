@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.starters.ityogurt.dao.BoardDAO">
+
+<resultMap type="HashMap" id="getBoardlist">
+	<id column="board_seq" property="boardSeq"/>
+	<id column="title" property="title"/>
+	<id column="content" property="content"/>
+	<id column="viewcount" property="viewcount"/>
+	<id column="category" property="category"/>
+	<id column="img" property="img"/>
+	<id column="insert_date" property="insertDate"/>
+	<id column="user_seq" property="userSeq"/>
+	<id column="nickname" property="nickname"/>
+	<id column="main" property="main"/>
+	<id column="middle" property="middle"/>
+	<id column="sub" property="sub"/>
+	<id column="detail" property="detail"/>
+
+</resultMap>
+
+
+ <select id="getBoardJoinUser" resultMap="getBoardlist" parameterType="criteria">
+	select board_seq, title, content, viewcount,
+		b.category_seq category ,b.img img, b.insert_date insert_date,
+		u.user_seq user_seq, u.nickname nickname,
+		c.main main, c.middle middle, c.sub sub, c.detail detail
+	from board b
+	JOIN user u 
+	ON b.user_seq = u.user_seq	
+	JOIN category c
+	ON u.category_seq = c.category_seq
+	order BY board_seq desc
+	LIMIT #{pageStart}, #{perPageNum}		
+ </select>
+ 
+  <select id="countAllBoard" resultType="int">
+	select count(*) 
+	from board 
+  </select>
+
+  <select id="getOneBoardJoinUser" resultMap="getBoardlist" parameterType="int">
+  	select board_seq, title, content, viewcount,
+		b.category_seq category ,b.img img, b.insert_date insert_date,
+		u.user_seq user_seq, u.nickname nickname
+	from board b
+	JOIN user u 
+	ON b.user_seq = u.user_seq	
+	where  board_seq = #{boardSeq}
+  </select>
+
+<delete id="deleteBoard" parameterType="int">
+	delete
+	from board
+	where user_seq = #{userSeq}
+</delete>
+
+<update id="viewCntBoard" parameterType="int">
+	update board 
+	set viewcount=viewcount+1 
+	where board_seq=#{boardSeq}
+</update>
+
+<insert id="insertBoard" parameterType="boarddto">
+	insert into board(title, content, insert_date, img, user_seq, category_seq)
+	values(#{title}, #{content}, now(), #{img}, #{userSeq}, #{categorySeq})
+</insert>
+
+<delete id="deleteBoardByBoardSeq" parameterType="int">
+	delete
+	from board
+	where board_seq = #{boardSeq}
+</delete>
+
+<update id="updateBoard" parameterType="boarddto">
+	update board 
+	set title=#{title},
+		content=#{content},
+		insert_date= now(),
+		img=#{img},
+		category_seq=#{categorySeq}
+	where board_seq=#{boardSeq}
+</update>
+
+<!-- 수정중 -->
+<!-- <select id="getBoardCommentNum" parameterType="">
+	select board_seq, (select count(*) 
+	from comment
+	where board_seq = #{boardSeq})
+	from board
+	
+
+</select> -->
+
+</mapper>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.starters.ityogurt.dao.EmailDAO">
+
+    <select id="getAllEmails" resultType="String">
+        select email
+        from user
+        where is_pass = 1;
+    </select>
+
+    <update id="updateSendDate" parameterType="int">
+        UPDATE category
+        set send_date = NOW()
+        WHERE category_seq = #{categorySeq}
+    </update>
+
+    <!-- 전체 회원 + 카테고리 조회 코드 -->
+    <select id="getEmailAndSub" resultType="Map">
+        SELECT u.email, c.sub
+        FROM user u INNER JOIN (SELECT category_seq, sub
+                                FROM category
+                                WHERE detail IS NULL) as c ON u.category_seq = c.category_seq
+                                AND is_pass = TRUE
+        ORDER BY SUB
+    </select>
+
+<!--    <select id="getSendDetail" parameterType="int" resultType="Map">-->
+<!--        SELECT sub, category_seq-->
+<!--        FROM category-->
+<!--        WHERE (sub, send_date) IN (SELECT sub, MIN(send_date) FROM category where detail IS NOT NULL GROUP BY sub ORDER BY category_seq)-->
+<!--        order BY send_date, category_seq-->
+<!--    </select>-->
+    <select id="getSendDetail" parameterType="int" resultType="Map">
+        SELECT sub, category_seq
+        FROM (SELECT sub, category_seq, send_date, ROW_NUMBER() over(PARTITION BY sub ORDER BY send_date, category_seq) AS num FROM category WHERE detail IS NOT NULL) AS imsi
+        WHERE num=1;
+    </select>
+
+
+
+</mapper>

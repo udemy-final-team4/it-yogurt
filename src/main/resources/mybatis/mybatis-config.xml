@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+	<typeAliases>
+		<typeAlias type="com.starters.ityogurt.dto.KnowledgeDTO" alias="knowledgedto" />
+		<typeAlias type="com.starters.ityogurt.dto.QuizDTO" alias="quizdto"/>
+		<typeAlias type="com.starters.ityogurt.dto.UserDTO" alias="userdto"/>
+		<typeAlias type="com.starters.ityogurt.dto.LearnRecordDTO" alias="learnrecorddto"/>
+		<typeAlias type="com.starters.ityogurt.dto.BlacklistDTO" alias="blacklistdto"/>
+		<typeAlias type="com.starters.ityogurt.dto.BoardDTO" alias="boarddto"/>
+		<typeAlias type="com.starters.ityogurt.dto.CategoryDTO" alias="categorydto"/>
+		<typeAlias type="com.starters.ityogurt.util.Criteria" alias="criteria"/>
+		<typeAlias type="com.starters.ityogurt.dto.LearnRecordQuizDTO" alias="recordquizdto"/>
+		<typeAlias type="com.starters.ityogurt.dto.CommentDTO" alias="commentdto"/>
+	</typeAliases>
+</configuration>
