@@ -1,0 +1,122 @@
+@media screen {
+
+}
+
+/* list.jsp */
+#knowledgeForm{
+	margin-top:200px;
+	margin-bottom:200px;
+}
+
+#quizBtn{
+  width: 100%;
+  height: 40px;
+  border-style: solid;
+  border-width: medium;
+  border-color: #91ACCC;
+  font-size: 20px;
+}
+
+h3{
+	margin: 30px;
+}
+
+#listTbl {
+	border: 3px solid black;
+	border-collapse: collapse;
+	width: 100%;
+	text-align: center;
+}
+
+#page {
+	margin: 40px;
+	text-align: center;
+}
+
+#tblDiv{
+	width: 100%;
+	margin: auto;
+}
+
+#listTbl th, td{
+	height: 40px;
+}
+
+
+#keyword{
+	border-radius: 15px;
+	width: 300px;
+}
+
+#searchDiv{
+	height: 80px;
+	width: 100%;
+    padding-left: 30%;
+}
+
+#search{
+  width: 100px;
+  height: 40px;
+  border-style: solid;
+  border-width: medium;
+  border-color: #91ACCC;
+  font-size: 20px;
+}
+
+.page-link {
+  color: #fff; 
+  background-color: #91ACCC;
+  border: 1px solid #ccc; 
+  display: inline-block;
+  width:78px;
+  margin:auto;
+  z-index: 1;
+  font-weight:bold;
+  text-align: center;
+}
+
+.page-link:focus, .page-link:hover {
+  color: #000;
+  background-color: #fafafa; 
+  border-color: #ccc;
+}
+
+#categoryDiv{
+	margin-bottom:10px;
+}
+
+/* detail */
+
+.detailInput{
+	width: 250px;
+    height: 40px;
+    border-style: solid;
+    border-width: medium;
+    margin: auto;
+    border-color: #91ACCC;
+    font-size: 20px;
+}
+
+/* #subBtn, #knowList{ */
+/*   width: 250px; */
+/*   height: 40px; */
+/*   border-style: solid; */
+/*   border-width: medium; */
+/*   margin-top: 40px; */
+/*   margin-left: 32%; */
+/*   margin-bottom: 35px; */
+/*   border-color: #91ACCC; */
+/*   font-size: 20px; */
+/* } */
+
+#category{
+	height:50px;
+}
+
+/* #detailTbl { */
+/*     margin-top: 50%; */
+/* } */
+
+#knowledgeDetailDiv{
+	padding-top:50%;
+}

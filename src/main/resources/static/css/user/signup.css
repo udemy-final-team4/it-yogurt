@@ -1,0 +1,57 @@
+.content {
+  margin-top: 10px;
+}
+
+.sign_up {
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-top: 10px;
+}
+
+/*sign up*/
+#signup_form input:not([type=image],[type=button],[type=submit], [type=checkbox]) {
+  width: 220px;
+  height: 30px;
+  border-style: solid;
+  border-width: medium;
+  margin-bottom: 20px;
+  border-color: #91ACCC;
+  font-size: 13px;
+  font-family: "NEXON Lv1 Gothic OTF";
+  font-weight: bold;
+}
+
+.content #signup_form input[type="submit"] {
+  width: 250px;
+  height: 40px;
+  border-style: solid;
+  border-width: medium;
+  margin-top: 30px;
+  margin-bottom: 0px;
+  border-color: #fab46e;
+  background-color: #fab46e;
+  font-size: 15px;
+  color: #ffffff;
+}
+
+#signup_form input[type="submit"]:focus {
+  outline-style: solid;
+  outline-color: #fcae60;
+}
+
+#signup_form label {
+  display: flex;
+  font-size: 12px;
+}
+
+.subscribe {
+  font-size: 10px;
+  margin-top: 20px;
+}
+
+.input-info {
+  margin-top: 5px;
+  font-size: 8px;
+  color: #ff0000;
+}

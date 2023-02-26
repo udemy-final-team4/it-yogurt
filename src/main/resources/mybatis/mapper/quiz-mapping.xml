@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.starters.ityogurt.dao.QuizDAO">
+
+  <insert id="uploadQuiz" parameterType="quizdto">
+    insert into quiz(question, answer, commentary, insert_date,
+                     choice1, choice2, choice3, choice4, know_seq)
+    values (#{question}, #{answer}, #{commentary}, now(),
+            #{choice1}, #{choice2}, #{choice3}, #{choice4}, #{knowSeq})
+  </insert>
+
+  <select id="getQuiz" resultType="quizdto" parameterType="int">
+    select *
+    from quiz
+    where know_seq = #{knowSeq}
+  </select>
+
+  <select id="getAnswer" resultType="int" parameterType="int">
+    select answer
+    from quiz
+    where quiz_seq = #{quizSeq}
+  </select>
+
+</mapper>

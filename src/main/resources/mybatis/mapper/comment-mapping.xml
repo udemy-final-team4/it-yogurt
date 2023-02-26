@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.starters.ityogurt.dao.CommentDAO">
+
+<resultMap type="HashMap" id="getCommentAndUser">
+	<id column="commentSeq" property="commentSeq"/>
+	<id column="content" property="content"/>
+	<id column="insertDate" property="insertDate"/>
+	<id column="isPrivate" property="isPrivate"/>
+	<id column="userSeq" property="userSeq"/>
+	<id column="boardSeq" property="boardSeq"/>
+	<id column="nickname" property="nickname"/>
+
+</resultMap>
+
+
+
+ <delete id="deleteComment" parameterType="int">
+	delete
+	from comment
+	where user_seq = #{userSeq}
+ </delete>
+
+ <select id="countCommentByboardSeq" resultType="int" parameterType="int">
+	select count(*) 
+	from comment
+	where board_seq = #{boardSeq}
+  </select>
+  
+  <insert id="insertComment" parameterType="commentdto">
+	insert into comment(is_private, user_seq, 
+					board_seq, insert_date, content )
+	values(#{isPrivate}, #{userSeq}, 
+			#{boardSeq}, now(), #{content})
+ </insert>
+ 
+ <update id="updateComment" parameterType="commentdto">
+	update comment 
+	set	is_private=#{isPrivate},
+		user_seq= #{userSeq},
+		insert_date= now(),
+		content=#{content}
+	where comment_seq=#{commentSeq}
+</update>
+
+ <select id="getCommentList" resultMap="getCommentAndUser" parameterType="int">
+	select comment_seq commentSeq, content, co.insert_date insertDate, 
+			is_private isPrivate, u.user_seq userSeq, board_seq boardSeq,
+			u.nickname nickname
+	from comment co
+	join user u
+	on co.user_seq= u.user_seq
+	where board_seq = #{boardSeq}
+	order by comment_seq desc
+  </select>
+
+ <delete id="deleteCommentByCommentSeq" parameterType="int">
+	delete
+	from comment
+	where comment_seq = #{commentSeq}
+ </delete>
+ 
+ <delete id="deleteCommentByBoardSeq" parameterType="int">
+ 	delete 
+ 	from comment 
+ 	where board_seq = #{boardSeq}
+ </delete>
+</mapper>

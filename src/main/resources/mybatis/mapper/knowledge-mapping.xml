@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.starters.ityogurt.dao.KnowledgeDAO">
+
+<select id="getList" resultType="knowledgedto" parameterType="hashmap">
+	select * from knowledge 
+	where category_seq in 
+	<choose>
+		<when test='category.equals("category") || category.equals("all")'>
+		    (select category_seq from category where middle in(#{category},'데이터베이스','프로그래밍언어'))
+			order by know_seq limit #{limit},9
+		</when>
+		<otherwise>
+			(select category_seq from category where middle like #{category})
+			order by know_seq limit #{limit},9
+		</otherwise>
+	</choose>
+</select>
+
+<select id="getTotalCnt" resultType="int">
+	select count(*) from knowledge
+</select>
+
+<select id="getTitle" resultType="String" parameterType="int">
+	select title from knowledge where know_seq=#{knowSeq}
+</select>
+
+<select id="getContents" resultType="String" parameterType="int">
+	select content from knowledge where know_seq=#{knowSeq}
+</select>
+
+<insert id="uploadKnowledge" parameterType="knowledgedto">
+	insert into knowledge(title, content, img, 
+						insert_date, update_date, 
+						category_seq, user_seq)
+	values (#{title},#{content},#{img}, 
+			now(), now(),#{categorySeq},#{userSeq})
+</insert>
+
+<update id="viewCnt" parameterType="int">
+	update knowledge set viewcount=viewcount+1 where know_seq=#{knowSeq}
+</update>
+
+<select id="getSearchList" parameterType="String" resultType="knowledgedto">
+	select * from knowledge where title like concat('%',#{keyword},'%')
+</select>
+
+<select id="getKnowledgeByCategorySeq" parameterType="int" resultType="knowledgedto">
+	SELECT * FROM knowledge WHERE category_seq = #{categorySeq}
+</select>
+
+<select id="getCategoryCnt" parameterType="String" resultType="int">
+	SELECT COUNT(*) FROM knowledge
+	WHERE category_seq 
+	<choose>
+		<when test='category.equals("category") || category.equals("all")'>
+			IN(SELECT category_seq FROM category WHERE middle IN(#{category},'데이터베이스','프로그래밍언어'))
+		</when>
+		<otherwise>
+			IN(SELECT category_seq FROM category WHERE middle IN(#{category}))
+		</otherwise>
+	</choose>
+</select>
+
+<select id="getKnowledgeTitle" parameterType="int" resultType="String">
+	SELECT title FROM knowledge WHERE know_seq = #{knowSeq}
+</select>
+
+<select id="getCategorySeq" parameterType="int" resultType="int">
+	SELECT category_seq FROM knowledge WHERE know_seq=#{knowSeq}
+</select>
+
+</mapper>
