@@ -1,0 +1,97 @@
+.content .login {
+  margin-top: 50px;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.content .login input {
+  width: 250px;
+  height: 40px;
+  border-style: solid;
+  border-width: medium;
+  margin-bottom: 35px;
+  border-color: #91ACCC;
+  font-size: 15px;
+  font-family: "NEXON Lv1 Gothic OTF";
+  font-weight: bold;
+}
+
+.content .login input:focus{
+  outline-style:solid;
+  outline-color:#829bb8;
+}
+
+.content .login input[type="submit"] {
+  width: 250px;
+  height: 40px;
+  border-style: solid;
+  border-width: medium;
+  /*margin-bottom: 35px;*/
+  margin-bottom: 0px;
+  border-color: #fab46e;
+  background-color: #fab46e;
+  font-size: 15px;
+  color: #ffffff;
+}
+
+.content .login input[type="submit"]:focus{
+  outline-style:solid;
+  outline-color:#fcae60;
+  margin: 0px;
+}
+
+.sns_login {
+  width: 100%;
+  text-align: center;
+  /*margin: 20px 0px 20px 0px;*/
+}
+
+.sns_login div img {
+  margin-bottom: 20px;
+  cursor: pointer;
+  width: 30%
+}
+
+.sign_up {
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-top: 10px;
+}
+
+/*sign up*/
+#loginform input:not([type=image],[type=button],[type=submit], [type=checkbox]) {
+  width: 220px;
+  height: 30px;
+  border-style: solid;
+  border-width: medium;
+  margin-bottom: 20px;
+  border-color: #91ACCC;
+  font-size: 13px;
+  font-family: "NEXON Lv1 Gothic OTF";
+  font-weight: bold;
+}
+
+.content #loginform input[type="submit"] {
+  width: 250px;
+  height: 40px;
+  border-style: solid;
+  border-width: medium;
+  /*margin-bottom: 35px;*/
+  margin-bottom: 0px;
+  border-color: #fab46e;
+  background-color: #fab46e;
+  font-size: 15px;
+  color: #ffffff;
+}
+
+#loginform input[type="submit"]:focus{
+  outline-style:solid;
+  outline-color:#fcae60;
+  margin: 0px;
+}
+#loginform label{
+ display: flex;
+  font-size: 17px;
+ }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.starters.ityogurt.dao.LearnRecordQuizDAO">
+  <select id="getWrongAnswerByUser" resultType="recordquizdto" parameterType="int">
+    SELECT *
+    FROM learn_record l
+           INNER JOIN quiz q ON l.quiz_seq = q.quiz_seq
+           INNER JOIN (SELECT category_seq, know_seq FROM knowledge) AS c ON c.know_seq = q.know_seq
+    WHERE is_right = 0 AND l.user_seq = #{userSeq}
+    ORDER BY l.quiz_seq
+      LIMIT ${start}, ${limit};
+  </select>
+
+</mapper>
