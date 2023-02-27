@@ -67,4 +67,12 @@
  	from comment 
  	where board_seq = #{boardSeq}
  </delete>
+ <delete id="deleteCommentByUserSeq" parameterType="int">
+ 	DELETE 
+ 	FROM comment 
+ 	WHERE board_seq = (SELECT 
+					 	board_seq 
+					 	FROM board 
+					 	WHERE user_seq =#{userSeq}) 
+ </delete>
 </mapper>

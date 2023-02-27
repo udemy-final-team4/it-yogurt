@@ -87,6 +87,7 @@ line-height: inherit;
 			<table class="table">
 				<tr>
 					<th>번호</th>
+					<th>카테고리</th>
 					<th>제목</th>
 					<th>작성일자</th>
 					<th>조회수</th>
@@ -99,6 +100,7 @@ line-height: inherit;
 					<c:set var="i" value="${i+1}"></c:set>
 					<tr class="tableList">
 						<td>${i}</td>
+						<td><span class="badge bg-secondary text-decoration-none link-light"> ${list.sub }</span></td>
 						<td><a href="<%=request.getContextPath()%>/knowledge/detail/${list.knowSeq}">${list.title}</a></td>
 						<td>${list.insertDate }</td>
 						<td>${list.viewcount }</td>
