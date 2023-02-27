@@ -21,6 +21,9 @@
 
 </resultMap>
 
+<parameterMap type="HashMap" id="searchBoard">
+</parameterMap>
+
 
  <select id="getBoardJoinUser" resultMap="getBoardlist" parameterType="criteria">
 	select board_seq, title, content, viewcount,
@@ -83,6 +86,24 @@
 		category_seq=#{categorySeq}
 	where board_seq=#{boardSeq}
 </update>
+
+<select id="getSearchBoardList" parameterType="String" resultMap="getBoardlist">
+	select board_seq, title, content, viewcount,
+		b.category_seq category ,b.img img, b.insert_date insert_date,
+		u.user_seq user_seq, u.nickname nickname,
+		c.main main, c.middle middle, c.sub sub, c.detail detail
+	from board b
+	JOIN user u 
+	ON b.user_seq = u.user_seq	
+	JOIN category c
+	ON u.category_seq = c.category_seq
+	where title 
+	like concat('%',#{keyword},'%')
+	order BY board_seq desc
+	<!-- LIMIT #{pageStart}, #{perPageNum} -->
+</select>
+
+
 
 <!-- 수정중 -->
 <!-- <select id="getBoardCommentNum" parameterType="">

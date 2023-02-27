@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.starters.ityogurt.dto.BoardDTO;
 import com.starters.ityogurt.dto.CategoryDTO;
 import com.starters.ityogurt.dto.CommentDTO;
+import com.starters.ityogurt.dto.KnowledgeDTO;
 import com.starters.ityogurt.dto.UserDTO;
 import com.starters.ityogurt.service.BoardService;
 import com.starters.ityogurt.service.CategoryService;
@@ -170,7 +171,6 @@ public class BoardController {
 	 @PostMapping("/comment")
 	 public String insertComment(CommentDTO commentDto, HttpServletRequest request) {
 		 int userSeq = Integer.parseInt(request.getParameter("userSeq"));
-		 System.out.println(userSeq);
 			/* commentDto.setUserSeq(0) commentDto.getUserSeq(); */
 		 commentService.insertComment(commentDto);
 		 int boardSeq = commentDto.getBoardSeq();
@@ -202,10 +202,30 @@ public class BoardController {
 	 }
 	 //댓글 작성자 신고
 	 @GetMapping("/comment/r/{userseq}")
-	 public String updateDeclarationComment(@PathVariable("userseq	") int userSeq) {
+	 public String updateDeclarationComment(@PathVariable("userseq") int userSeq) {
 		 userService.updateUserDeclaration(userSeq);
 		 return "redirect:/board/list";
 	 }
+	 //게시글 검색
+	 @GetMapping("/list/searchResult")
+		public ModelAndView searchBoardResult(@RequestParam("keyword") String keyword, Criteria cri) {
+			ModelAndView mv = new ModelAndView();
+			List<Map<String,String>> boardList = boardService.getSearchBoardList(keyword);
+			//paging
+			Paging paging = new Paging();
+			paging.setCri(cri); // 현재 페이지, 페이지당 보여줄 게시글의 개수 설정
+			int totalBoardCnt = boardList.size(); // 전체 게시글 수
+			int maxPage = (int)((double)totalBoardCnt / cri.getPerPageNum() + 0.9); // 전체 페이지 수
+			paging.setTotalCount(totalBoardCnt); //전체 게시글 수 설정
+			
+			mv.addObject("maxpage", maxPage);
+		 	mv.addObject("paging", paging);
+		 	
+			mv.addObject("boardList", boardList);
+			mv.setViewName("board/boardListSearch");
+			return mv;
+		}
+
 	 
 	 
 }
