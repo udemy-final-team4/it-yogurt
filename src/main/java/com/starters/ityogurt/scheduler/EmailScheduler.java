@@ -1,4 +1,4 @@
-package com.starters.ityogurt.config;
+package com.starters.ityogurt.scheduler;
 
 import java.util.*;
 
@@ -6,17 +6,13 @@ import com.starters.ityogurt.dto.KnowledgeDTO;
 import com.starters.ityogurt.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
-import lombok.RequiredArgsConstructor;
-
-@Configuration
-public class EmailConfig {
+@Component
+public class EmailScheduler {
 
     @Autowired
     QuizService quizService;
@@ -44,7 +40,7 @@ public class EmailConfig {
 
     //이메일 전송 API
     // @RequestMapping("/aws/email")
-    @Scheduled(cron = "0 30 7 * * ?", zone = "Asia/Seoul")
+    @Scheduled(cron = "0 36 5 * * ?", zone = "Asia/Seoul")
     public String sendEmail() throws Exception {
         List<Map<String, Object>> subEmailMap = emailService.getEmailAndSub();
         System.out.println("subEmailMap : " + subEmailMap);
