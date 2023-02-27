@@ -31,7 +31,7 @@
 </style>
 </head>
 <%@include file="../common/nav.jsp" %>
-<body>
+<body style="margin-top:15%;">
 
 
 
