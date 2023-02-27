@@ -23,5 +23,9 @@ public interface CategoryDAO {
 	int findWeakCategoryByCategorySeq(int userSeq);
 
 	CategoryDTO getCategoryByUserSeq(int userSeq);
+	
+	List<CategoryDTO> getMainCategory();
+	List<CategoryDTO> getMiddleCategory();
+	List<CategoryDTO> getSubCategory();
 
 }

@@ -61,4 +61,21 @@
 												 ON c.category_seq = u.category_seq
 		WHERE user_seq=#{userSeq}
 	</select>
+	
+	<select id="getMainCategory" resultType="categorydto">
+		select main from category group by main
+	</select>
+	
+	<select id="getMiddleCategory" resultType="categorydto">
+		select middle from category group by middle
+	</select>
+	
+	<select id="getSubCategory" resultType="categorydto">
+		select sub from category group by sub
+	</select>
+	
+	
+	
+	
+	
 </mapper>

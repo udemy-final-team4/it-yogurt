@@ -31,8 +31,6 @@ public interface UserService {
 
 	void AfterLoginProcess(UserDTO result, HttpSession session);
 
-	UserDTO getUserInfo(int userSeq);
-
 	void updateUserInfo(Map<Object, Object> map);
 
 	int setWeakCategoryByUser(UserDTO userdto);
