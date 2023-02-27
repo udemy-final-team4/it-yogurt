@@ -5,6 +5,7 @@ import com.starters.ityogurt.dto.UserDTO;
 import com.starters.ityogurt.error.ApiException;
 import com.starters.ityogurt.service.CategoryService;
 import com.starters.ityogurt.service.EmailService;
+import com.starters.ityogurt.service.LearnRecordService;
 import com.starters.ityogurt.service.UserService;
 import com.starters.ityogurt.util.DateUtil;
 import com.starters.ityogurt.util.Encrypt;
@@ -13,6 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.Date;
+import java.util.Map;
 import org.hamcrest.number.IsNaN;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -35,6 +37,9 @@ public class UserRestController {
 
     @Autowired
     EmailService emailService;
+
+    @Autowired
+    LearnRecordService learnRecordService;
 
     // 회원가입
     @PostMapping("/user/1")
@@ -82,6 +87,8 @@ public class UserRestController {
             }
         }
 
+        Map<String,Integer> weakCategory = learnRecordService.findWeakCategoryByUser(result.getUserSeq());
+        result.setWeakCategorySeq(weakCategory.get("category_seq"));
         userService.AfterLoginProcess(result,request.getSession());
 
         if(!isStringEmpty(knowSeq))

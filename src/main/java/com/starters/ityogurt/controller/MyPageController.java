@@ -1,5 +1,6 @@
 package com.starters.ityogurt.controller;
 
+import com.starters.ityogurt.dao.LearnRecordDAO;
 import com.starters.ityogurt.dto.LearnRecordDTO;
 import com.starters.ityogurt.dto.LearnRecordQuizDTO;
 import com.starters.ityogurt.dto.QuizDTO;
@@ -11,6 +12,7 @@ import com.starters.ityogurt.service.QuizService;
 import com.starters.ityogurt.service.UserService;
 import com.starters.ityogurt.util.Criteria;
 import com.starters.ityogurt.util.Paging;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,7 +51,7 @@ public class MyPageController {
     @Autowired
     @Qualifier("userservice")
     UserService userService;
-    
+
     @Autowired
     @Qualifier("categoryservice")
     CategoryService categoryService;
@@ -69,7 +71,7 @@ public class MyPageController {
     public ModelAndView myPage(@PathVariable("user_seq") String user_seq) {
         ModelAndView mv = new ModelAndView();
         int userSeq = Integer.parseInt(user_seq);
-        System.out.println("유저번호"+userSeq);
+        System.out.println("유저번호" + userSeq);
         UserDTO userDto = userService.getUserInfo(userSeq);
         CategoryDTO categoryDto = categoryService.getCategoryByUserSeq(userSeq);
         mv.addObject("categoryDto", categoryDto);
@@ -82,7 +84,7 @@ public class MyPageController {
     public ModelAndView info(@PathVariable("user_seq") String user_seq) {
         ModelAndView mv = new ModelAndView();
         int userSeq = Integer.parseInt(user_seq);
-        System.out.println("유저번호"+userSeq);
+        System.out.println("유저번호" + userSeq);
         UserDTO userDto = userService.getUserInfo(userSeq);
         CategoryDTO categoryDto = categoryService.getCategoryByUserSeq(userSeq);
         mv.addObject("categoryDto", categoryDto);
@@ -92,14 +94,15 @@ public class MyPageController {
     }
 
     @PostMapping("/mypage/newInfo/{user_seq}")
-    public ModelAndView newInfo(@PathVariable("user_seq") String user_seq, UserDTO userDto, String newPass) throws Exception {
+    public ModelAndView newInfo(@PathVariable("user_seq") String user_seq, UserDTO userDto,
+        String newPass) throws Exception {
         ModelAndView mv = new ModelAndView();
         UserRestController userRestController = new UserRestController();//암호화때문에 객체 생성해줌
-        
+
         int userSeq = Integer.parseInt(user_seq);
         String pwd = userRestController.ConvertPassword(newPass); //수정한 암호는 암호화 해주기
-        
-        Map<Object,Object> map = new HashMap<>();
+
+        Map<Object, Object> map = new HashMap<>();
         map.put("nickname", userDto.getNickname());
         map.put("phone", userDto.getPhone());
         map.put("password", pwd);
@@ -111,27 +114,24 @@ public class MyPageController {
         mv.setViewName("user/myPage");
         return mv;
     }
-    
+
     @GetMapping("/mypage/cancel/{user_seq}")
     public ModelAndView cancel(@PathVariable("user_seq") String user_seq, HttpSession session) {
-    	ModelAndView mv = new ModelAndView();
-    	int userSeq = Integer.parseInt(user_seq);
-    	userService.deleteUser(userSeq);
-    	session.invalidate();
-    	mv.setViewName("/main");
-    	return mv;
+        ModelAndView mv = new ModelAndView();
+        int userSeq = Integer.parseInt(user_seq);
+        userService.deleteUser(userSeq);
+        session.invalidate();
+        mv.setViewName("/main");
+        return mv;
     }
-    
-
-
 
     @GetMapping("/mypage/wrong/{user_seq}")
-    public String moveWrongQuizPage(){
+    public String moveWrongQuizPage() {
         return "/quiz/wrong";
     }
 
     @GetMapping("/mypage/weak/{user_seq}")
-    public String moveWeakQuizPage(){
+    public String moveWeakQuizPage() {
         return "/quiz/wrong";
     }
 
@@ -188,17 +188,35 @@ public class MyPageController {
         paging.setCri(cri);
 
         UserDTO user = userService.getUserByUserSeq(userSeq);
-        List<QuizDTO> weakQuizList = quizservice.getWeakQuizListByUser(user.getWeakCategorySeq(), cri.getPageStart(),
+        int weakSeq = user.getWeakCategorySeq();
+        CategoryDTO weakCategory = categoryService.getCategoryByCategorySeq(String.valueOf(weakSeq));
+        List<QuizDTO> weakQuizList = quizservice.getWeakQuizListByUser(weakSeq,
+            cri.getPageStart(),
             cri.getPerPageNum());
-        int totalBoardCnt =  weakQuizList.size();
+        int totalBoardCnt = weakQuizList.size();
         int maxPage = (int) ((double) totalBoardCnt / cri.getPerPageNum() + 0.9);
 
         paging.setTotalCount(totalBoardCnt);
         m.addAttribute("maxPage", maxPage);
         m.addAttribute("paging", paging);
         m.addAttribute("list", weakQuizList);
-
+        m.addAttribute("weakCategory",weakCategory);
         return m;
     }
 
+    @GetMapping("/mypage/record")
+    @ResponseBody
+    public ModelMap getMyLearnRecord(HttpServletRequest request) {
+        ModelMap m = new ModelMap();
+
+        HttpSession session = request.getSession();
+        int userSeq = (Integer) session.getAttribute("user_seq");
+
+        UserDTO user = userService.getUserByUserSeq(userSeq);
+        List<LearnRecordDTO> list = recodeservice.getLearnListByUser(userSeq);
+        m.addAttribute("learnQuizCount", list.size());
+        m.addAttribute("learnDay",user.getAttendance());
+
+        return m;
+    }
 }

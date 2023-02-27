@@ -12,6 +12,8 @@
 	<link href="/css/container.css" rel="stylesheet">
 	<!-- <link href="/css/login.css" rel="stylesheet"> -->
 	<link href="/css/quiz.css" rel="stylesheet">
+	<script src="/js/util/ajax.js"></script>
+
 	<title>myPage</title>
 	<style type="text/css">
 		.myDiv{
@@ -44,6 +46,12 @@
 			text-decoration: underline;
 		}
 
+		#userRecord {
+			margin : 0 0px 30px 0px;
+			font-size: 20px;
+			font-weight: bold;
+			text-align: center;
+		}
 	</style>
 </head>
 <body>
@@ -56,6 +64,7 @@
 			<br>
 			<p>오늘의 지식과 퀴즈를 확인해보셨나요?</p>
 			<h1>${userDto.nickname}님!</h1><br><br>
+			<div id="userRecord"></div>
 			<b>유저정보</b>
 			<div class="myDiv">
 				<label>닉네임</label>
@@ -80,7 +89,9 @@
 			<p id="deleteInfo"onclick="goDelete()">회원탈퇴</p>
 			<div id="myBtnDiv">
 				<input type="submit" value="정보수정하기" class="myBtn">
+				<br>
 				<input type="button" value="오답노트" class="myBtn"  onclick="window.location.href='/mypage/wrong/${sessionScope.user_seq}'">
+				<input type="button" value="나의 약점 보러가기" class="myBtn"  onclick="window.location.href='/mypage/weak/${sessionScope.user_seq}'">
 			</div>
 			</form>
 		</div>
@@ -98,6 +109,11 @@
 
 		}
 	}
+
+	window.ajax.request('/mypage/record',{},(result)=>{
+		$("#userRecord").html(`\${result.learnDay +1}일 동안 연속으로 출석 중입니다. <br> 지금까지 총 \${result.learnQuizCount}문제를 푸셨습니다.`)
+	})
+
 </script>
 </body>
 </html>

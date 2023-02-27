@@ -20,7 +20,7 @@
 <body>
 <div class="container">
     <div class="content">
-        <h3 id="main"> 오답 노트 </h3>
+        <h3 id="main"></h3>
         <div>
             <div class="filter">
                 <select class="quiz-filter">

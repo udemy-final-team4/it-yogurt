@@ -1,9 +1,11 @@
 package com.starters.ityogurt.serviceimpl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Service;
 
 import com.starters.ityogurt.dao.BoardDAO;
@@ -84,6 +86,7 @@ public class UserServiceImpl implements UserService {
     public void AfterLoginProcess(UserDTO result, HttpSession session) {
         setAttendanceByUserSeq(result);
         setLastLoginDateByUserSeq(result.getUserSeq());
+        setWeakCategoryByUser(result);
         session.setAttribute("user_seq", result.getUserSeq());
     }
 
@@ -107,17 +110,16 @@ public class UserServiceImpl implements UserService {
 		return dao.getUserInfo(userSeq);
 	}
 
-
 	@Override
 	public void updateUserInfo(Map<Object, Object> map) {
 		dao.updateUserInfo(map);
 		
 	}
 
-
     @Override
-    public int setWeakCategoryByUser(UserDTO userDto) {
-        return dao.setWeakCategoryByUser(userDto);
+    public int setWeakCategoryByUser(UserDTO userDto){
+
+    return dao.setWeakCategoryByUser(userDto);
     }
 
 	@Override
