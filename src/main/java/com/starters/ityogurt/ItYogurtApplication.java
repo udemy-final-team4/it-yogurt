@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 @SpringBootApplication
 @EnableScheduling
-@CrossOrigin
+@CrossOrigin(origins = "http://ityogurt.net, http://3.7.76.29/")
 public class ItYogurtApplication {
 
 	public static void main(String[] args) {
