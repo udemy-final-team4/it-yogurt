@@ -105,11 +105,6 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-//    @Override
-//    public UserDTO getUserInfo(int userSeq) {
-//        return dao.getUserInfo(userSeq);
-//    }
-
     @Override
     public void updateUserInfo(Map<Object, Object> map) {
         dao.updateUserInfo(map);

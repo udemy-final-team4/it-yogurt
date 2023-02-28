@@ -35,12 +35,12 @@ public class EmailScheduler {
     @Value("${check.path}")
     private String checkPath;
 
-    @Value("${live.ip}")
-    private String liveIp;
+    @Value("${live.domain}")
+    private String liveDomain;
 
     //이메일 전송 API
     // @RequestMapping("/aws/email")
-    @Scheduled(cron = "0 36 5 * * ?", zone = "Asia/Seoul")
+    @Scheduled(cron = "0 8 14 * * ?", zone = "Asia/Seoul")
     public String sendEmail() throws Exception {
         List<Map<String, Object>> subEmailMap = emailService.getEmailAndSub();
         System.out.println("subEmailMap : " + subEmailMap);
@@ -99,14 +99,14 @@ public class EmailScheduler {
         String buttonText = null;
         if (quizService.getQuiz(knowSeq).size() == 0) {
             buttonText = "<div style=\"text-align: center;\"><br>\n" +
-                    "       <a href='http://localhost:8818"+detailPath+knowSeq+"'>\n" +
+                    "       <a href='"+liveDomain+detailPath+knowSeq+"'>\n" +
                     "               <button class=\"btn\" style=\"width: 250px; background-color: #86b7fe; padding: 15px 30px;\n" +
                     "                border-radius: 5px; color:white; font-size: 18px; font-weight: bold; cursor: pointer;\" >웹사이트에서 보기!</button>\n" +
                     "       </a><br>\n" +
                     "</div>";
         } else {
             buttonText = "<div style=\"text-align: center;\"><br>\n" +
-                    "       <a href='http://localhost:8818"+checkPath+knowSeq+"'>\n" +
+                    "       <a href='"+liveDomain+checkPath+knowSeq+"'>\n" +
                     "               <button class=\"btn\" style=\"width: 250px; background-color: #86b7fe; padding: 15px 30px;\n" +
                     "                border-radius: 5px; color:white; font-size: 18px; font-weight: bold; cursor: pointer;\" >문제 풀기!</button>\n" +
                     "       </a><br>\n" +

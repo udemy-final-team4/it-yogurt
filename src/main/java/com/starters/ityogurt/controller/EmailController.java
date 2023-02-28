@@ -39,8 +39,12 @@ public class EmailController {
     @Autowired
     UserService userService;
 
-    @Value("${live.ip}")
-    private String liveIp;
+    @Value("${live.domain}")
+    private String liveDomain;
+
+    @Value("${check.path}")
+    private String checkPath;
+
     private KnowledgeDTO knowledgeByCategorySeq;
 
     @RequestMapping("/aws/email")
@@ -126,7 +130,7 @@ public class EmailController {
 
     public String buttonText(@RequestParam(value = "knowSeq")int knowSeq) {
         String buttonText = "<div style=\"text-align: center;\"><br>\n" +
-                "       <a href='http://localhost:8818/user/check/"+knowSeq+"'>\n" +
+                "       <a href='"+liveDomain+checkPath+knowSeq+"'>\n" +
                 "               <button class=\"btn\" style=\"width: 200px; background-color: #86b7fe; padding: 15px 30px;\n" +
                 "                border-radius: 5px; color:white; font-size: 18px; font-weight: bold; cursor: pointer;\" >문제 풀기!</button>\n" +
                 "       </a><br>\n" +

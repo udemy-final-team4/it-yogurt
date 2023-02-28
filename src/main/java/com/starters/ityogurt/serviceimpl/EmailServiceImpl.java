@@ -15,6 +15,7 @@ import com.starters.ityogurt.service.EmailService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.amazonaws.services.simpleemail.AmazonSimpleEmailService;
@@ -26,6 +27,9 @@ import lombok.RequiredArgsConstructor;
 @Service("emailservice")
 // @AllArgsConstructor
 public class EmailServiceImpl implements EmailService {
+
+    @Value("${live.domain}")
+    private String liveDomain;
 
     @Autowired
     EmailDAO dao;
@@ -92,7 +96,7 @@ public class EmailServiceImpl implements EmailService {
                 "  <br>\n" +
                 "	</div>\n" +
                 "	<div style=\"text-align: center;\"><br>\n" +
-                "  <a href='http://localhost:8818/user/verify/"+ userDTO.getUserSeq() +"'>\n" +
+                "  <a href='"+liveDomain+"/user/verify/"+ userDTO.getUserSeq() +"'>\n" +
                 "    <button class=\"btn\" style=\"width: 200px; background-color: #86b7fe; padding: 15px 30px;\n"
                 +
                 "                 border-radius: 5px; color:white; font-size: 18px; font-weight: bold; cursor: pointer;\" >이메일 인증하기</button>\n"
