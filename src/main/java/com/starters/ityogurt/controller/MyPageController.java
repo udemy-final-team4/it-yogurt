@@ -1,8 +1,7 @@
 package com.starters.ityogurt.controller;
 
 
-import java.util.HashMap; 
-import com.starters.ityogurt.dao.LearnRecordDAO;
+import java.util.HashMap;
 import com.starters.ityogurt.dto.LearnRecordDTO;
 import com.starters.ityogurt.dto.LearnRecordQuizDTO;
 import com.starters.ityogurt.dto.QuizDTO;
@@ -15,7 +14,6 @@ import com.starters.ityogurt.service.UserService;
 import com.starters.ityogurt.util.Criteria;
 import com.starters.ityogurt.util.Paging;
 import jakarta.servlet.http.HttpServletRequest;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,18 +31,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.starters.ityogurt.dto.CategoryDTO;
-import com.starters.ityogurt.dto.LearnRecordDTO;
-import com.starters.ityogurt.dto.LearnRecordQuizDTO;
-import com.starters.ityogurt.dto.QuizDTO;
-import com.starters.ityogurt.dto.UserDTO;
-import com.starters.ityogurt.service.CategoryService;
-import com.starters.ityogurt.service.LearnRecordQuizService;
-import com.starters.ityogurt.service.LearnRecordService;
-import com.starters.ityogurt.service.QuizService;
-import com.starters.ityogurt.service.UserService;
-import com.starters.ityogurt.util.Criteria;
 import com.starters.ityogurt.util.Encrypt;
-import com.starters.ityogurt.util.Paging;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -78,7 +65,7 @@ public class MyPageController {
         
         UserDTO userDto = userService.getUserByUserSeq(userSeq);
 
-        UserDTO userDto = userService.getUserInfo(userSeq);
+       // UserDTO userDto = userService.getUserInfo(userSeq);
 
         CategoryDTO categoryDto = categoryService.getCategoryByUserSeq(userSeq);
         mv.addObject("categoryDto", categoryDto);
@@ -96,7 +83,7 @@ public class MyPageController {
         UserDTO userDto = userService.getUserByUserSeq(userSeq);
 
         System.out.println("유저번호" + userSeq);
-        UserDTO userDto = userService.getUserInfo(userSeq);
+//        UserDTO userDto = userService.getUserInfo(userSeq);
 
         CategoryDTO categoryDto = categoryService.getCategoryByUserSeq(userSeq);
         List<CategoryDTO> mainCategoryList = categoryService.getMainCategory();
@@ -162,12 +149,12 @@ public class MyPageController {
 
     @GetMapping("/mypage/wrong/{user_seq}")
     public String moveWrongQuizPage() {
-        return "/quiz/wrong";
+        return "/quiz/quizList";
     }
 
     @GetMapping("/mypage/weak/{user_seq}")
     public String moveWeakQuizPage() {
-        return "/quiz/wrong";
+        return "/quiz/quizList";
     }
 
     // 틀린 문제 개수 가져오기. limit 기본값 : 5
@@ -175,7 +162,7 @@ public class MyPageController {
     @ResponseBody
     public ModelMap getWrongQuiz(Criteria cri,
         @PathVariable("user_seq") int userSeq,
-        @RequestParam(defaultValue = "5") String perPageNum) {
+        @RequestParam(defaultValue = "5", required = false) String perPageNum) {
         ModelMap m = new ModelMap();
 
         Paging paging = new Paging();
@@ -195,15 +182,14 @@ public class MyPageController {
     }
 
     //오답문제 정보 갱신 시
-    @PutMapping("/mypage/wrong/answer")
+    @PutMapping("/mypage/wrong/{user_seq}/answer")
     @ResponseBody
     public void updateWrongQuiz(@RequestBody LearnRecordDTO data) {
         recodeservice.updateLearnData(Integer.parseInt(data.getUserChoice()), data.getIsRight(),
             data.getUserSeq(), data.getQuizSeq());
     }
 
-
-    @PutMapping("/mypage/weak/answer")
+    @PutMapping("/mypage/weak/{user_seq}/answer")
     @ResponseBody
     public void updateWeakQuiz(@RequestBody LearnRecordDTO data) {
         recodeservice.updateLearnData(Integer.parseInt(data.getUserChoice()), data.getIsRight(),
@@ -215,7 +201,7 @@ public class MyPageController {
     @ResponseBody
     public ModelMap getWeakQuiz(Criteria cri,
         @PathVariable("user_seq") int userSeq,
-        @RequestParam(defaultValue = "5") String perPageNum) {
+        @RequestParam(defaultValue = "5", required = false) String perPageNum) {
         ModelMap m = new ModelMap();
 
         Paging paging = new Paging();

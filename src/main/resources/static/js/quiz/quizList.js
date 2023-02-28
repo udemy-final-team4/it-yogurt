@@ -1,5 +1,6 @@
+let url = window.location.pathname;
 $(document).ready(function () {
-
+  addFilter();
   go_page(1);
 
   $("input:submit").click(function (e) {
@@ -18,22 +19,33 @@ $(document).ready(function () {
       }
     }
   })
-
-  $(".filter .quiz-filter").on("change", function (e) {
-    let params = (new URL(document.location)).searchParams;
-    let currentPage = parseInt(params.get('page')) || 1;
-    go_page(currentPage);
-  })
 })
+
 let quizType = window.location.pathname.split('/')[2];
 
 function go_page(pageNum) {
-  let limit = $(".filter .quiz-filter").val();
+
+  let sendurl = `${url}/list?${setQueryString(url, pageNum)}`;
+
   window.ajax.request(
-      `${window.location.pathname}/list?page=${pageNum}&perPageNum=${limit}`,
+      sendurl,
       {}, success, (error) => {
         alert(error)
       })
+}
+
+function setQueryString(url, pageNum) {
+  var searchParams = new URLSearchParams();
+  let limit = $(".filter .quiz-filter").val() || 5
+
+  if (pageNum) {
+    searchParams.set("page", pageNum);
+  }
+  if (limit) {
+    searchParams.set("limit", limit);
+  }
+
+  return searchParams;
 }
 
 function clickAnswerButton(event, index, answer_data) {
@@ -61,9 +73,8 @@ function clickAnswerButton(event, index, answer_data) {
   }
 
   // 수정 필요
-  window.ajax.request(`/mypage/${quizType}/answer`, {
-    "type": "PUT",
-    "data": {
+  window.ajax.request(`${location.pathname}/answer`, {
+    "type": "PUT", "data": {
       "userChoice": userChoice,
       "isRight": isRight,
       "userSeq": answer_data.userSeq,
@@ -80,7 +91,16 @@ let success = (result) => {
 
   if (quizType == "wrong") {
     $("#main").text("오답노트");
-  } else {
+  }
+  else if(quizType == "top")
+  {
+    var searchParams = new URLSearchParams(window.location.search);
+    let type = searchParams.get("type");
+    let top = searchParams.get("top");
+    let topType = {1:"가장 많이 푼 문제",2 :"가장 많이 틀린 퀴즈"};
+    $("#main").text(`${topType[type]} TOP${top}`);
+  }
+  else {
     $("#main").text("나의 약점 문제");
     if (list.length != 0) {
       $(".content").append(`<div id="weakCategory">
@@ -147,6 +167,10 @@ let success = (result) => {
 }
 
 let pageSetting = (result) => {
+  if(!result.paging)
+  {
+    return;
+  }
   let paging = result.paging;
   let maxPage = result.maxPage;
   let pagingTag = `
@@ -171,4 +195,24 @@ let pageSetting = (result) => {
   pagingTag += `<li class="page-item"><div onclick="go_page(${maxPage})" class="page-link">끝</div></li></ul></nav>`
 
   $('.paging').html(pagingTag);
+}
+
+addFilter = () => {
+  $("#header").append(`<div className="filter">
+      <select className="quiz-filter">
+        <option value="5">5개씩 보기</option>
+        <option value="10">10개씩 보기</option>
+        <option value="20">20개씩 보기</option>
+      </select>
+    </div>`)
+
+  onFilterClick();
+}
+
+onFilterClick = () => {
+  $(".filter .quiz-filter").on("change", function (e) {
+    let params = (new URL(document.location)).searchParams;
+    let currentPage = parseInt(params.get('page')) || 1;
+    go_page(currentPage);
+  })
 }

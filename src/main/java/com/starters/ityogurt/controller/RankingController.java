@@ -1,9 +1,12 @@
 package com.starters.ityogurt.controller;
 
+import com.starters.ityogurt.dto.QuizDTO;
+import com.starters.ityogurt.service.QuizService;
 import com.starters.ityogurt.service.RankingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -47,12 +50,9 @@ public class RankingController {
         return null;
     }
 
-
     @GetMapping("/top/category")
     public ModelAndView getTopRankingByCategory() {
         return null;
     }
-
-
 
 }
