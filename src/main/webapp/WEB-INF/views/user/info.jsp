@@ -136,7 +136,6 @@ width: 100%;
 						<input type="password" placeholder="수정할 비밀번호 입력" id="newPass" name="newPass" class="pw" <%-- value="${userDto.password} --%>"><br>
 						<input type="password" placeholder="비밀번호 확인" id="newPassCheck" name="newPassCheck" class="pw" <%-- value="${userDto.password}" --%>><br>
 						<span id="alert-form" style="display: none; color: red;">형식 불일치(영문,숫자 6~12자)</span>
-	<!-- 					<span id="alert-fail" style="display: none; color: red;">형식 불일치. 다시 입력하세요.</span> -->
 						<span id="alert-success" style="display: none; color: blue;">비밀번호 일치</span>
 						<span id="alert-fail" style="display: none; color: red;">비밀번호 불일치. 다시 입력하세요.</span>
 					</div>				
