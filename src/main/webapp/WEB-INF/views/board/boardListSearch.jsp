@@ -30,7 +30,7 @@
 	<!-- 검색창 -->
 	<input type="text" placeholder="검색어 입력" name="keyword" id="keyword">
     <button type="submit" id="search">검색</button>
-			
+	</form>
 	<!-- 게시판 테이블 -->		
 		<table class="table">
 		<!-- 게시판 제목 -->
@@ -75,7 +75,7 @@
 		
 			</tbody>
 			</table>
-		</form>
+		
 		
 	<%-- <!-- 페이징 -->
 	<div class="paging">
