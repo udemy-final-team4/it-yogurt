@@ -65,7 +65,8 @@ public class BoardController {
 				int totalBoardCnt = boardService.countAllBoard(); // 전체 게시글 수
 				int maxPage = (int)((double)totalBoardCnt / cri.getPerPageNum() + 0.9); // 전체 페이지 수
 				paging.setTotalCount(totalBoardCnt); //전체 게시글 수 설정
-				List<Map<String,String>> boardlist = boardService.getBoardJoinUser(cri); // 게시글 데이터 가져오기
+				List<Map<String,String>> boardList = boardService.getBoardJoinUser(cri); // 게시글 데이터 가져오기
+				
 				
 				//댓글 개수
 				
@@ -73,7 +74,7 @@ public class BoardController {
 				mv.addObject("totalBoardCnt", totalBoardCnt);
 				mv.addObject("maxpage", maxPage);
 			 	mv.addObject("paging", paging);
-			 	mv.addObject("boardList", boardlist);
+			 	mv.addObject("boardList", boardList);
 			 	mv.setViewName("board/boardList");
 			 	return mv;
 		 
@@ -133,8 +134,10 @@ public class BoardController {
 	 
 	 //게시글 업로드
 	 @PostMapping("/form")
-	 public ModelAndView insertBoard(BoardDTO boardDto) {
+	 public ModelAndView insertBoard(BoardDTO boardDto, CategoryDTO categoryDTO) {
 		 ModelAndView mv = new ModelAndView();
+		 CategoryDTO selectedCategory = categoryService.getCategoryByAllType(categoryDTO);
+		 boardDto.setCategorySeq(selectedCategory.getCategorySeq());
 		 boardService.insertBoard(boardDto);
 		 mv.setViewName("redirect:list");
 		 return mv;
@@ -144,7 +147,6 @@ public class BoardController {
 	 @GetMapping("/form/{boardseq}")
 	 public ModelAndView uploadBaordForm(BoardDTO boardDto, @PathVariable("boardseq") int boardSeq) {
 		 ModelAndView mv = new ModelAndView();
-		 
 		 Map<String,String> oneBoard = boardService.getOneBoardJoinUser(boardSeq);
 		 mv.addObject("oneBoard", oneBoard);
 		 mv.setViewName("board/boardUpdateForm");
@@ -152,8 +154,10 @@ public class BoardController {
 	 }
 	//게시글 수정 등록
 	 @PostMapping("/form/{boardseq}")
-	 public ModelAndView uploadBoard(BoardDTO boardDto,  @PathVariable("boardseq") int boardSeq) {
+	 public ModelAndView uploadBoard(BoardDTO boardDto, CategoryDTO categoryDTO,  @PathVariable("boardseq") int boardSeq) {
 		 ModelAndView mv = new ModelAndView();
+		 CategoryDTO selectedCategory = categoryService.getCategoryByAllType(categoryDTO);
+		 boardDto.setCategorySeq(selectedCategory.getCategorySeq());
 		 boardDto.setBoardSeq(boardSeq);
 		 boardService.updateBoard(boardDto);
 		 mv.setViewName("redirect:/board/list");

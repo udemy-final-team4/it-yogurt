@@ -40,7 +40,7 @@
 				<th> 카테고리 </th>
 				<th> 제목 </th>
 				<th> 작성자 </th>
-				<th> 조회수 </th>
+				<th> 조회수</th>
 			</tr>
 		</thead>	
 		<!-- 게시판 내용 -->		
@@ -48,9 +48,9 @@
 			<c:set var="num" value="${paging.totalCount - ((paging.cri.page-1)* 10)}"/>
 			<c:forEach items="${boardList }" var="list">
 			<tr class="tableList" onClick="location.href='/board/${list.boardSeq}'">
-				<td id ="boardSeq">${num}</td>	
+				<td id ="boardSeq">${num}  </td>	
 				<td>
-				<span class="badge bg-secondary text-decoration-none link-light"> ${list.sub }</span>
+				<span class="badge bg-secondary text-decoration-none link-light">${list.sub}</span>
 				</td>
 				<td style="text-align: left;">${list.title }</td>
 				<td>${list.nickname }</td>

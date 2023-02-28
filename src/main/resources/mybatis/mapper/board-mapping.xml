@@ -34,7 +34,7 @@
 	JOIN user u 
 	ON b.user_seq = u.user_seq	
 	JOIN category c
-	ON u.category_seq = c.category_seq
+	ON b.category_seq = c.category_seq
 	order BY board_seq desc
 	LIMIT #{pageStart}, #{perPageNum}		
  </select>
