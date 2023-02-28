@@ -89,4 +89,13 @@
 		WHERE user_seq=#{userSeq}
 	</update>
 	
+ <select id="getSearchUserList" parameterType="String" resultType="userdto">
+	select *
+	from user
+	where admin is null 
+	AND nickname 	
+	like concat('%',#{keyword},'%')
+	order BY user_seq
+</select>
+	
 </mapper>
