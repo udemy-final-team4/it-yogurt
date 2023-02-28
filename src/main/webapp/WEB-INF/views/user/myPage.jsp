@@ -76,7 +76,7 @@
 </head>
 <body>
 <div class="container">
-	<%@include file="../common/header.jsp"%>
+	<%@include file="../common/nav.jsp"%>
 	<div class="content">
 		<div style="display: block; width:100%;">
 <!--     	<h3>마이페이지</h3><br> -->
@@ -121,7 +121,6 @@
 			</form>
 		</div>
 	</div>
-	<%@include file="../common/footer.jsp"%>
 </div>
 <script type="text/javascript">
 	function goUpdate(){
@@ -145,4 +144,5 @@
 
 </script>
 </body>
+<%@include file="../common/footer.jsp"%>
 </html>
