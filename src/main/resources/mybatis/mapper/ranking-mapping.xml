@@ -5,4 +5,35 @@
 
 <mapper namespace="com.starters.ityogurt.dao.RankingDAO">
 
+    <resultMap id="getRankingMap" type="HashMap">
+        <id column="count" property="count"/>
+        <id column="quiz_seq" property="quizSeq"/>
+        <id column="rank" property="rank"/>
+        <id column="question" property="question"/>
+        <id column="sub" property="sub"/>
+    </resultMap>
+
+    <select id="getMostSolvedQuiz" resultMap="getRankingMap">
+        SELECT COUNT(l.quiz_seq) count, l.quiz_seq, ROW_NUMBER() OVER (order BY count DESC, l.quiz_seq desc) AS rank, q.question, c.sub
+        FROM learn_record l JOIN quiz q ON l.quiz_seq = q.quiz_seq
+            JOIN knowledge k ON k.know_seq = q.know_seq
+            JOIN category c ON c.category_seq = k.category_seq
+        GROUP BY l.quiz_seq
+        ORDER BY RANK ASC, count DESC
+            LIMIT 0, 10;
+    </select>
+
+    <select id="getMostWrongQuiz" resultMap="getRankingMap">
+        SELECT COUNT(l.quiz_seq) count, l.quiz_seq, ROW_NUMBER() OVER (order BY count DESC, l.quiz_seq desc) AS rank, q.question, c.sub
+        FROM learn_record l JOIN quiz q ON l.quiz_seq = q.quiz_seq
+            JOIN knowledge k ON k.know_seq = q.know_seq
+            JOIN category c ON c.category_seq = k.category_seq
+        WHERE l.is_right = 0
+        GROUP BY l.quiz_seq
+        ORDER BY RANK ASC, count DESC
+            LIMIT 0, 10;
+    </select>
+
+    <!-- getMostSelectedCategory -->
+
 </mapper>

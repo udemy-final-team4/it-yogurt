@@ -43,18 +43,18 @@
 					</c:otherwise>
 				</c:choose>
                 <c:choose>
-					<c:when test="${ not empty sessionScope.user_seq}">	
-                		<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="<%=request.getContextPath()%>/user/o" ><i class="fa-solid fa-right-from-bracket"></i></a></li>
+					<c:when test="${ not empty sessionScope.user_seq}">
+						<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="<%=request.getContextPath()%>/user/o" ><i class="fa-solid fa-right-from-bracket"></i><span style="font-size:samll;">logout</span></a></li>
 					</c:when>
 					<c:otherwise>
-                		<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="<%=request.getContextPath()%>/user" ><i class="fa-solid fa-right-to-bracket"></i></a></li>
+                		<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"  href="<%=request.getContextPath()%>/user"><i class="fa-solid fa-right-to-bracket"></i><span style="font-size:samll;">login</span></a></li>
             		</c:otherwise>
 				</c:choose>
 
             </ul>
         </div>
     </div>
-</body>
 </nav>
+</body>
 </body>
 </html>

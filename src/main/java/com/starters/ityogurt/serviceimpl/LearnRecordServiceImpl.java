@@ -1,5 +1,6 @@
 package com.starters.ityogurt.serviceimpl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -47,9 +48,13 @@ public class LearnRecordServiceImpl implements LearnRecordService{
 		return dao.getAnswerList(quizSeq1, quizSeq2, quizSeq3);
 	}
 
-	
-	
+	public List<LearnRecordDTO> getLearnListByUser(int userSeq) {
+		return dao.getLearnListByUser(userSeq);
+	}
 
-	
+	@Override
+	public HashMap<String, Integer> findWeakCategoryByUser(int userSeq) {
+		return dao.findWeakCategoryByUser(userSeq);
+	}
 
 }

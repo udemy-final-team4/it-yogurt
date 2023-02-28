@@ -28,9 +28,24 @@
 		update learn_record set user_choice =#{userChoice}, is_right=#{isRight} where user_seq=#{userSeq} and quiz_seq=#{quizSeq}
 	</update>
 
+
 	<select id="getAnswerList" parameterType="int" resultType="learnrecorddto">
 		select * from learn_record where quiz_seq in(#{quizSeq1},#{quizSeq2},#{quizSeq3}) 
 
 	</select>
 
+	<select id="getLearnListByUser" parameterType="int" resultType="learnrecorddto">
+		SELECT * FROM learn_record WHERE user_seq = ${userSeq};
+	</select>
+
+<!-- 유저가 가장 많이 틀린 카테고리의 Seq 찾아오기-->
+	<select id="findWeakCategoryByUser" parameterType="int" resultType="map">
+		SELECT c.category_seq, COUNT(*) count FROM learn_record l
+			INNER JOIN quiz q ON l.quiz_seq = q.quiz_seq
+			INNER JOIN (SELECT category_seq, know_seq FROM knowledge) AS c ON c.know_seq = q.know_seq
+		WHERE is_right = 0 AND l.user_seq=#{userSeq}
+		GROUP BY category_seq
+		ORDER BY count, category_seq
+			LIMIT 0,1;
+	</select>
 </mapper>

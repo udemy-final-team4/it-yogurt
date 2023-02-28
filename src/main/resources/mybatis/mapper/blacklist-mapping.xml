@@ -8,5 +8,22 @@
 	    insert into blacklist(email)
 	    values (#{email})
   	</insert>
+  	
+  	<select id="countBlackedEmail" resultType="int">
+  		select count(*)
+  		from blacklist
+  	</select>
+  	
+  	<select id="getAllBlackedUserList" resultType="blacklistdto" parameterType="criteria">
+  		select *
+  		from blacklist
+  		LIMIT #{pageStart}, #{perPageNum}
+  	</select>
+  	
+  	<delete id="deleteBlackedEmail" parameterType="String">
+  		delete 
+  		from blacklist
+  		where email=#{email}
+  	</delete>
 
 </mapper>
