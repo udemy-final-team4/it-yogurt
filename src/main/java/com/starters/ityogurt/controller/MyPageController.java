@@ -64,6 +64,7 @@ public class MyPageController {
         int userSeq = Integer.parseInt(user_seq);
         
         UserDTO userDto = userService.getUserByUserSeq(userSeq);
+
         CategoryDTO categoryDto = categoryService.getCategoryByUserSeq(userSeq);
         
         mv.addObject("categoryDto", categoryDto);
