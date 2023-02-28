@@ -2,6 +2,7 @@ package com.starters.ityogurt.serviceimpl;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,11 +29,6 @@ public class LearnRecordServiceImpl implements LearnRecordService{
 	}
 
 	@Override
-	public List<LearnRecordDTO> getLearn(int quizSeq1, int quizSeq2, int quizSeq3) {
-		return dao.getLearn(quizSeq1, quizSeq2, quizSeq3);
-	}
-
-	@Override
 	public void deleteLearnData(int userSeq) {
 		dao.deleteLearnData(userSeq);
 	}
@@ -43,6 +39,15 @@ public class LearnRecordServiceImpl implements LearnRecordService{
 	}
 
 	@Override
+	public List<LearnRecordDTO> getLearnRecord(Map<Object, Object> map) {
+		return dao.getLearnRecord(map);
+	}
+
+	@Override
+	public List<LearnRecordDTO> getAnswerList(int quizSeq1, int quizSeq2, int quizSeq3) {
+		return dao.getAnswerList(quizSeq1, quizSeq2, quizSeq3);
+	}
+
 	public List<LearnRecordDTO> getLearnListByUser(int userSeq) {
 		return dao.getLearnListByUser(userSeq);
 	}

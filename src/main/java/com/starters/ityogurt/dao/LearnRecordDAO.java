@@ -2,6 +2,7 @@ package com.starters.ityogurt.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -25,8 +26,13 @@ public interface LearnRecordDAO {
 
 	int deleteLearnDataByLearnSeq(int learnSeq);
 
+	List<LearnRecordDTO> getLearnRecord(Map<Object, Object> map);
+
+	List<LearnRecordDTO> getAnswerList(@Param("quizSeq1") int quizSeq1, @Param("quizSeq2") int quizSeq2, @Param("quizSeq3") int quizSeq3);
+
 	List<LearnRecordDTO> getLearnListByUser (int userSeq);
 
 	public HashMap<String, Integer> findWeakCategoryByUser(int userSeq);
+
 	
 }

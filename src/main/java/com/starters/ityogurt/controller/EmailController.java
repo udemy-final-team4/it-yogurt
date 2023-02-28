@@ -43,9 +43,8 @@ public class EmailController {
     private String liveIp;
     private KnowledgeDTO knowledgeByCategorySeq;
 
-    // private final EmailService emailService;
     @RequestMapping("/aws/email")
-    @Scheduled(cron = "0 46 1 * * ?", zone = "Asia/Seoul")
+    // @Scheduled(cron = "0 30 7 * * ?", zone = "Asia/Seoul")
     public String sendEmail() throws Exception {
         // 유저의 이메일과 유저가 선택한 소분류를 map에 담은 것을 반환한다.
         List<Map<String, Object>> subEmailMap = emailService.getEmailAndSub();
@@ -144,14 +143,6 @@ public class EmailController {
                 "</div>";
         return footerText;
     }
-
-    @GetMapping("user/email")
-    public String checkEmail(String email) {
-        userService.setIsPassByUserSeq(31);
-        return "true";
-    }
-
-
 
 }
 

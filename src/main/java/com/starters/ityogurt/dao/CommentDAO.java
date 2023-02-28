@@ -27,4 +27,6 @@ public interface CommentDAO {
 	void deleteCommentByCommentSeq (int commentSeq);
 	
 	void deleteCommentByBoardSeq (int boardSeq);
+
+	void deleteCommentByUserSeq(int userSeq);
 }

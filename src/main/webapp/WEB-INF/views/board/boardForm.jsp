@@ -16,6 +16,9 @@
     <link href="/css/styles.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/user/signup.js"></script>
+    <script src="/js/util/ajax.js"></script>
+    <script src="/js/util/util.js"></script>	
  <!-- <meta charset="UTF-8">
     <link href="/css/header.css" rel="stylesheet">
     <link href="/css/footer.css" rel="stylesheet">
@@ -31,7 +34,7 @@
 </style>
 </head>
 <%@include file="../common/nav.jsp" %>
-<body>
+<body style="margin-top:15%;">
 
 
 
@@ -45,6 +48,19 @@
                         <header class="masthead bg-self" style="background-color: #F9F2ED; max-width:none;" >
     						<div class="mb-4">
     							<h2> 게시글 작성 </h2>
+    							
+    							<label for="main">카테고리</label>
+                					<select name="main" id="main">
+
+                					</select>
+                					<select name="middle" id="middle">
+
+               						</select>
+                					<select name="sub" id="sub">
+
+                					</select>
+    							
+    							
 	                            <!-- Post title-->
 	                            <p>제목</p>
 	                            <h4 class="fw-bolder mb-1"><input type="text" class="fw-bolder mb-1" name="title"></h4>
@@ -70,7 +86,7 @@
                            <textarea  class="form-control" id="content" name="content" rows=10></textarea>
                       			
                       			<input type="hidden" name="userSeq" value=${sessionScope.user_seq }>
-								<input type="hidden" name="categorySeq" value="18">
+								<!-- <input type="hidden" name="categorySeq" value="18"> -->
                         
                         </section>
                     </article>

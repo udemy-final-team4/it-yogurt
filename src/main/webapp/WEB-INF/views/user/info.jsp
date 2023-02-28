@@ -40,6 +40,8 @@ label, #blank {
     margin-top: 90px;
     border-color: #91ACCC;
     font-size: 20px;
+    text-decoration: underline;
+    cursor: pointer;
 }
 #infoDiv{
 width: 100%;
@@ -80,15 +82,53 @@ width: 100%;
 				<div style="display: inline;"> <input type="text" value="${userDto.phone}" name="phone" required></div>
 			</div>
 			<div class="myDiv">
-				<label>카테고리</label>
-				<div style="display: inline;" id="category"> ${categoryDto.main} > ${categoryDto.middle} > ${categoryDto.sub}</div>
+<!-- 				<label>카테고리</label> -->
+				<div style="display: inline;" id="category" > 
+<!-- 						<select> -->
+<%-- 							<c:forEach items="${mainCategoryList }" var="list"> --%>
+<%-- 								<c:if test="${list.main eq categoryDto.main }"> --%>
+<!-- 								<option> -->
+<%-- 									${list.main} --%>
+<!-- 								</option> -->
+<%-- 								</c:if>	 --%>
+<%-- 							</c:forEach>	 --%>
+<!-- 						</select> -->
+<!-- 						<select> -->
+<%-- 							<c:forEach items="${middleCategoryList }" var="list"> --%>
+<%-- 								<c:if test="${list.middle eq categoryDto.middle }"> --%>
+<!-- 								<option> -->
+<%-- 									${list.middle} --%>
+<!-- 								</option> -->
+<%-- 								</c:if> --%>
+<%-- 							</c:forEach>	 --%>
+<!-- 						</select> -->
+<!-- 						<select> -->
+<%-- 							<c:forEach items="${subCategoryList }" var="list"> --%>
+<%-- 								<c:if test="${list.sub eq categoryDto.sub }"> --%>
+<!-- 								<option> -->
+<%-- 									${list.sub} --%>
+<!-- 								</option> -->
+<%-- 								</c:if> --%>
+<%-- 							</c:forEach>	 --%>
+<!-- 						</select> -->
+					<label for="main">카테고리</label>
+	                <select name="main" id="main">
+	 
+	                </select>
+	                <select name="middle" id="middle">
+	
+	                </select>
+	                <select name="sub" id="sub">
+	
+	                </select>
+				</div>
 			</div>
 			<div class="myDiv">
 				<label>가입일자</label>
 				<div style="display: inline;"> ${userDto.insertDate}</div>
 			</div>
 			<div class="myDiv2">
-				<label>비밀번호</label> 
+				<label>비밀번호</label>
 				<div style="display: inline;">
 					<a id="a1" onclick="openPass()">수정하기</a>
 					<a id="a2" onclick="closePass()">닫기</a>
@@ -96,7 +136,6 @@ width: 100%;
 						<input type="password" placeholder="수정할 비밀번호 입력" id="newPass" name="newPass" class="pw" <%-- value="${userDto.password} --%>"><br>
 						<input type="password" placeholder="비밀번호 확인" id="newPassCheck" name="newPassCheck" class="pw" <%-- value="${userDto.password}" --%>><br>
 						<span id="alert-form" style="display: none; color: red;">형식 불일치(영문,숫자 6~12자)</span>
-	<!-- 					<span id="alert-fail" style="display: none; color: red;">형식 불일치. 다시 입력하세요.</span> -->
 						<span id="alert-success" style="display: none; color: blue;">비밀번호 일치</span>
 						<span id="alert-fail" style="display: none; color: red;">비밀번호 불일치. 다시 입력하세요.</span>
 					</div>				
@@ -113,29 +152,37 @@ width: 100%;
 	</div>
 <script type="text/javascript">
 
+$(document).ready(function () {
+window.ajax.request("/category", {}, CategorySetting, category_error)
 
-function backInfo(){
-	location.href="${pageContext.request.contextPath}/mypage/${sessionScope.user_seq}";
-}
+	//// 카테고리 변경 시
+	$("select").on("change", function (event) {
+	 let type = $(this).attr("id");
+	 let type_value = $(this).val();
+	 window.ajax.request(`/category/${type}`,
+	     {data: {type: "GET", type_value: type_value}}, CategoryTypeSuccess,
+	     category_error)
+	});
+})
+	//뒤로가기
+	function backInfo(){
+		location.href="${pageContext.request.contextPath}/mypage/${sessionScope.user_seq}";
+	}
 
-
-	//비밀번호 수정하기 클릭하면 비밀번호 수정 공간 확인, 다시 클릭하면 사라짐
+	//비밀번호 수정하기 클릭하면 비밀번호 수정 공간 확인
 	function openPass(){
-// 		$("#a1").css("display","hide");
-// 		$("#a2").css("display","show");
 		$("#hide").show();
-// 		$("#hide").css("display","show");
 		$(".myDiv2").css("height","200px");
+		$("#a1").hide();
+		$("#a2").show();
 		
 	}
-	
+	//다시 클릭하면 사라짐
 	function closePass(){
-// 		$("#a2").css("display","hide");
-// 		$("#a1").css("display","show");
 		$("#hide").hide();
-// 		$("#hide").css("display","none");
 		$(".myDiv2").css("height","80px");
-		
+		$("#a2").hide();
+		$("#a1").show();
 	}
 	
 	//비밀번호 입력시 일치, 불일치 확인 가능
@@ -168,28 +215,14 @@ function backInfo(){
 		let pwd2=$("#newPassCheck").val();
 		let pattern = /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,12}$/;//6자 이상 12자 이하/ 1개의 문자,숫자 포함
 		
-		
 		let check = confirm('정보를 수정하시겠습니까?');
 	
-
-// 			if(pattern.test(pwd1) == true){
-// 				if(check == true){
-// 					if(pwd1 == pwd2){
-// 						alert('수정되었습니다.');
-// 						$("form").attr("action","/mypage/newInfo/"+${sessionScope.user_seq});
-// 					}else{
-// 						alert('비밀번호 재확인하세요.');
-// 						e.preventDefault();
-// 					}
-// 				}
-// 			}else{
-// 					alert('비밀번호 재확인하세요.');
-// 					e.preventDefault();
-// 			}
-			
 		if(check == true){//수정하시겠습니까? 예.
-// 			if($("#newPass").val() ){ //비밀번호 수정 열려있을때
-				if(pattern.test(pwd1) == true){
+			if(pwd1 == "" && pwd2 == ""){// 비밀번호 수정 안하고싶을때
+				alert('수정되었습니다.');
+				$("form").attr("action","/mypage/newInfo/"+${sessionScope.user_seq})
+			}else{ //비밀번호칸에 뭐가 적혀있을때
+				if(pattern.test(pwd1) == true){//양식통과O
 					if(pwd1 == pwd2){
 						alert('수정되었습니다.');
 						$("form").attr("action","/mypage/newInfo/"+${sessionScope.user_seq});
@@ -197,20 +230,19 @@ function backInfo(){
 						alert('비밀번호 재확인하세요.');
 						e.preventDefault();
 					}
-				}else{
+				}else{ //양식통과X
 					alert('비밀번호 재확인하세요.');
 					e.preventDefault();
 				}
-// 			}else{// 수정 닫혀있을때
-// 				alert('수정되었습니다.');
-// 				$("form").attr("action","/mypage/newInfo/"+${sessionScope.user_seq})
-// 			}
-		
+			}		
 		}else{ //수정 아직 안해요
 			e.preventDefalut();
 		}
 		
 	}
+	
+	
+
 	
 </script>	
 

@@ -11,6 +11,9 @@
     <link href="/css/footer.css" rel="stylesheet">
     <link href="/css/container.css" rel="stylesheet">
      <link href="/css/admin.css" rel="stylesheet">
+     <script src="/js/user/signup.js"></script>
+    <script src="/js/util/ajax.js"></script>
+    <script src="/js/util/util.js"></script>
 <title> 커뮤니티 | 게시판 | 글쓰기 </title>
 <style>
 .tableList:hover {
@@ -28,8 +31,20 @@
 <div class="container mt-5">
             <div class="row">
                 <div class="col-lg-auto">
+                
+                
                     <!-- Post content-->
                   <form action="/board/form/${oneBoard.boardSeq }" method="post">
+	                <label for="main">카테고리</label>
+	                	<select name="main" id="main">
+	
+	                	</select>
+	                	<select name="middle" id="middle">
+	
+	                	</select>
+	                	<select name="sub" id="sub">
+	
+	                	</select>
                     <article>
                         <!-- Post header-->
                         <header class="mb-4">
@@ -46,7 +61,7 @@
                            <textarea  class="form-control" id="content" name="content" rows=10 ><c:out value="${oneBoard.content }"/></textarea>
                       			
                       			<input type="hidden" name="userSeq" value="2">
-								<input type="hidden" name="categorySeq" value="3">
+								<!-- <input type="hidden" name="categorySeq" value="3"> -->
                         
                         </section>
                     </article>
