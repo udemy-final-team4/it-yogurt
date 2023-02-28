@@ -13,57 +13,9 @@
 <link href="/css/login.css" rel="stylesheet">
 <link href="/css/quiz.css" rel="stylesheet">
 <script src="/js/user/signup.js"></script>
-    <script src="/js/util/ajax.js"></script>
-    <script src="/js/util/util.js"></script>	
+<script src="/js/util/ajax.js"></script>
+<script src="/js/util/util.js"></script>	
 <title>myPage</title>
-<style type="text/css">
-.myDiv{
-height:80px;
-border: 1px solid black;
-margin: auto;
-}
-
-.myDiv2{
-height:80px;
-border: 1px solid black;
-margin: auto;
-}
-
-label, #blank {
-    width: 180px;
-    display: inline-block;
-    margin-top: 23px;
-    margin-left: 50px;
-}
-#clear{
-color : blue;
-	text-decoration: underline;
-	cursor: pointer;
-}
-
-#infoBtn, #back{
-	width: 49.3%;
-    height: 70px;
-    border-style: solid;
-    border-width: medium;
-    margin-top: 90px;
-    border-color: #91ACCC;
-    font-size: 20px;
-}
-#infoDiv{
-width: 100%;
-}
-
-#hide{
-	margin-left: 235px;
-}
-
-#a1, #a2{
-	color : blue;
-	text-decoration: underline;
-	cursor: pointer;
-}
-</style>
 </head>
 <body>
 	<div class="container">
@@ -72,8 +24,8 @@ width: 100%;
 		<div style="display: block; width:100%;">
 		<form action="<%=request.getContextPath()%>" method="post" >
 			<br>
-			<p>당신의 새로운 정보를 입력해주세요!</p>
-			<h1>${userDto.nickname}님!</h1><br><br>
+			<h1>${userDto.nickname}님!</h1>
+			<p>당신의 새로운 정보를 입력해주세요!</p><br><br>
 			<b>유저정보</b>
 			<div class="myDiv">
 				<label>닉네임</label>

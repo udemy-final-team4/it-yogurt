@@ -29,3 +29,54 @@
 	margin-top: 300px;
     margin-bottom: 300px;
 }
+
+.myDiv{
+height:80px;
+border: 1px solid black;
+margin: auto;
+}
+
+.myDiv2{
+height:80px;
+border: 1px solid black;
+margin: auto;
+}
+
+label, #blank {
+    width: 180px;
+    display: inline-block;
+    margin-top: 23px;
+    margin-left: 50px;
+}
+#clear{
+color : blue;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+#infoBtn, #back{
+	width: 49.3%;
+    height: 70px;
+    border-style: solid;
+    border-width: medium;
+    margin-top: 90px;
+    border-color: #91ACCC;
+    font-size: 20px;
+}
+#infoDiv{
+width: 100%;
+}
+
+#hide{
+	margin-left: 235px;
+}
+
+#a1, #a2{
+	color : blue;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.content {
+	margin-top: 20%;
+}

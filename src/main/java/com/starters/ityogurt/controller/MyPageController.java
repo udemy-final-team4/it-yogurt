@@ -77,10 +77,8 @@ public class MyPageController {
         int userSeq = Integer.parseInt(user_seq);
         
         UserDTO userDto = userService.getUserByUserSeq(userSeq);
-
-//        UserDTO userDto = userService.getUserInfo(userSeq);
-
         CategoryDTO categoryDto = categoryService.getCategoryByUserSeq(userSeq);
+        
         mv.addObject("categoryDto", categoryDto);
         mv.addObject("userDto", userDto);
         mv.setViewName("user/myPage");
@@ -94,20 +92,8 @@ public class MyPageController {
         int userSeq = Integer.parseInt(user_seq);
 
         UserDTO userDto = userService.getUserByUserSeq(userSeq);
-
-//        System.out.println("유저번호" + userSeq);
-//        UserDTO userDto = userService.getUserInfo(userSeq);
-
         CategoryDTO categoryDto = categoryService.getCategoryByUserSeq(userSeq);
-        //categoryService.getAllCategoryList();
         
-//        
-//        for(CategoryDTO c : mainCategoryList) {
-//        	System.out.println(c.getMain());
-//        }
-//        mv.addObject("mainCategoryList", mainCategoryList);
-//        mv.addObject("middleCategoryList", middleCategoryList);
-//        mv.addObject("subCategoryList", subCategoryList);
         mv.addObject("categoryDto", categoryDto); //유저가 선택한 카테고리
         mv.addObject("userDto", userDto);
         mv.setViewName("user/info");
@@ -137,16 +123,9 @@ public class MyPageController {
         map.put("password", pwd);
         map.put("categorySeq", categorySeq);
         map.put("userSeq", userSeq);
-        //카테고리 java선택했을때
-        if(sub.equals("java")) {
-        	
-        	map.put("", map);
-        }else {
-        	
-        }
+        
         userService.updateUserInfo(map);
         userDto = userService.getUserByUserSeq(userSeq);
-
         CategoryDTO categoryDto = categoryService.getCategoryByUserSeq(userSeq);
         
         mv.addObject("categoryDto", categoryDto);

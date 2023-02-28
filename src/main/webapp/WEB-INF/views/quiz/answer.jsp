@@ -37,13 +37,11 @@
 					</div>
 					<div>
 					<c:forEach items="${quizList }" var="list">
-					
 						<!-- 퀴즈번호 기재하기 위한 변수 선언 -->
 						<c:set var="i" value="${i+1}" />
 							<tr>
 								<td id="num"><br> <br> <br> 
-								Q. ${i}번<br><br>
-								문제: ${list.question}<br> <br></td>
+								<b>Q. ${i}번.<br>${list.question}</b><br> <br></td>
 							</tr>
 							
 								<!-- 보기화면 -->

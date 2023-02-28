@@ -12,46 +12,6 @@
 <link href="/css/knowledge.css" rel="stylesheet">
 <title>매일지식 컨텐츠</title>
 </head>
-<style>
-	#tblDiv {
-		margin-top: 20%;
-	}
-	
-	.tableList:hover {
-	background-color: #91ACCC;
-	color: white;
-	cursor: pointer;
-}
-.page-link {
-  color: #fff; 
-  background-color: #91ACCC;
-  border: 1px solid #ccc; 
-}
-.page-item.active .page-link {
- z-index: 1;
- color: #555;
- font-weight:bold;
- background-color: #f1f1f1;
- border-color: #ccc;
- 
-}
-.page-link:focus, .page-link:hover {
-  color: #000;
-  background-color: #fafafa; 
-  border-color: #ccc;
-}
-.fas {
-line-height: inherit;
-}
-.form {
-	margin-top: 20%;
-}
-/* th{ */
-/* 	width: 150px; */
-/* }	 */
-	
-	
-</style>
 <%@include file="../common/nav.jsp"%>
 <body>
 	<div class="container">
@@ -63,12 +23,6 @@ line-height: inherit;
 			
 			<!-- 카테고리 선택 -->
 			<div id="categoryDiv">
-<!-- 			<select id="categoryChoice" onchange="changeCategory()"> -->
-<!-- 				<option value="all" >전체</option> -->
-<!-- 				<option value="프로그래밍언어" >프로그래밍언어</option> -->
-<!-- 				<option value="데이터베이스" >데이터베이스</option> -->
-<!-- 			</select> -->
-			
 			<select id="categoryChoice" onchange="changeCategory()">
 				<option value="all" >전체</option>			
 			<c:forEach items="${category}" var="list">

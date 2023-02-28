@@ -41,9 +41,14 @@
 			padding: 10% 10% 5% 10%;
 		}
 		#deleteInfo{/* 태그 색상 변경 */
-			float: right;
 			color: black;
 			text-decoration: underline;
+			cursor: pointer;
+		}
+		#updateInfo{/* 태그 색상 변경 */
+			color: black;
+			text-decoration: underline;
+			cursor: pointer;
 		}
 
 		#userRecord {
@@ -51,6 +56,21 @@
 			font-size: 20px;
 			font-weight: bold;
 			text-align: center;
+		}
+		.infoP1{
+			float : right;
+			display: inline-block;
+			cursor: pointer;
+		}
+		.infoP2{
+			float : right;
+			display: inline-block;
+			margin-right: 30px;
+			cursor: pointer;
+		}
+		#deleteInfo{
+			
+			color : 90AACB;
 		}
 	</style>
 </head>
@@ -60,10 +80,10 @@
 	<div class="content">
 		<div style="display: block; width:100%;">
 <!--     	<h3>마이페이지</h3><br> -->
-		<form action="<%=request.getContextPath()%>/mypage/info/${userDto.userSeq}" method="post">
+		<form action="<%=request.getContextPath()%>/mypage/info/${userDto.userSeq}" method="post" id="myForm">
 			<br>
-			<p>오늘의 지식과 퀴즈를 확인해보셨나요?</p>
-			<h1>${userDto.nickname}님!</h1><br><br>
+			<h1>${userDto.nickname}님!</h1>
+			<p>오늘의 지식과 퀴즈를 확인해보셨나요?</p><br><br>
 			<div id="userRecord"></div>
 			<b>유저정보</b>
 			<div class="myDiv">
@@ -86,9 +106,14 @@
 				<label>가입일자</label>
 				<div style="display: inline;"> ${userDto.insertDate}</div>
 			</div>
-			<p id="deleteInfo"onclick="goDelete()">회원탈퇴</p>
+			<div class="infoP1">
+				<p id="deleteInfo" onclick="goDelete()">회원탈퇴</p>
+			</div>
+			<div class="infoP2">
+				<p id="updateInfo" onclick="goUpdate()">회원정보수정</p>
+			</div>
 			<div id="myBtnDiv">
-				<input type="submit" value="정보수정하기" class="myBtn">
+<!-- 				<input type="submit" value="정보수정하기" class="myBtn"> -->
 				<br>
 				<input type="button" value="오답노트" class="myBtn"  onclick="window.location.href='/mypage/wrong/${sessionScope.user_seq}'">
 				<input type="button" value="나의 약점 보러가기" class="myBtn"  onclick="window.location.href='/mypage/weak/${sessionScope.user_seq}'">
@@ -99,6 +124,10 @@
 	<%@include file="../common/footer.jsp"%>
 </div>
 <script type="text/javascript">
+	function goUpdate(){
+		document.getElementById('myForm').submit();
+	}
+
 	function goDelete(e){
 		let con = confirm('탈퇴시 회원님의 모든 정보가 삭제됩니다.\n정말 IT-Yogurt를 떠나시겠어요...?');
 		if(con == true){
