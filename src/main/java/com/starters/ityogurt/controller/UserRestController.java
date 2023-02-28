@@ -90,8 +90,11 @@ public class UserRestController {
         }
 
         Map<String,Integer> weakCategory = learnRecordService.findWeakCategoryByUser(result.getUserSeq());
-        result.setWeakCategorySeq(weakCategory.get("category_seq"));
-        userService.AfterLoginProcess(result,request.getSession());
+        if(weakCategory != null) {
+            result.setWeakCategorySeq(weakCategory.get("category_seq"));
+            userService.setWeakCategoryByUser(result);
+        }
+            userService.AfterLoginProcess(result,request.getSession());
 
         if(!isStringEmpty(knowSeq))
         {

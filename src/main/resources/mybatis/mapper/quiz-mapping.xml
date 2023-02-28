@@ -39,4 +39,10 @@
     WHERE category_seq = #{weakCategorySeq}
       LIMIT #{start},#{end};
   </select>
+
+  <select id="getQuizByQuiz" resultType="recordquizdto" parameterType="int">
+    SELECT *
+    FROM quiz
+    WHERE quiz_seq = #{quizSeq}
+  </select>
 </mapper>

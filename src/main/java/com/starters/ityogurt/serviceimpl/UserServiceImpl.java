@@ -30,32 +30,32 @@ public class UserServiceImpl implements UserService {
     BoardDAO boardDao;
     @Autowired
     LearnRecordDAO learnRecordDao;
-    
-	  @Autowired
-	  EmailServiceImpl emailService;
 
- 	  @Override
-	  public List<UserDTO> getAllUserlist(){
-		  return dao.getAllUserlist();
-	  }
-    
-	  @Override
-	  public List<UserDTO> getAllUserlistLimit(Criteria cri){
-		  return dao.getAllUserlistLimit(cri);
-	  }
+    @Autowired
+    EmailServiceImpl emailService;
 
-	  @Override
-	  public int countAllUser(){
-		  return dao.countAllUser();
-	  }
+    @Override
+    public List<UserDTO> getAllUserlist() {
+        return dao.getAllUserlist();
+    }
 
-	  @Override
-	  public void deleteUser(int userSeq) {
-		  commentDao.deleteComment(userSeq);//코멘트 삭제부터
-		  boardDao.deleteBoard(userSeq);
-		  learnRecordDao.deleteLearnData(userSeq);
-		  dao.deleteUser(userSeq);
-	  }
+    @Override
+    public List<UserDTO> getAllUserlistLimit(Criteria cri) {
+        return dao.getAllUserlistLimit(cri);
+    }
+
+    @Override
+    public int countAllUser() {
+        return dao.countAllUser();
+    }
+
+    @Override
+    public void deleteUser(int userSeq) {
+        commentDao.deleteComment(userSeq);//코멘트 삭제부터
+        boardDao.deleteBoard(userSeq);
+        learnRecordDao.deleteLearnData(userSeq);
+        dao.deleteUser(userSeq);
+    }
 
     @Override
     public int insertUser(UserDTO dto) {
@@ -67,11 +67,11 @@ public class UserServiceImpl implements UserService {
         return dao.getUserByUserSeq(userSeq);
     }
 
-	  @Override
-	  public UserDTO getUserByUserEmail(String email) {
-		  return dao.getUserByUserEmail(email);
-	  }
-    
+    @Override
+    public UserDTO getUserByUserEmail(String email) {
+        return dao.getUserByUserEmail(email);
+    }
+
     @Override
     public int setIsPassByUserSeq(int userSeq) {
         return dao.setIsPassByUserSeq(userSeq);
@@ -86,7 +86,6 @@ public class UserServiceImpl implements UserService {
     public void AfterLoginProcess(UserDTO result, HttpSession session) {
         setAttendanceByUserSeq(result);
         setLastLoginDateByUserSeq(result.getUserSeq());
-        setWeakCategoryByUser(result);
         session.setAttribute("user_seq", result.getUserSeq());
     }
 
@@ -105,26 +104,26 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-	@Override
-	public UserDTO getUserInfo(int userSeq) {
-		return dao.getUserInfo(userSeq);
-	}
-
-	@Override
-	public void updateUserInfo(Map<Object, Object> map) {
-		dao.updateUserInfo(map);
-		
-	}
-
     @Override
-    public int setWeakCategoryByUser(UserDTO userDto){
-
-    return dao.setWeakCategoryByUser(userDto);
+    public UserDTO getUserInfo(int userSeq) {
+        return dao.getUserInfo(userSeq);
     }
 
-	@Override
-	public void updateUserDeclaration(int user_seq) {
-		dao.updateUserDeclaration(user_seq);
-	}
+    @Override
+    public void updateUserInfo(Map<Object, Object> map) {
+        dao.updateUserInfo(map);
+
+    }
+
+    @Override
+    public int setWeakCategoryByUser(UserDTO userDto) {
+
+        return dao.setWeakCategoryByUser(userDto);
+    }
+
+    @Override
+    public void updateUserDeclaration(int user_seq) {
+        dao.updateUserDeclaration(user_seq);
+    }
 
 }
