@@ -78,8 +78,6 @@ public class MyPageController {
         
         UserDTO userDto = userService.getUserByUserSeq(userSeq);
 
-        UserDTO userDto = userService.getUserInfo(userSeq);
-
         CategoryDTO categoryDto = categoryService.getCategoryByUserSeq(userSeq);
         mv.addObject("categoryDto", categoryDto);
         mv.addObject("userDto", userDto);
@@ -96,7 +94,6 @@ public class MyPageController {
         UserDTO userDto = userService.getUserByUserSeq(userSeq);
 
         System.out.println("유저번호" + userSeq);
-        UserDTO userDto = userService.getUserInfo(userSeq);
 
         CategoryDTO categoryDto = categoryService.getCategoryByUserSeq(userSeq);
         List<CategoryDTO> mainCategoryList = categoryService.getMainCategory();
