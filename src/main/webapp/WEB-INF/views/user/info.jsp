@@ -19,7 +19,7 @@
 </head>
 <body>
 	<div class="container">
-		<%@include file="../common/header.jsp"%>
+		<%@include file="../common/nav.jsp"%>
 		<div class="content">
 		<div style="display: block; width:100%;">
 		<form action="<%=request.getContextPath()%>" method="post" >

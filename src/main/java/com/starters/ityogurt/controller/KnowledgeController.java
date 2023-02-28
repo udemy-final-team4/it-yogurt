@@ -46,7 +46,6 @@ public class KnowledgeController {
 		Paging paging = new Paging();
 		int userSeq = 2;
 		int limit = (cri.getPage() - 1) * 9;
-		System.out.println("limit" + limit);
 		paging.setCri(cri); // 현재 페이지, 페이지당 보여줄 게시글의 개수
 		//페이징 해야하니 총 갯수 가져오기
 		int categoryCnt = service.getCategoryCnt(category);
