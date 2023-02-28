@@ -45,7 +45,7 @@
         <!-- Masthead Avatar Image-->
         <img class="masthead-avatar mb-5" src="/image/logo-dark-text.png" alt="logo" />
         <!-- Masthead Heading-->
-        <h2 style="color: #2c3e50" class="pb-2">바쁜 당신에게,</h2>
+        <h2 style="color: #2c3e50" class="pb-2">바쁜 당신에게, test test test</h2>
         <h1 class="masthead-heading text-uppercase mb-0" style="color: #2c3e50">💫 떠먹여주는 it 지식 💫</h1>
         <c:choose>
             <c:when test="${ not empty sessionScope.user_seq}">
