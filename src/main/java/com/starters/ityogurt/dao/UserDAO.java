@@ -39,6 +39,8 @@ public interface UserDAO {
 	void updateUserDeclaration(int user_seq);
 
 	int setWeakCategoryByUser(UserDTO userdto);
+	
+	List<UserDTO> getSearchUserList(String keyword);
 
 }
 

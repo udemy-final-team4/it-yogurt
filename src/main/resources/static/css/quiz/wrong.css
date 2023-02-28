@@ -28,6 +28,11 @@
 #main {
   width: 100%;
 }
+
+#header {
+  width: 100%;
+}
+
 .quiz-filter {
 border: solid #000000 2px;
   font-size: 14px;
