@@ -3,10 +3,12 @@ package com.starters.ityogurt.controller;
 import com.starters.ityogurt.dto.UserDTO;
 import com.starters.ityogurt.oauth.OauthService;
 import com.starters.ityogurt.oauth.SocialLoginType;
+import com.starters.ityogurt.service.LearnRecordService;
 import com.starters.ityogurt.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,9 @@ public class OauthController {
     @Autowired
     @Qualifier("userservice")
     UserService userService;
+
+    @Autowired
+    LearnRecordService learnRecordService;
 
     @GetMapping("/auth/{socialLoginType}")
     public void socialLoginType(
@@ -43,8 +48,13 @@ public class OauthController {
         //로그인
         if(user != null)
         {
-            session.setAttribute("user_seq", user.getUserSeq());
-            userService.AfterLoginProcess(user, request.getSession());
+            Map<String,Integer> weakCategory = learnRecordService.findWeakCategoryByUser(user.getUserSeq());
+            if(weakCategory != null) {
+                user.setWeakCategorySeq(weakCategory.get("category_seq"));
+                userService.setWeakCategoryByUser(user);
+            }
+            userService.AfterLoginProcess(user,request.getSession());
+
             redirectPath = "redirect:/";
 
             if(session.getAttribute("knowSeq") != null)

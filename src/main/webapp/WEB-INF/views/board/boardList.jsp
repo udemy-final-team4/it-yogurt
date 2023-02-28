@@ -1,5 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../common/tag.jsp"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
@@ -7,16 +7,27 @@
 <html>
 <head>
  <meta charset="UTF-8">
-    <link href="/css/header.css" rel="stylesheet">
-    <link href="/css/footer.css" rel="stylesheet">
-    <link href="/css/container.css" rel="stylesheet">
+  <!--   <link href="/css/header.css" rel="stylesheet">
+    <link href="/css/footer.css" rel="stylesheet"> -->
      <link href="/css/admin.css" rel="stylesheet">
      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
 		    rel="stylesheet"/>
+     <link href="/css/styles.css" rel="stylesheet">
+     <link href="/css/container.css" rel="stylesheet">
 <title> 커뮤니티 | 게시판 </title>
 
 <style>
+@font-face {
+  font-family: 'NEXON Lv1 Gothic OTF';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 
+#keyword {
+    border-radius: 15px;
+    width: 300px;
+}
 </style>
 </head>
 <body>
@@ -110,14 +121,7 @@
 	
 <div class="d-grid gap-2 d-sm-flex justify-content-sm-end">
 <!-- 글쓰기 버튼  -->
-<c:choose>
-	<c:when test="${ not empty sessionScope.user_seq}">
   		<button class="btn btn-primary" style="background-color: #91ACCC; font-size: 15px; width: 80px;" type="button" onClick="location.href='/board/form'">글쓰기</button>
-	</c:when>
-	<c:otherwise>
-  		<button class="btn btn-primary" disabled="disabled" style="background-color: #91ACCC; font-size: 15px; width: 80px;" type="button" onClick="location.href='/board/form'">글쓰기</button>
-	</c:otherwise>
-</c:choose>
 </div>
 	</div>
 

@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
     BoardDAO boardDao;
     @Autowired
     LearnRecordDAO learnRecordDao;
-    
+  
 	  @Autowired
 	  EmailServiceImpl emailService;
 
@@ -68,11 +68,11 @@ public class UserServiceImpl implements UserService {
         return dao.getUserByUserSeq(userSeq);
     }
 
-	  @Override
-	  public UserDTO getUserByUserEmail(String email) {
-		  return dao.getUserByUserEmail(email);
-	  }
-    
+    @Override
+    public UserDTO getUserByUserEmail(String email) {
+        return dao.getUserByUserEmail(email);
+    }
+
     @Override
     public int setIsPassByUserSeq(int userSeq) {
         return dao.setIsPassByUserSeq(userSeq);
@@ -87,7 +87,6 @@ public class UserServiceImpl implements UserService {
     public void AfterLoginProcess(UserDTO result, HttpSession session) {
         setAttendanceByUserSeq(result);
         setLastLoginDateByUserSeq(result.getUserSeq());
-        setWeakCategoryByUser(result);
         session.setAttribute("user_seq", result.getUserSeq());
     }
 
@@ -106,21 +105,31 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-	@Override
-	public void updateUserInfo(Map<Object, Object> map) {
-		dao.updateUserInfo(map);
-		
-	}
+//    @Override
+//    public UserDTO getUserInfo(int userSeq) {
+//        return dao.getUserInfo(userSeq);
+//    }
 
     @Override
-    public int setWeakCategoryByUser(UserDTO userDto){
+    public void updateUserInfo(Map<Object, Object> map) {
+        dao.updateUserInfo(map);
 
-    return dao.setWeakCategoryByUser(userDto);
+    }
+
+    @Override
+    public int setWeakCategoryByUser(UserDTO userDto) {
+
+        return dao.setWeakCategoryByUser(userDto);
+    }
+
+    @Override
+    public void updateUserDeclaration(int user_seq) {
+        dao.updateUserDeclaration(user_seq);
     }
 
 	@Override
-	public void updateUserDeclaration(int user_seq) {
-		dao.updateUserDeclaration(user_seq);
+	public List<UserDTO> getSearchUserList(String keyword) {
+		return dao.getSearchUserList(keyword);
 	}
 
 }

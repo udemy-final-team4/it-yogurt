@@ -14,4 +14,5 @@ public interface QuizService {
 
 	List<QuizDTO> getWeakQuizListByUser(int userSeq, int start, int end);
 
+	List<QuizDTO> getQuizByQuiz(int quizSeq);
 }

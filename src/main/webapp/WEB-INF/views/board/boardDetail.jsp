@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="../common/tag.jsp"%>
+<%-- <%@ include file="../common/tag.jsp"%> --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
@@ -7,26 +7,34 @@
 <html>
 <head>
  <meta charset="UTF-8">
-    <link href="/css/header.css" rel="stylesheet">
-    <link href="/css/footer.css" rel="stylesheet">
-    <link href="/css/container.css" rel="stylesheet">
-     <link href="/css/styles.css" rel="stylesheet">
+  <!--   <link href="/css/header.css" rel="stylesheet">
+    <link href="/css/footer.css" rel="stylesheet"> -->
      <link href="/css/admin.css" rel="stylesheet">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <link href="/css/styles.css" rel="stylesheet">
+    <link href="/css/container.css" rel="stylesheet">
 <title> 커뮤니티 | 게시판 </title>
 <style>
     .divCss {
         margin-top: 7%;
     }
+    @font-face {
+  font-family: 'NEXON Lv1 Gothic OTF';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 </style>
 </head>
 <%@include file="../common/nav.jsp" %>
-<body style="background-color: #F9F2ED; margin-top:15%;">
+<body id="page-top" style="background-color: #F9F2ED; margin-top:15%;">
+<header></header>
 <div class="container divCss">
         <!-- Page content-->
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-auto ">
+        <div class="container-lg">
+            
+                <div>
                     <!-- Post content-->
                     <article>
                         <!-- Post header-->
@@ -74,14 +82,7 @@
                                 	<input type="hidden" name="boardSeq" value=${oneboard.boardSeq }>
                                 	<input type="hidden" name="userSeq" value="${sessionScope.user_seq }">
                                 	<textarea name="content" class="form-control" rows="3" placeholder="댓글을 쓰려면 로그인이 필요합니다!"></textarea>
-			  						<c:choose>
-			  							<c:when test="${not empty sessionScope.user_seq }">
-					  						<button type="submit" class="btn me-md-2" style="background-color: #91ACCC;" >등록</button>
-			  							</c:when>
-			  							<c:otherwise>
-					  						<button type="submit" class="btn me-md-2" disabled="disabled" style="background-color: #91ACCC;" >등록</button>
-			  							</c:otherwise>
-			  						</c:choose>
+					  					<button type="submit" class="btn me-md-2" style="background-color: #91ACCC;" >등록</button>
                                 </form>
                                 
                                 <!-- Comment List -->
@@ -149,8 +150,7 @@
                         </div>
                 </div>
                
-        </div>  
-      
+       
         <!-- Bootstrap core JS-->
         <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> -->
         <!-- Core theme JS-->
