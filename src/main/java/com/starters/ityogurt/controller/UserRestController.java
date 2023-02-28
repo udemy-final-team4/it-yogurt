@@ -18,10 +18,12 @@ import java.util.Map;
 import org.hamcrest.number.IsNaN;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -109,6 +111,17 @@ public class UserRestController {
         return mv;
     }
 
+    @GetMapping("/user/info")
+    @ResponseBody
+    public UserDTO userInfo(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Integer userSeq = (Integer) session.getAttribute("user_seq");
+        if(userSeq == null)
+            return null;
+
+        UserDTO user = userService.getUserByUserSeq(userSeq);
+        return user;
+    }
 
     // 비밀번호 암호화
     String ConvertPassword(String pw) throws Exception {

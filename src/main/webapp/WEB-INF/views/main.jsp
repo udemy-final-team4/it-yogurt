@@ -8,6 +8,7 @@
     <script src="/js/jquery-3.6.1.min.js"></script>
     <script src="/js/util/ajax.js"></script>
     <script src="/js/util/util.js"></script>
+    <script src="/js/common/nav.js"></script>
     <title>It-Yogurt</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
@@ -42,6 +43,9 @@
 <!-- Masthead-->
 <header class="masthead bg-self text-white text-center" style="background-color: #F9F2ED">
     <div class="container d-flex align-items-center flex-column">
+        <div id="user-info">
+            <h3 id="nickname" style="color: #2c3e50" class="pb-2"></h3>
+        </div>
         <!-- Masthead Avatar Image-->
         <img class="masthead-avatar mb-5" src="/image/logo-dark-text.png" alt="logo" />
         <!-- Masthead Heading-->
