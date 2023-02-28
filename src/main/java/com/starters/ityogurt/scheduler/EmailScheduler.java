@@ -1,4 +1,4 @@
-package com.starters.ityogurt.config;
+package com.starters.ityogurt.scheduler;
 
 import java.util.*;
 
@@ -6,17 +6,13 @@ import com.starters.ityogurt.dto.KnowledgeDTO;
 import com.starters.ityogurt.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
-import lombok.RequiredArgsConstructor;
-
-@Configuration
-public class EmailConfig {
+@Component
+public class EmailScheduler {
 
     @Autowired
     QuizService quizService;
@@ -44,63 +40,41 @@ public class EmailConfig {
 
     //이메일 전송 API
     // @RequestMapping("/aws/email")
-    @Scheduled(cron = "0 53 14 * * ?", zone = "Asia/Seoul")
+    @Scheduled(cron = "0 36 5 * * ?", zone = "Asia/Seoul")
     public String sendEmail() throws Exception {
-        // 유저의 이메일과 유저가 선택한 소분류를 map에 담은 것을 반환한다.
         List<Map<String, Object>> subEmailMap = emailService.getEmailAndSub();
         System.out.println("subEmailMap : " + subEmailMap);
 
-        // 총 소분류의 갯수이다.
         int count = categoryService.countAllSub();
 
-        // 소분류에서 어떤 상세분류를 보낼 것인지를 map에 담아 반환한다.
-        // 가장 오래 전에 보냈으면서 가장 작은 번호 순이다.
         List<Map<String, Object>> sendDetailMap = emailService.getSendDetail(count);
         System.out.println("sendDetailMap : " + sendDetailMap);
-
-        // User의 이메일과 User가 선택한 소분류가 들어갈 map이다.
         Map<String, String> userMap = new HashMap<String, String>();
-
-        // category의 소분류와 category_seq가 들어갈 map이다.
         Map<String, Integer> categoryMap = new HashMap<String, Integer>();
-
-        // 보내질 카테고리 번호 List이다.
         List<Object> updateCategorySeqList = new ArrayList<Object>();
-
-        // String에는 소분류가, Object에는 해당 소분류를 선택한 사람의 List가 들어가게 될 Map이다.
         Map<String, Object> subEmailList = new HashMap<String, Object>();
 
-        // 1. categoryMap {mariadb=19, java=13}
         for(Map<String, Object> data : sendDetailMap){
             categoryMap.put((String) data.get("sub"), (Integer) data.get("category_seq"));
         }
 
-        // 2. userMap {ityogurt213@gmail.com=mariadb, mjkim856@gmail.com=java, akdrh554@gmail.com=java}
         for(Map<String, Object> data : subEmailMap){
             userMap.put((String) data.get("email"), (String) data.get("sub"));
         }
 
-        // categoryMap의 key(소분류)와 value(발송할 카테고리 번호)를 foreach문을 사용해 값을 꺼낸다.
-        // userMap의 userKey(이메일)과 userValue(소분류)를 내부에서 foreach문을 사용해서 값을 꺼낸다.
-        // 만약 userMap의 value와 categoryMap의 key가 같다면, emailCollectionList에 userKey를 add한다.
         categoryMap.forEach((key, value) -> {
-            // 소분류를 선택한 User들의 email을 담을 List이다.
-            // subEmailList의 value값이 된다.
             List emailCollectionList = new ArrayList<Object>();
-
             userMap.forEach((userKey, userValue) -> {
                 if(key.equals(userValue)) {
                     emailCollectionList.add(userKey);
                 }
             });
-            // {mariadb=[ityogurt213@gmail.com], java=[mjkim856@gmail.com, akdrh554@gmail.com]}
             subEmailList.put(key, emailCollectionList);
         });
 
         System.out.println("userMap : " + userMap);
         System.out.println("categoryMap : " + categoryMap);
 
-        // 예외처리 해야 함 : 카테고리 18번에 퀴즈가 없다.
         categoryMap.forEach((key, value) -> {
             KnowledgeDTO knowledgeDTO = knowledgeService.getKnowledgeByCategorySeq(value);
             emailService.send("오늘의 지식은 " + knowledgeDTO.getTitle() + "이야!",
