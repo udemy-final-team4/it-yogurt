@@ -99,18 +99,15 @@ public class MyPageController {
 //        UserDTO userDto = userService.getUserInfo(userSeq);
 
         CategoryDTO categoryDto = categoryService.getCategoryByUserSeq(userSeq);
-        List<CategoryDTO> mainCategoryList = categoryService.getMainCategory();
-        List<CategoryDTO> middleCategoryList = categoryService.getMiddleCategory();
-        List<CategoryDTO> subCategoryList = categoryService.getSubCategory();
         //categoryService.getAllCategoryList();
         
 //        
-        for(CategoryDTO c : mainCategoryList) {
-        	System.out.println(c.getMain());
-        }
-        mv.addObject("mainCategoryList", mainCategoryList);
-        mv.addObject("middleCategoryList", middleCategoryList);
-        mv.addObject("subCategoryList", subCategoryList);
+//        for(CategoryDTO c : mainCategoryList) {
+//        	System.out.println(c.getMain());
+//        }
+//        mv.addObject("mainCategoryList", mainCategoryList);
+//        mv.addObject("middleCategoryList", middleCategoryList);
+//        mv.addObject("subCategoryList", subCategoryList);
         mv.addObject("categoryDto", categoryDto); //유저가 선택한 카테고리
         mv.addObject("userDto", userDto);
         mv.setViewName("user/info");
@@ -119,7 +116,7 @@ public class MyPageController {
 
     //정보 수정중
     @PostMapping("/mypage/newInfo/{user_seq}")
-    public ModelAndView newInfo(@PathVariable("user_seq") String user_seq, UserDTO userDto, String newPass, String userDtoPass) throws Exception {
+    public ModelAndView newInfo(@PathVariable("user_seq") String user_seq, UserDTO userDto, String newPass, String userDtoPass, String main, String middle, String sub) throws Exception {
         ModelAndView mv = new ModelAndView();
         UserRestController userRestController = new UserRestController();//암호화때문에 객체 생성해줌
         Encrypt encrypt = new Encrypt();
@@ -129,15 +126,24 @@ public class MyPageController {
         //비밀번호 null일때
         UserDTO dto = userService.getUserByUserSeq(userSeq);
         if(newPass == "") {
-        	newPass = encrypt.decryptAES256(dto.getPassword()); //가져온 값이 이미 암호화되어있기에 복호화 해주기..
+        	newPass = encrypt.decryptAES256(dto.getPassword()); //가져온 값이 이미 암호화되어있기에 복호화 해주기
         }
         String pwd = userRestController.ConvertPassword(newPass); //수정한 암호는 암호화 해주기
-
+        int categorySeq = categoryService.getCategoryBySub(sub); //선택한 카테고리 번호 불러오기
+        
         Map<Object, Object> map = new HashMap<>();
         map.put("nickname", userDto.getNickname());
         map.put("phone", userDto.getPhone());
         map.put("password", pwd);
+        map.put("categorySeq", categorySeq);
         map.put("userSeq", userSeq);
+        //카테고리 java선택했을때
+        if(sub.equals("java")) {
+        	
+        	map.put("", map);
+        }else {
+        	
+        }
         userService.updateUserInfo(map);
         userDto = userService.getUserByUserSeq(userSeq);
 
