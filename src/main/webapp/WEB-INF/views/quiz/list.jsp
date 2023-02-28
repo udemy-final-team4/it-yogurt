@@ -14,19 +14,16 @@
 	<link href="/css/quiz.css" rel="stylesheet">
 	<title>퀴즈 풀기</title>
 </head>
-<style>
-	.content {
-		margin-top: 20%;
-	}
-</style>
 <%@include file="../common/nav.jsp"%>
 <body>
 <div class="container">
 	<div class="content">
 		<div id="quizListDiv">
 			<form action="<%=request.getContextPath()%>" id="quizForm" method=post>
-				<h4>${categoryInfo.main} > ${categoryInfo.middle} > ${categoryInfo.sub}</h4>
 				<h1>${title}</h1>
+				<a class="badge bg-secondary text-decoration-none link-light" href="<%=request.getContextPath()%>/knowledge/list?category=all">${categoryInfo.main}</a>
+                <a class="badge bg-secondary text-decoration-none link-light" href="<%=request.getContextPath()%>/knowledge/list?category=${categoryInfo.middle}">${categoryInfo.middle}</a>
+                <a class="badge bg-secondary text-decoration-none link-light" href="#!">${categoryInfo.sub}</a><br>
 				<c:forEach items="${quizList }" var="list">
 					<c:set var="length" value="${fn:length(quizList) }" />
 					<input type="hidden" value="${list.knowSeq}" name="knowSeq">

@@ -48,16 +48,20 @@ public class KnowledgeController {
 		int limit = (cri.getPage() - 1) * 9;
 		System.out.println("limit" + limit);
 		paging.setCri(cri); // 현재 페이지, 페이지당 보여줄 게시글의 개수
-		
+		//페이징 해야하니 총 갯수 가져오기
 		int categoryCnt = service.getCategoryCnt(category);
 		int maxPage = (int) ((double) categoryCnt / cri.getPerPageNum() + 0.9); // 전체 페이지 수
 		paging.setTotalCount(categoryCnt);
-
+		
+		//매일지식 리스트 가져오기
 		Map<Object, Object> map = new HashMap<>();
 		map.put("category", category);
 		map.put("limit", limit);
 		List<KnowledgeDTO> knowledgeList = service.getList(map);
+		
+		List<CategoryDTO> middleCategoryList = categoryService.getMiddleCategoryGroup(); 
 
+		mv.addObject("category", middleCategoryList);
 		mv.addObject("maxpage", maxPage);
 		mv.addObject("paging", paging);
 		mv.addObject("knowledgeList", knowledgeList);
@@ -100,7 +104,6 @@ public class KnowledgeController {
 		
 		String categorySeq = String.valueOf(service.getCategorySeq(knowSeq));
 		CategoryDTO categoryInfo = categoryService.getCategoryByCategorySeq(categorySeq);
-		
 		
 		mv.addObject("categoryInfo", categoryInfo);
 		mv.addObject("knowSeq", knowSeq);

@@ -65,17 +65,14 @@ public class CategoryServiceImpl implements CategoryService {
 		}
 
 		@Override
-		public List<CategoryDTO> getMainCategory() {
-			return dao.getMainCategory();
+		public int getCategoryBySub(String sub) {
+			return dao.getCategoryBySub(sub);
 		}
 
 		@Override
-		public List<CategoryDTO> getMiddleCategory() {
-			return dao.getMiddleCategory();
+		public List<CategoryDTO> getMiddleCategoryGroup() {
+			return dao.getMiddleCategoryGroup();
 		}
 
-		@Override
-		public List<CategoryDTO> getSubCategory() {
-			return dao.getSubCategory();
-		}
+	
 }

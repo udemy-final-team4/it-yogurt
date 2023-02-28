@@ -62,20 +62,12 @@
 		WHERE user_seq=#{userSeq}
 	</select>
 	
-	<select id="getMainCategory" resultType="categorydto">
-		select main from category group by main
+	<select id="getCategoryBySub" parameterType="String" resultType="int">
+		SELECT category_seq FROM category WHERE sub=#{sub} AND detail IS NULL
 	</select>
 	
-	<select id="getMiddleCategory" resultType="categorydto">
-		select middle from category group by middle
+	<select id="getMiddleCategoryGroup" resultType="categorydto">
+		SELECT * FROM category GROUP BY middle
 	</select>
-	
-	<select id="getSubCategory" resultType="categorydto">
-		select sub from category group by sub
-	</select>
-	
-	
-	
-	
 	
 </mapper>

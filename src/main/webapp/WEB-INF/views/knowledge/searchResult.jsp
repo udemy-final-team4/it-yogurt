@@ -12,17 +12,6 @@
 <link href="/css/footer.css" rel="stylesheet">
 <link href="/css/container.css" rel="stylesheet">
 <link href="/css/knowledge.css" rel="stylesheet">
-<script>
-      $(document).ready(function () {
-        $('#search').click(function (e) {
-          if ($('#keyword').val() == "") {
-            e.preventDefault()
-            alert("검색어를 입력해주세요!")
-            return false;
-          }
-        })
-      });
-    </script>
 <title>매일지식 컨텐츠</title>
 </head>
 <style>
@@ -35,7 +24,6 @@
 	<div class="container">
 		<div class="content">
 			<div id="tblDiv">
-			
 			<h3 style="text-align: center;">검색결과 목록</h3>
 			<form action="<%=request.getContextPath()%>/knowledge/searchResult">
 			<!-- 카테고리 선택 -->
@@ -50,7 +38,6 @@
                 <button type="submit" id="search">검색</button>
 			</div>
 			<table id="listTbl">
-				
 				<tr>
 					<th>번호</th>
 					<th>제목</th>
@@ -85,6 +72,17 @@
 		</div>
 		</div>
 	</div>
+<script>
+      $(document).ready(function () {
+        $('#search').click(function (e) {
+          if ($('#keyword').val() == "") {
+            e.preventDefault()
+            alert("검색어를 입력해주세요!")
+            return false;
+          }
+        })
+      });
+</script>
 </body>
 <%@include file="../common/footer.jsp"%>
 </html>
