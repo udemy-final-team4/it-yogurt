@@ -45,11 +45,11 @@
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
-                        <c:forEach items="${solvedQuizList}" var="list">
+                        <c:forEach items="${solvedQuizList}" var="list" varStatus="status">
                         <tr>
                             <th scope="row">${list.rank}</th>
                             <td>${list.sub}</td>
-                            <td><a href="#" class="a-quiz">${list.question}</a></td>
+                            <td><a id=${list.quizSeq} href="/quiz/top/${list.quizSeq}?type=1&top=${status.count}" class="a-quiz">${list.question}</a></td>
                         </tr>
                         </c:forEach>
                     </tbody>
@@ -71,11 +71,11 @@
                     </tr>
                     </thead>
                     <tbody class="table-group-divider">
-                    <c:forEach items="${wrongQuizList}" var="list">
+                    <c:forEach items="${wrongQuizList}" var="list" varStatus="status">
                     <tr>
                         <th scope="row">${list.rank}</th>
                         <td>${list.sub}</td>
-                        <td><a href="#" class="a-quiz">${list.question}</a></td>
+                        <td><a id=${list.quizSeq} href="/quiz/top/${list.quizSeq}?type=2&top=${status.count}" class="a-quiz">${list.question}</a></td>
                     </tr>
                     </c:forEach>
                     </tbody>
