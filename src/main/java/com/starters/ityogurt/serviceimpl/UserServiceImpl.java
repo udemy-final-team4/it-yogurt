@@ -51,10 +51,11 @@ public class UserServiceImpl implements UserService {
 
 	  @Override
 	  public void deleteUser(int userSeq) {
-		  commentDao.deleteComment(userSeq);//코멘트 삭제부터
-		  boardDao.deleteBoard(userSeq);
-		  learnRecordDao.deleteLearnData(userSeq);
-		  dao.deleteUser(userSeq);
+		  commentDao.deleteCommentByUserSeq(userSeq);//게시글에 달린 타인 댓글 삭제
+		  commentDao.deleteComment(userSeq);//내가 쓴 코멘트 삭제
+		  boardDao.deleteBoard(userSeq); //내 게시글 삭제
+		  learnRecordDao.deleteLearnData(userSeq); //내 퀴즈 기록 삭제
+		  dao.deleteUser(userSeq); //유저 정보 삭제
 	  }
 
     @Override
@@ -104,11 +105,6 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException(e);
         }
     }
-
-	@Override
-	public UserDTO getUserInfo(int userSeq) {
-		return dao.getUserInfo(userSeq);
-	}
 
 	@Override
 	public void updateUserInfo(Map<Object, Object> map) {

@@ -1,5 +1,7 @@
 package com.starters.ityogurt.controller;
 
+
+import java.util.HashMap; 
 import com.starters.ityogurt.dao.LearnRecordDAO;
 import com.starters.ityogurt.dto.LearnRecordDTO;
 import com.starters.ityogurt.dto.LearnRecordQuizDTO;
@@ -33,14 +35,16 @@ import org.springframework.web.servlet.ModelAndView;
 import com.starters.ityogurt.dto.CategoryDTO;
 import com.starters.ityogurt.dto.LearnRecordDTO;
 import com.starters.ityogurt.dto.LearnRecordQuizDTO;
+import com.starters.ityogurt.dto.QuizDTO;
 import com.starters.ityogurt.dto.UserDTO;
 import com.starters.ityogurt.service.CategoryService;
 import com.starters.ityogurt.service.LearnRecordQuizService;
 import com.starters.ityogurt.service.LearnRecordService;
+import com.starters.ityogurt.service.QuizService;
 import com.starters.ityogurt.service.UserService;
 import com.starters.ityogurt.util.Criteria;
+import com.starters.ityogurt.util.Encrypt;
 import com.starters.ityogurt.util.Paging;
-
 
 import jakarta.servlet.http.HttpSession;
 
@@ -66,40 +70,67 @@ public class MyPageController {
     @Autowired
     QuizService quizservice;
 
-
+    //마이페이지
     @GetMapping("/mypage/{user_seq}")
     public ModelAndView myPage(@PathVariable("user_seq") String user_seq) {
         ModelAndView mv = new ModelAndView();
         int userSeq = Integer.parseInt(user_seq);
-        System.out.println("유저번호" + userSeq);
+        
+        UserDTO userDto = userService.getUserByUserSeq(userSeq);
+
         UserDTO userDto = userService.getUserInfo(userSeq);
+
         CategoryDTO categoryDto = categoryService.getCategoryByUserSeq(userSeq);
         mv.addObject("categoryDto", categoryDto);
         mv.addObject("userDto", userDto);
         mv.setViewName("user/myPage");
         return mv;
     }
-
+    
+    //마이페이지 정보 수정
     @PostMapping("/mypage/info/{user_seq}")
     public ModelAndView info(@PathVariable("user_seq") String user_seq) {
         ModelAndView mv = new ModelAndView();
         int userSeq = Integer.parseInt(user_seq);
+
+        UserDTO userDto = userService.getUserByUserSeq(userSeq);
+
         System.out.println("유저번호" + userSeq);
         UserDTO userDto = userService.getUserInfo(userSeq);
+
         CategoryDTO categoryDto = categoryService.getCategoryByUserSeq(userSeq);
-        mv.addObject("categoryDto", categoryDto);
+        List<CategoryDTO> mainCategoryList = categoryService.getMainCategory();
+        List<CategoryDTO> middleCategoryList = categoryService.getMiddleCategory();
+        List<CategoryDTO> subCategoryList = categoryService.getSubCategory();
+        //categoryService.getAllCategoryList();
+        
+//        
+        for(CategoryDTO c : mainCategoryList) {
+        	System.out.println(c.getMain());
+        }
+        mv.addObject("mainCategoryList", mainCategoryList);
+        mv.addObject("middleCategoryList", middleCategoryList);
+        mv.addObject("subCategoryList", subCategoryList);
+        mv.addObject("categoryDto", categoryDto); //유저가 선택한 카테고리
         mv.addObject("userDto", userDto);
         mv.setViewName("user/info");
         return mv;
     }
 
+    //정보 수정중
     @PostMapping("/mypage/newInfo/{user_seq}")
-    public ModelAndView newInfo(@PathVariable("user_seq") String user_seq, UserDTO userDto,
-        String newPass) throws Exception {
+    public ModelAndView newInfo(@PathVariable("user_seq") String user_seq, UserDTO userDto, String newPass, String userDtoPass) throws Exception {
         ModelAndView mv = new ModelAndView();
         UserRestController userRestController = new UserRestController();//암호화때문에 객체 생성해줌
+        Encrypt encrypt = new Encrypt();
 
         int userSeq = Integer.parseInt(user_seq);
+                
+        //비밀번호 null일때
+        UserDTO dto = userService.getUserByUserSeq(userSeq);
+        if(newPass == "") {
+        	newPass = encrypt.decryptAES256(dto.getPassword()); //가져온 값이 이미 암호화되어있기에 복호화 해주기..
+        }
         String pwd = userRestController.ConvertPassword(newPass); //수정한 암호는 암호화 해주기
 
         Map<Object, Object> map = new HashMap<>();
@@ -108,13 +139,17 @@ public class MyPageController {
         map.put("password", pwd);
         map.put("userSeq", userSeq);
         userService.updateUserInfo(map);
-        userDto = userService.getUserInfo(userSeq);
+        userDto = userService.getUserByUserSeq(userSeq);
 
+        CategoryDTO categoryDto = categoryService.getCategoryByUserSeq(userSeq);
+        
+        mv.addObject("categoryDto", categoryDto);
         mv.addObject("userDto", userDto);
         mv.setViewName("user/myPage");
         return mv;
     }
-
+    
+    //회원탈퇴
     @GetMapping("/mypage/cancel/{user_seq}")
     public ModelAndView cancel(@PathVariable("user_seq") String user_seq, HttpSession session) {
         ModelAndView mv = new ModelAndView();

@@ -100,7 +100,7 @@
 </div>
 <script type="text/javascript">
 	function goDelete(e){
-		let con = confirm('정말 IT-Yogurt를 떠나시겠어요...?');
+		let con = confirm('탈퇴시 회원님의 모든 정보가 삭제됩니다.\n정말 IT-Yogurt를 떠나시겠어요...?');
 		if(con == true){
 			alert('탈퇴되었습니다. 나중에 또 공부하러 오세요!');
 			location.href="${pageContext.request.contextPath}/mypage/cancel/${sessionScope.user_seq}";

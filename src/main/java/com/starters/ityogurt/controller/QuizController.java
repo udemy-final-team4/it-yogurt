@@ -1,6 +1,8 @@
 package com.starters.ityogurt.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -133,7 +135,12 @@ public class QuizController {
 		//정답 갯수 가져오기
 		
 		//체크한 답 보여줘야 하니 learn_record 불러오기
-		List<LearnRecordDTO> learnList = learnRecordService.getLearn(quizSeq1,quizSeq2,quizSeq3);
+		Map<Object, Object> map = new HashMap<>();
+		map.put("quizSeq1", quizSeq1);
+		map.put("quizSeq2", quizSeq2);
+		map.put("quizSeq3", quizSeq3);
+		map.put("userSeq", userSeq);
+		List<LearnRecordDTO> learnList = learnRecordService.getLearnRecord(map);
 		
 		for(LearnRecordDTO l : learnList) {
 			userAnswerCnt += l.getIsRight();
@@ -169,8 +176,6 @@ public class QuizController {
 				}
 			}
 			
-			//체크한 답 보여줘야 하니 learn_record 불러오기
-			List<LearnRecordDTO> learnList = learnRecordService.getLearn(quizSeq1,quizSeq2,quizSeq3);
 				
 			List<QuizDTO> quizList = service.getQuiz(knowSeq);
 			mv.addObject("userChoice",userChoice);

@@ -63,4 +63,19 @@ public class CategoryServiceImpl implements CategoryService {
 		public int countAllCategory() {
 			return dao.countAllCategory();
 		}
+
+		@Override
+		public List<CategoryDTO> getMainCategory() {
+			return dao.getMainCategory();
+		}
+
+		@Override
+		public List<CategoryDTO> getMiddleCategory() {
+			return dao.getMiddleCategory();
+		}
+
+		@Override
+		public List<CategoryDTO> getSubCategory() {
+			return dao.getSubCategory();
+		}
 }

@@ -9,8 +9,8 @@
 		insert into learn_record(is_right, user_choice, user_seq, quiz_seq) values(#{isRight},#{userChoice},#{userSeq},#{quizSeq})
 	</insert>
 
-	<select id="getLearn" parameterType="int" resultType="learnrecorddto">
-		select * from learn_record where quiz_seq in(#{quizSeq1},#{quizSeq2},#{quizSeq3})
+	<select id="getLearnRecord" parameterType="hashmap" resultType="learnrecorddto">
+		select * from learn_record where quiz_seq in(#{quizSeq1},#{quizSeq2},#{quizSeq3}) and user_seq=#{userSeq}
 
 	</select>
 
@@ -27,6 +27,12 @@
 	<update id="updateLearnData" parameterType="int">
 		update learn_record set user_choice =#{userChoice}, is_right=#{isRight} where user_seq=#{userSeq} and quiz_seq=#{quizSeq}
 	</update>
+
+
+	<select id="getAnswerList" parameterType="int" resultType="learnrecorddto">
+		select * from learn_record where quiz_seq in(#{quizSeq1},#{quizSeq2},#{quizSeq3}) 
+
+	</select>
 
 	<select id="getLearnListByUser" parameterType="int" resultType="learnrecorddto">
 		SELECT * FROM learn_record WHERE user_seq = ${userSeq};

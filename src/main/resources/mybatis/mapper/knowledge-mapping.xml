@@ -5,8 +5,14 @@
 <mapper namespace="com.starters.ityogurt.dao.KnowledgeDAO">
 
 <select id="getList" resultType="knowledgedto" parameterType="hashmap">
-	select * from knowledge 
-	where category_seq in 
+<!-- 	select * from knowledge  -->
+<!-- 	where category_seq in  -->
+	SELECT k.know_seq, k.title, k.content, k.img, k.insert_date, k.update_date, k.deleted, k.liked, k.viewcount, 
+	k.category_seq, k.user_seq, c.sub  
+	FROM knowledge k 
+	JOIN category c
+	ON k.category_seq=c.category_seq
+	WHERE c.category_seq in 
 	<choose>
 		<when test='category.equals("category") || category.equals("all")'>
 		    (select category_seq from category where middle in(#{category},'데이터베이스','프로그래밍언어'))
