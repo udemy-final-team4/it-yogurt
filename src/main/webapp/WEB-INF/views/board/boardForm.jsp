@@ -13,12 +13,12 @@
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
-    <link href="/css/styles.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/js/user/signup.js"></script>
     <script src="/js/util/ajax.js"></script>
     <script src="/js/util/util.js"></script>	
+    <link href="/css/styles.css" rel="stylesheet" />
  <!-- <meta charset="UTF-8">
     <link href="/css/header.css" rel="stylesheet">
     <link href="/css/footer.css" rel="stylesheet">
@@ -34,21 +34,22 @@
 </style>
 </head>
 <%@include file="../common/nav.jsp" %>
-<body style="margin-top:15%;">
+<body id="page-top" style="margin-top:15%; background-color: #F9F2ED;">
 
 
 
-<div class="container mt-5" style="margin-top: 80px; max-width: fit-content;">
-            <div class="row">
-                <div class="col-lg-auto">
+<div class="container divCss">
+            <div class="container-xxl">
+                <div class="row gx-5 align-items-center">
                     <!-- Post content-->
-                            <form action="form" method="post">
                     <article>
-                        <!-- Post header-->
-                        <header class="masthead bg-self" style="background-color: #F9F2ED; max-width:none;" >
-    						<div class="mb-4">
+                        <header class="masthead bg-self text-center" style="background-color: #F9F2ED;" >
     							<h2> 게시글 작성 </h2>
-    							
+						</header>
+                            <form action="form" method="post" >
+                        <!-- Post header-->
+    						<div class="mb-4">
+    						
     							<label for="main">카테고리</label>
                 					<select name="main" id="main">
 
@@ -69,7 +70,6 @@
 	                            <!-- Post categories-->
 	                     		
     						</div>
-						</header>
                         <%-- <header class="mb-4">
                             <!-- Post title-->
                             <p>제목</p>
@@ -80,7 +80,7 @@
    
                         </header> --%>
                        
-                        <section class="mb-5">
+                        <section>
                             <p class="fs-5 mb-4"> 내용</p>
                             
                            <textarea  class="form-control" id="content" name="content" rows=10></textarea>
@@ -89,9 +89,9 @@
 								<!-- <input type="hidden" name="categorySeq" value="18"> -->
                         
                         </section>
-                    </article>
                     	<button type="submit" class="btn me-md-2" style="background-color: #91ACCC;">등록</button>
                         </form>
+                    </article>
                     <section class="mb-2">
                     <div class="d-md-flex justify-content-md-end" >
   						<button class="btn me-md-2" style="background-color: #91ACCC;" type="button" onclick="location.href='/board/list'">목록</button>

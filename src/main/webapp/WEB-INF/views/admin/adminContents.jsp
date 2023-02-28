@@ -6,15 +6,14 @@
 <html>
 <head>
  <meta charset="UTF-8">
- 	<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-    <link href="/css/header.css" rel="stylesheet">
-    <link href="/css/footer.css" rel="stylesheet">
-    <!-- <link href="/css/style.css" rel="stylesheet"> -->
-    <link href="/css/container.css" rel="stylesheet">
-    <link href="/css/user/signup.css" rel="stylesheet">
+    
+    <!-- <link href="/css/user/signup.css" rel="stylesheet"> -->
    <!--  <script src="/js/user/signup.js"></script> -->
     <script src="/js/util/ajax.js"></script>
     <!-- <script src="/js/util/util.js"></script> -->
+    <link href="/css/styles.css" rel="stylesheet" />
+    <link href="/css/container.css" rel="stylesheet">
+ 	<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 <title>관리자 | 문제 관리</title>
 </head>
 <style>
@@ -25,19 +24,20 @@
 <%@include file="../common/nav.jsp" %>
 <body>
 
-<div class="container mt-5" style="margin-top:100px;">
-<!-- 관리자 비로그인시 화면X  -->
-<c:choose>
-	<c:when test="${sessionScope.user_seq eq 1 || sessionScope.user_seq eq 2}">
+<div class="container-md">
+
 	
 <!-- 관리자 페이지 이동 버튼  -->
-<div class="form" id="content-form">
+<div class="form text-center" id="content-form">
 	<button class="btn btn-primary px-5 py-2" onclick="location.href='/admin/user'"> 회원관리 </button>
-	<button class="btn btn-primary px-5 py-2" onclick="location.href='/admin/contents'">컨텐츠 관리</button>
-</div>
+	<button class="btn btn-primary px-5 py-2" onclick="location.href='/admin/contents'">컨텐츠 등록</button>
+	
 <br><br><br>
+</div>
+	<h3 class="text-center">컨텐츠 등록</h3>
+
 <form class="form" id="form" style="margin-top: 50px;">
-	<label for="main"><h4>카테고리</i></i></h4></label><br>
+	<label for="main"><h4>카테고리</h4></label><br>
             
             <!-- <select name="main" id="main">
             </select>
@@ -161,14 +161,7 @@
 	</div>
 </form>
 	
-<!-- 관리자 비로그인시 화면X  -->	
-	</c:when>
-	<c:otherwise>
-		<div class="container mt-5" style="margin-top:200px;">
-			<p> 관리자 로그인을 해주세요! </p>
-		</div>
-	</c:otherwise>
-</c:choose>
+
 	
 </div>
 
@@ -176,6 +169,7 @@
 
 
 
+<%@include file="../common/footer.jsp" %>
 </body>
 
 
@@ -206,7 +200,6 @@ $("#submitBtn").on("click", function(){
 
 let formData = $('form').serializeArray();
 //formData.append(JSON.stringify(formDataArray));
-console.log(JSON.stringify(formData));
 $.ajax({
     url: '/admin/contents',
     enctype: 'multipart/form-data',
@@ -230,5 +223,4 @@ $.ajax({
 
 
 </script>
-<%@include file="../common/footer.jsp" %>
 </html>
