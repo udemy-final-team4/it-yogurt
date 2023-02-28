@@ -82,35 +82,45 @@ width: 100%;
 				<div style="display: inline;"> <input type="text" value="${userDto.phone}" name="phone" required></div>
 			</div>
 			<div class="myDiv">
-				<label>카테고리</label>
-				<div style="display: inline;" id="category"> 
-						<select>
-							<c:forEach items="${mainCategoryList }" var="list">
+<!-- 				<label>카테고리</label> -->
+				<div style="display: inline;" id="category" > 
+<!-- 						<select> -->
+<%-- 							<c:forEach items="${mainCategoryList }" var="list"> --%>
 <%-- 								<c:if test="${list.main eq categoryDto.main }"> --%>
-								<option>
-									${list.main}
-								</option>
+<!-- 								<option> -->
+<%-- 									${list.main} --%>
+<!-- 								</option> -->
 <%-- 								</c:if>	 --%>
-							</c:forEach>	
-						</select>
-						<select>
-							<c:forEach items="${middleCategoryList }" var="list">
+<%-- 							</c:forEach>	 --%>
+<!-- 						</select> -->
+<!-- 						<select> -->
+<%-- 							<c:forEach items="${middleCategoryList }" var="list"> --%>
 <%-- 								<c:if test="${list.middle eq categoryDto.middle }"> --%>
-								<option>
-									${list.middle}
-								</option>
+<!-- 								<option> -->
+<%-- 									${list.middle} --%>
+<!-- 								</option> -->
 <%-- 								</c:if> --%>
-							</c:forEach>	
-						</select>
-						<select>
-							<c:forEach items="${subCategoryList }" var="list">
+<%-- 							</c:forEach>	 --%>
+<!-- 						</select> -->
+<!-- 						<select> -->
+<%-- 							<c:forEach items="${subCategoryList }" var="list"> --%>
 <%-- 								<c:if test="${list.sub eq categoryDto.sub }"> --%>
-								<option>
-									${list.sub}
-								</option>
+<!-- 								<option> -->
+<%-- 									${list.sub} --%>
+<!-- 								</option> -->
 <%-- 								</c:if> --%>
-							</c:forEach>	
-						</select>
+<%-- 							</c:forEach>	 --%>
+<!-- 						</select> -->
+					<label for="main">카테고리</label>
+	                <select name="main" id="main">
+	 
+	                </select>
+	                <select name="middle" id="middle">
+	
+	                </select>
+	                <select name="sub" id="sub">
+	
+	                </select>
 				</div>
 			</div>
 			<div class="myDiv">
@@ -143,51 +153,19 @@ width: 100%;
 	</div>
 <script type="text/javascript">
 
-	const mainCategory = document.getElementById("mainCategory");
-	const middleCategory = document.getElementById("middleCategory");
-	const subCategory = document.getElementById("subCategory");
-	
-	// mainCategory가 변경될 때마다 실행됩니다.
-	middleCategory.addEventListener("change", () => {
-	  // 선택된 mainCategory 값을 가져옵니다.
-	  const selectedMiddleCategory = middleCategory.value;
-	  
-	  // middleCategory 옵션들을 모두 삭제합니다.
-	  subCategory.innerHTML = "";
-	  
-	  // 선택된 mainCategory 값에 따라서 middleCategory 옵션들을 추가합니다.
-	  // 예를 들어, "IT"가 선택되었다면, IT 분류에 해당하는 옵션들을 추가합니다.
-	  if (selectedMiddleCategory === "프로그래밍언어") {
-	    // IT 분류에 해당하는 옵션들을 추가합니다.
-	    const itSubCategories = ["java"];
-	    itSubCategories.forEach((subCategory) => {
-	      const option = document.createElement("option");
-	      option.value = subCategory;
-	      option.text = subCategory;
-	      subCategory.appendChild(option);
-	    });
-	  }else if(selectedMiddleCategory === "데이터베이스"){
-		// IT 분류에 해당하는 옵션들을 추가합니다.
-		    const itSubCategories = ["MariaDB", "MYSQL"];
-		    itSubCategories.forEach((subCategory) => {
-		      const option = document.createElement("option");
-		      option.value = subCategory;
-		      option.text = subCategory;
-		      subCategory.appendChild(option);
-		    });
-	  }else{
-		  const itSubCategories = ["1회"];
-		    itSubCategories.forEach((subCategory) => {
-		      const option = document.createElement("option");
-		      option.value = subCategory;
-		      option.text = subCategory;
-		      subCategory.appendChild(option);
-		    });
-	  }
-	  // ...
+$(document).ready(function () {
+window.ajax.request("/category", {}, CategorySetting, category_error)
+
+	//// 카테고리 변경 시
+	$("select").on("change", function (event) {
+	 let type = $(this).attr("id");
+	 let type_value = $(this).val();
+	 window.ajax.request(`/category/${type}`,
+	     {data: {type: "GET", type_value: type_value}}, CategoryTypeSuccess,
+	     category_error)
 	});
-
-
+})
+	//뒤로가기
 	function backInfo(){
 		location.href="${pageContext.request.contextPath}/mypage/${sessionScope.user_seq}";
 	}
@@ -265,17 +243,7 @@ width: 100%;
 	}
 	
 	
-//	 window.ajax.request("/category", {}, CategorySetting, category_error)
-//	  //window.ajax.request("/category", {data:{type : "middle",}}, MainCategorySuccess, category_error)
 
-//	  // 카테고리 변경 시
-//	  $("select").on("change", function (event) {
-//	    let type = $(this).attr("id");
-//	    let type_value = $(this).val();
-//	    window.ajax.request(`/category/${type}`,
-//	        {data: {type: "GET", type_value: type_value}}, CategoryTypeSuccess,
-//	        category_error)
-//	  })
 	
 </script>	
 

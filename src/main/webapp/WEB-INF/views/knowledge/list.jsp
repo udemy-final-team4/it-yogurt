@@ -100,7 +100,7 @@ line-height: inherit;
 					<c:set var="i" value="${i+1}"></c:set>
 					<tr class="tableList">
 						<td>${i}</td>
-						<td><span class="badge bg-secondary text-decoration-none link-light"> ${list.sub }</span></td>
+						<td><span class="badge bg-secondary text-decoration-none link-light"> aaa <%-- ${list.sub } --%></span></td>
 						<td><a href="<%=request.getContextPath()%>/knowledge/detail/${list.knowSeq}">${list.title}</a></td>
 						<td>${list.insertDate }</td>
 						<td>${list.viewcount }</td>
