@@ -127,4 +127,9 @@ public class UserServiceImpl implements UserService {
         dao.updateUserDeclaration(user_seq);
     }
 
+	@Override
+	public List<UserDTO> getSearchUserList(String keyword) {
+		return dao.getSearchUserList(keyword);
+	}
+
 }

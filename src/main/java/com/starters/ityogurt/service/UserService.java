@@ -36,5 +36,7 @@ public interface UserService {
 	int setWeakCategoryByUser(UserDTO userdto);
 	
 	void updateUserDeclaration(int user_seq);
+	
+	List<UserDTO> getSearchUserList(String keyword);
 
 }

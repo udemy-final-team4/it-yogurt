@@ -1,7 +1,7 @@
 <%@ include file="../common/tag.jsp"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!DOCTYPE html>
 <html>
@@ -49,6 +49,17 @@
 				<th> 탈퇴  </th>
 				<th> 블랙 </th>
 			</tr>
+			
+			<!-- 게시판 내용 -->		
+			<tbody class="listData">
+				
+			<c:choose>
+				<c:when test="${fn:length(userList) == 0}">
+					<tr><td colspan="7"><br>검색된 내용이 없습니다.</td></tr>
+				</c:when>
+								
+			<c:otherwise>	
+				<c:set var="num" value="${paging.totalCount - ((paging.cri.page-1)* 10)}"/>
 			<tbody class="listData">
 			<c:forEach items="${userList }" var="list">
 			<c:set var="num" value="${num+1}"></c:set>
@@ -62,17 +73,19 @@
 				<td><button class= "black" onclick="black(${list.userSeq },'${list.email }','${list.nickname }')">블랙</button></td>
 			</tr>
 			</c:forEach>
+			</c:otherwise>
+		</c:choose>
 			</tbody>
 		</table>
 	</form>
 
-	<div class="paging">
+<%-- 	<div class="paging">
 		<nav aria-label="Page navigation example" style="margin: 10px;">
 			<ul class="pagination justify-content-center">
 	        <li class="page-item"><span><a href='javascript:void(0);' onclick="go_page(1); return false;" class="page-link"><i class="fas fa-angle-double-left"></i></a></span></li>
-	    <%-- <c:if test="${paging.prev}"> --%>
+	    <c:if test="${paging.prev}">
 	        <li class="page-item"><span><a href='javascript:void(0);' onclick="go_page(${paging.startPage-1});" class="page-link"><i class="fas fa-angle-left"></i></a></span></li>
-	   <%--  </c:if> --%>
+	    </c:if>
 	    <c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="num">
 	    	<c:choose>
 	    		<c:when test= "${num==1 }">
@@ -83,13 +96,13 @@
 				</c:otherwise>
 			</c:choose>	        
 	    </c:forEach>
-	    <%-- <c:if test="${paging.next && paging.endPage>0}"> --%>
+	    <c:if test="${paging.next && paging.endPage>0}">
 	        <li class="page-item"><span><a href='javascript:void(0);' onclick="go_page(${paging.endPage+1});return false;" class="page-link"><i class="fas fa-angle-right"></i></a></span></li>
-		 <%--</c:if> --%>
+		 </c:if>
 	        <li class="page-item"><span><a href='javascript:void(0);' onclick="go_page(${maxpage});return false;" class="page-link"><i class="fas fa-angle-double-right"></i></a></span></li>
 			</ul>
 		</nav>
-	</div>
+	</div> --%>
 	
 </div>
 
@@ -118,7 +131,7 @@ function black(clickedID,clickedEmail,clickedName){
 	
 }
 
-function go_page(pageNum){
+/* function go_page(pageNum){
 	
 	
 	
@@ -176,7 +189,7 @@ function go_page(pageNum){
 		error: function(){
 			console.log('error');
 		}
-	})
+	}) */
 }
 </script>
 </html>

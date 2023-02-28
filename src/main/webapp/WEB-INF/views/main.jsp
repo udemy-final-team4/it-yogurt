@@ -8,7 +8,7 @@
     <script src="/js/jquery-3.6.1.min.js"></script>
     <script src="/js/util/ajax.js"></script>
     <script src="/js/util/util.js"></script>
-    <script src="/js/common/nav.js"></script>
+   <!--  <script src="/js/common/nav.js"></script> -->
     <title>It-Yogurt</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
@@ -19,8 +19,9 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/css/styles.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous"> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> -->
 </head>
 <style>
     #btn-login {
@@ -42,7 +43,7 @@
 <%@include file="common/nav.jsp"%>
 <!-- Masthead-->
 <header class="masthead bg-self text-white text-center" style="background-color: #F9F2ED">
-    <div class="container d-flex align-items-center flex-column">
+    <div class="container-md d-flex align-items-center flex-column">
         <div id="user-info">
             <h3 id="nickname" style="color: #2c3e50" class="pb-2"></h3>
         </div>
@@ -53,7 +54,7 @@
         <h1 class="masthead-heading text-uppercase mb-0" style="color: #2c3e50">💫 떠먹여주는 it 지식 💫</h1>
         <c:choose>
             <c:when test="${ not empty sessionScope.user_seq}">
-                <button type="button" class="button btn-login mt-5 mb-5" id="btn-login" onclick="window.location.href='/user'">Logout!</button>
+                <button type="button" class="button btn-login mt-5 mb-5" id="btn-login" onclick="window.location.href='/user/o'">Logout!</button>
             </c:when>
             <c:otherwise>
                 <button type="button" class="button btn-login mt-5 mb-5" id="btn-login" onclick="window.location.href='/user'">JOIN US!</button>

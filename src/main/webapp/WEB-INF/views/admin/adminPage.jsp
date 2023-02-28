@@ -24,9 +24,9 @@
 		<h3 id="main" > 회원 관리 </h3> <br>
 		<c:choose>
 			<c:when test="${sessionScope.user_seq eq 1 || sessionScope.user_seq eq 2}">
-				<button id="" onclick="location.href='user'">회원관리</button>
-				<button onclick="location.href='contents'">컨텐츠 관리</button>
-				<button onclick="location.href='../aws/email'">메일 발송</button>
+				<button class="btn btn-primary px-5 py-2" onclick="location.href='user'">회원관리</button>
+				<button class="btn btn-primary px-5 py-2" onclick="location.href='contents'">컨텐츠 등록</button>
+				<button class="btn btn-primary px-5 py-2" onclick="location.href='../aws/email'">메일 발송</button>
 			</c:when>
 			<c:otherwise>
 				<p> 관리자 로그인을 해주세요! </p>

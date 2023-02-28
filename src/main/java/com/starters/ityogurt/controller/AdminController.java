@@ -283,5 +283,26 @@ public class AdminController {
 	   blacklistService.deleteBlackedEmail(email);
 	   return "redirect:/admin/user/black";
    }
+   
+ //유저 닉네임 검색
+ 	 @GetMapping("/list/searchResult")
+ 		public ModelAndView searchBoardResult(@RequestParam("keyword") String keyword, Criteria cri) {
+ 			ModelAndView mv = new ModelAndView();
+ 			List<UserDTO> userList = userService.getSearchUserList(keyword);
+ 			//paging
+ 			Paging paging = new Paging();
+ 			paging.setCri(cri); // 현재 페이지, 페이지당 보여줄 게시글의 개수 설정
+ 			int totalBoardCnt = userList.size(); // 전체 게시글 수
+ 			int maxPage = (int)((double)totalBoardCnt / cri.getPerPageNum() + 0.9); // 전체 페이지 수
+ 			paging.setTotalCount(totalBoardCnt); //전체 게시글 수 설정
+ 			
+ 			mv.addObject("maxpage", maxPage);
+ 		 	mv.addObject("paging", paging);
+ 		 	
+ 			mv.addObject("userList", userList);
+ 			mv.setViewName("admin/adminUserSearch");
+ 			 
+ 			return mv;
+ 		}
 	 
 	}

@@ -23,13 +23,12 @@
 }
 </style>
 </head>
-<body>
+<%@include file="../common/nav.jsp" %>
+<body id="page-top" style="background-color: #F9F2ED; margin-top:15%;">
+<header></header>
+<div class="container divCss">
 
-<div class="container">
-<%@include file="../common/header.jsp" %>
-
-<div class="container mt-5">
-            <div class="row">
+<div class="container-xxl">
                 <div class="col-lg-auto">
                 
                 
@@ -75,25 +74,10 @@
                     </div>
                     </div>
                     
-     <!-- <div class="form">
-		<h3 id="main" > 게시판 </h3> <br>
-		<button id= "black" onclick="location.href='/board/list'">목록</button>
-     		<form action="form" method="post">
-				<div class="mb-3">
-				  <label for="title" class="form-label">제목</label>
-				  <input type="text" class="form-control" id="title" name ="title" placeholder="제목">
-				</div>
-				<div class="mb-3">
-				  <label for="content" class="form-label">내용</label>
-				  <textarea class="form-control" id="content" rows="3" name="content"></textarea>
-				</div>
-				<input type="hidden" name="userSeq" value="5">
-				<input type="hidden" name="categorySeq" value="5">
-				<button type="submit" class="btn btn-primary" style="background-color: #91ACCC;">등록</button>
-			</form> -->
+    
 	</div>
 <%@include file="../common/footer.jsp" %>
-</div>
+
 </body>
 <script type="text/javascript">
 var text = document.getElementById("content").value;
