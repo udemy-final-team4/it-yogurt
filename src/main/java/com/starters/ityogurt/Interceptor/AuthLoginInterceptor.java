@@ -12,7 +12,7 @@ public class AuthLoginInterceptor implements HandlerInterceptor {
         Object handler) throws Exception {
 
         HttpSession httpSession = request.getSession();
-        String userSeq = (String) httpSession.getAttribute("user_seq");
+        Integer userSeq = (Integer) httpSession.getAttribute("user_seq");
         if (userSeq == null) {
             response.sendRedirect("/user");
             //logger.info("user is not login");
