@@ -69,5 +69,10 @@ public class CategoryServiceImpl implements CategoryService {
 			return dao.getCategoryBySub(sub);
 		}
 
+		@Override
+		public List<CategoryDTO> getMiddleCategoryGroup() {
+			return dao.getMiddleCategoryGroup();
+		}
+
 	
 }

@@ -24,6 +24,7 @@ public interface CategoryDAO {
 
 	CategoryDTO getCategoryByUserSeq(int userSeq);
 	int getCategoryBySub(String sub);
+	List<CategoryDTO> getMiddleCategoryGroup();
 	
 
 }

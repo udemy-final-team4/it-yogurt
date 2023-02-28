@@ -66,6 +66,8 @@
 		SELECT category_seq FROM category WHERE sub=#{sub} AND detail IS NULL
 	</select>
 	
-	
+	<select id="getMiddleCategoryGroup" resultType="categorydto">
+		SELECT * FROM category GROUP BY middle
+	</select>
 	
 </mapper>

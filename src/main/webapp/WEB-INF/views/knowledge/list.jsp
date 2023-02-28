@@ -10,17 +10,6 @@
 <link href="/css/footer.css" rel="stylesheet">
 <link href="/css/container.css" rel="stylesheet">
 <link href="/css/knowledge.css" rel="stylesheet">
-<script>
-      $(document).ready(function () {
-        $('#search').click(function (e) {
-          if ($('#keyword').val() == "") {
-            e.preventDefault()
-            alert("검색어를 입력해주세요!")
-            return false;
-          }
-        })
-      });
-    </script>
 <title>매일지식 컨텐츠</title>
 </head>
 <style>
@@ -74,10 +63,17 @@ line-height: inherit;
 			
 			<!-- 카테고리 선택 -->
 			<div id="categoryDiv">
+<!-- 			<select id="categoryChoice" onchange="changeCategory()"> -->
+<!-- 				<option value="all" >전체</option> -->
+<!-- 				<option value="프로그래밍언어" >프로그래밍언어</option> -->
+<!-- 				<option value="데이터베이스" >데이터베이스</option> -->
+<!-- 			</select> -->
+			
 			<select id="categoryChoice" onchange="changeCategory()">
-				<option value="all" >전체</option>
-				<option value="프로그래밍언어" >프로그래밍언어</option>
-				<option value="데이터베이스" >데이터베이스</option>
+				<option value="all" >전체</option>			
+			<c:forEach items="${category}" var="list">
+				<option id="category">${list.middle}</option>			
+			</c:forEach>
 			</select>
 				<!-- 검색창 -->
 				<input type="text" placeholder="검색어 입력" name="keyword" id="keyword">
@@ -87,7 +83,6 @@ line-height: inherit;
 			<table class="table">
 				<tr>
 					<th>번호</th>
-					<th>카테고리</th>
 					<th>제목</th>
 					<th>작성일자</th>
 					<th>조회수</th>
@@ -100,7 +95,6 @@ line-height: inherit;
 					<c:set var="i" value="${i+1}"></c:set>
 					<tr class="tableList">
 						<td>${i}</td>
-						<td><span class="badge bg-secondary text-decoration-none link-light"> aaa <%-- ${list.sub } --%></span></td>
 						<td><a href="<%=request.getContextPath()%>/knowledge/detail/${list.knowSeq}">${list.title}</a></td>
 						<td>${list.insertDate }</td>
 						<td>${list.viewcount }</td>
@@ -110,10 +104,7 @@ line-height: inherit;
 					</c:forEach>
 				</tbody>
 			</table>
-			
-<!-- 			<div id="searchDiv"> -->
-			
-<!-- 			</div> -->
+
 			<!-- 페이징 -->
 			<div class="paging">
 				<nav aria-label="Page navigation example" style="margin: 10px;">
@@ -139,15 +130,21 @@ line-height: inherit;
 		</div>
 	</div>
 <script>
+//검색 기능
+$(document).ready(function () {
+  $('#search').click(function (e) {
+    if ($('#keyword').val() == "") {
+      e.preventDefault()
+      alert("검색어를 입력해주세요!")
+      return false;
+    }
+  })
+});
+
 let params = (new URL(document.location)).searchParams;
 let currentCategory = params.get('category') || "";
-let category_list = {"all" : "전체","프로그래밍언어":"프로그래밍언어","데이터베이스":"데이터베이스"}
+// let category_list = {"all" : "전체","프로그래밍언어":"프로그래밍언어","데이터베이스":"데이터베이스"}
 $("#categoryChoice").val(currentCategory).prop("selected", true);
-
-//검색
-// $("#search").click(function(e){
-//         $("form").attr("action","/knowledge/searchResult");
-// });
 
 // select태그 카테고리 변경시 발생하는 이벤트
 function changeCategory(){

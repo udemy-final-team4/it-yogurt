@@ -22,6 +22,7 @@ public interface CategoryService {
 
     CategoryDTO getCategoryByUserSeq(int userSeq);
 	int getCategoryBySub(String sub);
+	List<CategoryDTO> getMiddleCategoryGroup();
     
 
 }

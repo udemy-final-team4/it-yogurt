@@ -15,7 +15,7 @@
 	WHERE c.category_seq in 
 	<choose>
 		<when test='category.equals("category") || category.equals("all")'>
-		    (select category_seq from category where middle in(#{category},'데이터베이스','프로그래밍언어'))
+		    (select category_seq from category)
 			order by know_seq limit #{limit},9
 		</when>
 		<otherwise>
