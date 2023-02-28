@@ -1,9 +1,11 @@
 package com.starters.ityogurt.serviceimpl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Service;
 
 import com.starters.ityogurt.dao.BoardDAO;
@@ -28,7 +30,7 @@ public class UserServiceImpl implements UserService {
     BoardDAO boardDao;
     @Autowired
     LearnRecordDAO learnRecordDao;
-    
+  
 	  @Autowired
 	  EmailServiceImpl emailService;
 
@@ -49,10 +51,11 @@ public class UserServiceImpl implements UserService {
 
 	  @Override
 	  public void deleteUser(int userSeq) {
-		  commentDao.deleteComment(userSeq);//코멘트 삭제부터
-		  boardDao.deleteBoard(userSeq);
-		  learnRecordDao.deleteLearnData(userSeq);
-		  dao.deleteUser(userSeq);
+		  commentDao.deleteCommentByUserSeq(userSeq);//게시글에 달린 타인 댓글 삭제
+		  commentDao.deleteComment(userSeq);//내가 쓴 코멘트 삭제
+		  boardDao.deleteBoard(userSeq); //내 게시글 삭제
+		  learnRecordDao.deleteLearnData(userSeq); //내 퀴즈 기록 삭제
+		  dao.deleteUser(userSeq); //유저 정보 삭제
 	  }
 
     @Override
@@ -65,11 +68,11 @@ public class UserServiceImpl implements UserService {
         return dao.getUserByUserSeq(userSeq);
     }
 
-	  @Override
-	  public UserDTO getUserByUserEmail(String email) {
-		  return dao.getUserByUserEmail(email);
-	  }
-    
+    @Override
+    public UserDTO getUserByUserEmail(String email) {
+        return dao.getUserByUserEmail(email);
+    }
+
     @Override
     public int setIsPassByUserSeq(int userSeq) {
         return dao.setIsPassByUserSeq(userSeq);
@@ -102,27 +105,26 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-	@Override
-	public UserDTO getUserInfo(int userSeq) {
-		return dao.getUserInfo(userSeq);
-	}
+    @Override
+    public void updateUserInfo(Map<Object, Object> map) {
+        dao.updateUserInfo(map);
 
-
-	@Override
-	public void updateUserInfo(Map<Object, Object> map) {
-		dao.updateUserInfo(map);
-		
-	}
-
+    }
 
     @Override
     public int setWeakCategoryByUser(UserDTO userDto) {
+
         return dao.setWeakCategoryByUser(userDto);
     }
 
+    @Override
+    public void updateUserDeclaration(int user_seq) {
+        dao.updateUserDeclaration(user_seq);
+    }
+
 	@Override
-	public void updateUserDeclaration(int user_seq) {
-		dao.updateUserDeclaration(user_seq);
+	public List<UserDTO> getSearchUserList(String keyword) {
+		return dao.getSearchUserList(keyword);
 	}
 
 }

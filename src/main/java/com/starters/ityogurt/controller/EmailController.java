@@ -39,13 +39,16 @@ public class EmailController {
     @Autowired
     UserService userService;
 
-    @Value("${live.ip}")
-    private String liveIp;
+    @Value("${live.domain}")
+    private String liveDomain;
+
+    @Value("${check.path}")
+    private String checkPath;
+
     private KnowledgeDTO knowledgeByCategorySeq;
 
-    // private final EmailService emailService;
     @RequestMapping("/aws/email")
-    @Scheduled(cron = "0 46 1 * * ?", zone = "Asia/Seoul")
+    // @Scheduled(cron = "0 30 7 * * ?", zone = "Asia/Seoul")
     public String sendEmail() throws Exception {
         // 유저의 이메일과 유저가 선택한 소분류를 map에 담은 것을 반환한다.
         List<Map<String, Object>> subEmailMap = emailService.getEmailAndSub();
@@ -127,7 +130,7 @@ public class EmailController {
 
     public String buttonText(@RequestParam(value = "knowSeq")int knowSeq) {
         String buttonText = "<div style=\"text-align: center;\"><br>\n" +
-                "       <a href='http://localhost:8818/user/check/"+knowSeq+"'>\n" +
+                "       <a href='"+liveDomain+checkPath+knowSeq+"'>\n" +
                 "               <button class=\"btn\" style=\"width: 200px; background-color: #86b7fe; padding: 15px 30px;\n" +
                 "                border-radius: 5px; color:white; font-size: 18px; font-weight: bold; cursor: pointer;\" >문제 풀기!</button>\n" +
                 "       </a><br>\n" +
@@ -144,14 +147,6 @@ public class EmailController {
                 "</div>";
         return footerText;
     }
-
-    @GetMapping("user/email")
-    public String checkEmail(String email) {
-        userService.setIsPassByUserSeq(31);
-        return "true";
-    }
-
-
 
 }
 

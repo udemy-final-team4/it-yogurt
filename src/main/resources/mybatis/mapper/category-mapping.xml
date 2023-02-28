@@ -61,4 +61,13 @@
 												 ON c.category_seq = u.category_seq
 		WHERE user_seq=#{userSeq}
 	</select>
+	
+	<select id="getCategoryBySub" parameterType="String" resultType="int">
+		SELECT category_seq FROM category WHERE sub=#{sub} AND detail IS NULL
+	</select>
+	
+	<select id="getMiddleCategoryGroup" resultType="categorydto">
+		SELECT * FROM category GROUP BY middle
+	</select>
+	
 </mapper>

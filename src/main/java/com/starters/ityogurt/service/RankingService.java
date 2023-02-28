@@ -7,9 +7,8 @@ import java.util.Map;
 
 public interface RankingService {
 
-    List<Map<String,String>> getMostSolvedQuiz();
-    List<Map<String,String>> getMostWrongQuiz();
-    List<Map<String,String>> getMostSelectedCategory();
-
+    List<Map<String,Object>> getMostSolvedQuiz();
+    List<Map<String,Object>> getMostWrongQuiz();
+    // List<Map<String,String>> getMostSelectedCategory();
 
 }

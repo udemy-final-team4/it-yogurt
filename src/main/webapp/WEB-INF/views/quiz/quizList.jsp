@@ -12,7 +12,7 @@
     <link href="/css/container.css" rel="stylesheet">
     <link href="/css/quiz/wrong.css" rel="stylesheet">
     <script src="/js/util/ajax.js"></script>
-    <script src="/js/quiz/wrong.js"></script>
+    <script src="/js/quiz/quizList.js"></script>
 
     <title>퀴즈 풀기</title>
 </head>
@@ -20,15 +20,10 @@
 <body>
 <div class="container">
     <div class="content">
-        <h3 id="main"> 오답 노트 </h3>
+        <div id="header">
+            <h3 id="main"></h3>
+        </div>
         <div>
-            <div class="filter">
-                <select class="quiz-filter">
-                    <option value="5">5개씩 보기</option>
-                    <option value="10">10개씩 보기</option>
-                    <option value="20">20개씩 보기</option>
-                </select>
-            </div>
             <form action="<%=request.getContextPath()%>" id="quizForm" method=post>
             </form>
         </div>

@@ -1,5 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../common/tag.jsp"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
@@ -7,16 +7,27 @@
 <html>
 <head>
  <meta charset="UTF-8">
-    <link href="/css/header.css" rel="stylesheet">
-    <link href="/css/footer.css" rel="stylesheet">
-    <link href="/css/container.css" rel="stylesheet">
+  <!--   <link href="/css/header.css" rel="stylesheet">
+    <link href="/css/footer.css" rel="stylesheet"> -->
      <link href="/css/admin.css" rel="stylesheet">
      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
 		    rel="stylesheet"/>
+     <link href="/css/styles.css" rel="stylesheet">
+     <link href="/css/container.css" rel="stylesheet">
 <title> 커뮤니티 | 게시판 </title>
 
 <style>
+@font-face {
+  font-family: 'NEXON Lv1 Gothic OTF';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 
+#keyword {
+    border-radius: 15px;
+    width: 300px;
+}
 </style>
 </head>
 <body>
@@ -24,23 +35,33 @@
 <div class="container">
      <div class="form">
 		<h3 id="main" > 게시판 </h3> <br>
+		
+		<!-- 검색을 위한 form -->
+	<form action="<%=request.getContextPath()%>/board/list/searchResult" id="">
+	<!-- 검색창 -->
+	<input type="text" placeholder="검색어 입력" name="keyword" id="keyword">
+    <button type="submit" id="search">검색</button>
+			
+	<!-- 게시판 테이블 -->		
 		<table class="table">
+		<!-- 게시판 제목 -->
 		<thead>
 			<tr>
 				<th> 번호 </th>
 				<th> 카테고리 </th>
 				<th> 제목 </th>
 				<th> 작성자 </th>
-				<th> 조회수 </th>
+				<th> 조회수</th>
 			</tr>
-		</thead>			
+		</thead>	
+		<!-- 게시판 내용 -->		
 			<tbody class="listData">
 			<c:set var="num" value="${paging.totalCount - ((paging.cri.page-1)* 10)}"/>
 			<c:forEach items="${boardList }" var="list">
 			<tr class="tableList" onClick="location.href='/board/${list.boardSeq}'">
-				<td id ="boardSeq">${num}</td>	
+				<td id ="boardSeq">${num}  </td>	
 				<td>
-				<span class="badge bg-secondary text-decoration-none link-light"> ${list.sub }</span>
+				<span class="badge bg-secondary text-decoration-none link-light">${list.sub}</span>
 				</td>
 				<td style="text-align: left;">${list.title }</td>
 				<td>${list.nickname }</td>
@@ -50,7 +71,9 @@
 			</c:forEach>
 			</tbody>
 			</table>
-			
+		</form>
+		
+	<!-- 페이징 -->
 	<div class="paging">
 	<nav aria-label="Page navigation example" style="margin: 10px;">
 			
@@ -97,22 +120,37 @@
 	</div>
 	
 <div class="d-grid gap-2 d-sm-flex justify-content-sm-end">
-
-<c:choose>
-	<c:when test="${ not empty sessionScope.user_seq}">
+<!-- 글쓰기 버튼  -->
   		<button class="btn btn-primary" style="background-color: #91ACCC; font-size: 15px; width: 80px;" type="button" onClick="location.href='/board/form'">글쓰기</button>
-	</c:when>
-	<c:otherwise>
-  		<button class="btn btn-primary" disabled="disabled" style="background-color: #91ACCC; font-size: 15px; width: 80px;" type="button" onClick="location.href='/board/form'">글쓰기</button>
-	</c:otherwise>
-</c:choose>
 </div>
 	</div>
 
 </div>
 </body>
 
+
+
 <script>
+
+
+$(document).ready(function () {
+  $('#search').click(function (e) {
+    if ($('#keyword').val() == "") {
+      e.preventDefault()
+      alert("검색어를 입력해주세요!")
+      return false;
+    }
+  })
+});
+
+
+
+
+
+
+
+
+
 function go_page(pageNum){
 
 	$.ajax({

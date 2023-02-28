@@ -13,7 +13,17 @@
 <link href="/css/login.css" rel="stylesheet">
 <link href="/css/quiz.css" rel="stylesheet">
 <title>정답 보기</title>
-
+<style type="text/css">
+#listBtn{
+  width: 100%;
+  height: 40px;
+  border-style: solid;
+  border-width: medium;
+  margin: auto;
+  border-color: #91ACCC;
+  font-size: 20px;	
+}
+</style>
 </head>
 <%@include file="../common/nav.jsp"%>
 <body>
@@ -27,13 +37,11 @@
 					</div>
 					<div>
 					<c:forEach items="${quizList }" var="list">
-					
 						<!-- 퀴즈번호 기재하기 위한 변수 선언 -->
 						<c:set var="i" value="${i+1}" />
 							<tr>
 								<td id="num"><br> <br> <br> 
-								Q. ${i}번<br><br>
-								문제: ${list.question}<br> <br></td>
+								<b>Q. ${i}번.<br>${list.question}</b><br> <br></td>
 							</tr>
 							
 								<!-- 보기화면 -->
@@ -106,9 +114,17 @@
 								</c:forEach>
 								</div>
 							</table>
+							<div style="width:100%;margin-bottom:80px;">
+								<input type="button" value="매일지식 목록 바로가기" onclick="goKnowledgeList()" id="listBtn">
+							</div>
 					</div><!-- 전체 div -->
 		</div><!-- content -->
 	</div>
+	<script type="text/javascript">
+	function goKnowledgeList(){
+		location.href="${pageContext.request.contextPath}/knowledge/list?category=all";
+	}
+</script>
 </body>
 <%@include file="../common/footer.jsp"%>
 </html>

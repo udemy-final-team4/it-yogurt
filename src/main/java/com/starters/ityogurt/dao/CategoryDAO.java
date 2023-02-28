@@ -23,5 +23,8 @@ public interface CategoryDAO {
 	int findWeakCategoryByCategorySeq(int userSeq);
 
 	CategoryDTO getCategoryByUserSeq(int userSeq);
+	int getCategoryBySub(String sub);
+	List<CategoryDTO> getMiddleCategoryGroup();
+	
 
 }

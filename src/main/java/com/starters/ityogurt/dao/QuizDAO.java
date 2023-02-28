@@ -18,4 +18,6 @@ public interface QuizDAO {
 	int getAnswer(int quizSeq);
 
 	List<QuizDTO> getWeakQuizListByUser(int weakCategorySeq, int start, int end);
+
+	List<QuizDTO> getQuizByQuiz(int quizSeq);
 }

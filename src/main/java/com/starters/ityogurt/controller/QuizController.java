@@ -1,13 +1,18 @@
 package com.starters.ityogurt.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.starters.ityogurt.dao.QuizDAO;
@@ -133,7 +138,12 @@ public class QuizController {
 		//정답 갯수 가져오기
 		
 		//체크한 답 보여줘야 하니 learn_record 불러오기
-		List<LearnRecordDTO> learnList = learnRecordService.getLearn(quizSeq1,quizSeq2,quizSeq3);
+		Map<Object, Object> map = new HashMap<>();
+		map.put("quizSeq1", quizSeq1);
+		map.put("quizSeq2", quizSeq2);
+		map.put("quizSeq3", quizSeq3);
+		map.put("userSeq", userSeq);
+		List<LearnRecordDTO> learnList = learnRecordService.getLearnRecord(map);
 		
 		for(LearnRecordDTO l : learnList) {
 			userAnswerCnt += l.getIsRight();
@@ -168,10 +178,7 @@ public class QuizController {
 					userAnswerCnt+=1;
 				}
 			}
-			
-			//체크한 답 보여줘야 하니 learn_record 불러오기
-			List<LearnRecordDTO> learnList = learnRecordService.getLearn(quizSeq1,quizSeq2,quizSeq3);
-				
+
 			List<QuizDTO> quizList = service.getQuiz(knowSeq);
 			mv.addObject("userChoice",userChoice);
 			mv.addObject("isRight", isRight);
@@ -181,6 +188,24 @@ public class QuizController {
 			mv.setViewName("quiz/answer");
 			return mv;
 		}
-	
-	
+
+	@GetMapping("/quiz/top/{quizSeq}")
+	public ModelAndView moveWeakQuizPage(@RequestParam int type, @RequestParam int top) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("top", top);
+		mv.addObject("type", type);
+		mv.setViewName("/quiz/quizList");
+		return mv;
+	}
+
+	//type: 1-가장 많이 푼 퀴즈, 2-가장 많이 틀린 퀴즈는?
+	@GetMapping("/quiz/top/{quizSeq}/list")
+	@ResponseBody
+	public ModelMap getQuizByQuiz(@PathVariable int quizSeq) {
+		ModelMap map = new ModelMap();
+		List<QuizDTO> list = service.getQuizByQuiz(quizSeq);
+		map.addAttribute("list", list);
+		return map;
+	}
+
 }

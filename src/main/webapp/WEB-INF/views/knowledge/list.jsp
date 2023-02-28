@@ -10,59 +10,8 @@
 <link href="/css/footer.css" rel="stylesheet">
 <link href="/css/container.css" rel="stylesheet">
 <link href="/css/knowledge.css" rel="stylesheet">
-<script>
-      $(document).ready(function () {
-        $('#search').click(function (e) {
-          if ($('#keyword').val() == "") {
-            e.preventDefault()
-            alert("검색어를 입력해주세요!")
-            return false;
-          }
-        })
-      });
-    </script>
 <title>매일지식 컨텐츠</title>
 </head>
-<style>
-	#tblDiv {
-		margin-top: 20%;
-	}
-	
-	.tableList:hover {
-	background-color: #91ACCC;
-	color: white;
-	cursor: pointer;
-}
-.page-link {
-  color: #fff; 
-  background-color: #91ACCC;
-  border: 1px solid #ccc; 
-}
-.page-item.active .page-link {
- z-index: 1;
- color: #555;
- font-weight:bold;
- background-color: #f1f1f1;
- border-color: #ccc;
- 
-}
-.page-link:focus, .page-link:hover {
-  color: #000;
-  background-color: #fafafa; 
-  border-color: #ccc;
-}
-.fas {
-line-height: inherit;
-}
-.form {
-	margin-top: 20%;
-}
-/* th{ */
-/* 	width: 150px; */
-/* }	 */
-	
-	
-</style>
 <%@include file="../common/nav.jsp"%>
 <body>
 	<div class="container">
@@ -75,9 +24,10 @@ line-height: inherit;
 			<!-- 카테고리 선택 -->
 			<div id="categoryDiv">
 			<select id="categoryChoice" onchange="changeCategory()">
-				<option value="all" >전체</option>
-				<option value="프로그래밍언어" >프로그래밍언어</option>
-				<option value="데이터베이스" >데이터베이스</option>
+				<option value="all" >전체</option>			
+			<c:forEach items="${category}" var="list">
+				<option id="category">${list.middle}</option>			
+			</c:forEach>
 			</select>
 				<!-- 검색창 -->
 				<input type="text" placeholder="검색어 입력" name="keyword" id="keyword">
@@ -108,10 +58,7 @@ line-height: inherit;
 					</c:forEach>
 				</tbody>
 			</table>
-			
-<!-- 			<div id="searchDiv"> -->
-			
-<!-- 			</div> -->
+
 			<!-- 페이징 -->
 			<div class="paging">
 				<nav aria-label="Page navigation example" style="margin: 10px;">
@@ -137,15 +84,21 @@ line-height: inherit;
 		</div>
 	</div>
 <script>
+//검색 기능
+$(document).ready(function () {
+  $('#search').click(function (e) {
+    if ($('#keyword').val() == "") {
+      e.preventDefault()
+      alert("검색어를 입력해주세요!")
+      return false;
+    }
+  })
+});
+
 let params = (new URL(document.location)).searchParams;
 let currentCategory = params.get('category') || "";
-let category_list = {"all" : "전체","프로그래밍언어":"프로그래밍언어","데이터베이스":"데이터베이스"}
+// let category_list = {"all" : "전체","프로그래밍언어":"프로그래밍언어","데이터베이스":"데이터베이스"}
 $("#categoryChoice").val(currentCategory).prop("selected", true);
-
-//검색
-// $("#search").click(function(e){
-//         $("form").attr("action","/knowledge/searchResult");
-// });
 
 // select태그 카테고리 변경시 발생하는 이벤트
 function changeCategory(){

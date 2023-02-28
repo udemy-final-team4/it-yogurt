@@ -71,12 +71,8 @@
 		WHERE user_seq = #{userSeq};
 	</update>
 
-	<select id="getUserInfo" parameterType="int" resultType="userdto">
-		select * from user where user_seq=#{user_seq}
-	</select>
-
 	<update id="updateUserInfo" parameterType="hashmap">
-		UPDATE user SET nickname=#{nickname}, phone=#{phone}, password=#{password} WHERE user_seq=#{userSeq}
+		UPDATE user SET nickname=#{nickname}, phone=#{phone}, password=#{password}, category_seq=#{categorySeq} WHERE user_seq=#{userSeq}
 	</update>
 
 	<update id="setWeakCategoryByUser" parameterType="userdto">
@@ -88,5 +84,14 @@
 		SET declaration= declaration +1 
 		WHERE user_seq=#{userSeq}
 	</update>
+	
+ <select id="getSearchUserList" parameterType="String" resultType="userdto">
+	select *
+	from user
+	where admin is null 
+	AND nickname 	
+	like concat('%',#{keyword},'%')
+	order BY user_seq
+</select>
 	
 </mapper>

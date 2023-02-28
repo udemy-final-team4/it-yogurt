@@ -74,4 +74,5 @@ public class KnowledgeServiceImpl implements KnowledgeService {
 		return dao.getCategorySeq(knowSeq);
 	}
 
+
 }

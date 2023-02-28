@@ -28,4 +28,6 @@ public interface BoardDAO {
 	void updateBoard(BoardDTO dto);
 	
 	void deleteBoardByBoardSeq(int boardSeq);
+	
+	List<Map<String,String>> getSearchBoardList(String keyword);	
 }

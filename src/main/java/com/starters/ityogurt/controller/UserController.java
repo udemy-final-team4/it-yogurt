@@ -34,7 +34,7 @@ public class UserController {
         ModelAndView mv = new ModelAndView();
 
         if (session.getAttribute("user_seq") != null) {
-            mv.setViewName("/index");
+            mv.setViewName("/");
         } else {
             if (access.equals("mail")) {
                 session.setAttribute("knowSeq",knowSeq);

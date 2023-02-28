@@ -11,6 +11,9 @@
     <link href="/css/footer.css" rel="stylesheet">
     <link href="/css/container.css" rel="stylesheet">
      <link href="/css/admin.css" rel="stylesheet">
+     <script src="/js/user/signup.js"></script>
+    <script src="/js/util/ajax.js"></script>
+    <script src="/js/util/util.js"></script>
 <title> 커뮤니티 | 게시판 | 글쓰기 </title>
 <style>
 .tableList:hover {
@@ -20,16 +23,27 @@
 }
 </style>
 </head>
-<body>
+<%@include file="../common/nav.jsp" %>
+<body id="page-top" style="background-color: #F9F2ED; margin-top:15%;">
+<header></header>
+<div class="container divCss">
 
-<div class="container">
-<%@include file="../common/header.jsp" %>
-
-<div class="container mt-5">
-            <div class="row">
+<div class="container-xxl">
                 <div class="col-lg-auto">
+                
+                
                     <!-- Post content-->
                   <form action="/board/form/${oneBoard.boardSeq }" method="post">
+	                <label for="main">카테고리</label>
+	                	<select name="main" id="main">
+	
+	                	</select>
+	                	<select name="middle" id="middle">
+	
+	                	</select>
+	                	<select name="sub" id="sub">
+	
+	                	</select>
                     <article>
                         <!-- Post header-->
                         <header class="mb-4">
@@ -46,7 +60,7 @@
                            <textarea  class="form-control" id="content" name="content" rows=10 ><c:out value="${oneBoard.content }"/></textarea>
                       			
                       			<input type="hidden" name="userSeq" value="2">
-								<input type="hidden" name="categorySeq" value="3">
+								<!-- <input type="hidden" name="categorySeq" value="3"> -->
                         
                         </section>
                     </article>
@@ -60,25 +74,10 @@
                     </div>
                     </div>
                     
-     <!-- <div class="form">
-		<h3 id="main" > 게시판 </h3> <br>
-		<button id= "black" onclick="location.href='/board/list'">목록</button>
-     		<form action="form" method="post">
-				<div class="mb-3">
-				  <label for="title" class="form-label">제목</label>
-				  <input type="text" class="form-control" id="title" name ="title" placeholder="제목">
-				</div>
-				<div class="mb-3">
-				  <label for="content" class="form-label">내용</label>
-				  <textarea class="form-control" id="content" rows="3" name="content"></textarea>
-				</div>
-				<input type="hidden" name="userSeq" value="5">
-				<input type="hidden" name="categorySeq" value="5">
-				<button type="submit" class="btn btn-primary" style="background-color: #91ACCC;">등록</button>
-			</form> -->
+    
 	</div>
 <%@include file="../common/footer.jsp" %>
-</div>
+
 </body>
 <script type="text/javascript">
 var text = document.getElementById("content").value;

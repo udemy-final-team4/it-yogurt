@@ -31,12 +31,12 @@ public interface UserService {
 
 	void AfterLoginProcess(UserDTO result, HttpSession session);
 
-	UserDTO getUserInfo(int userSeq);
-
 	void updateUserInfo(Map<Object, Object> map);
 
 	int setWeakCategoryByUser(UserDTO userdto);
 	
 	void updateUserDeclaration(int user_seq);
+	
+	List<UserDTO> getSearchUserList(String keyword);
 
 }

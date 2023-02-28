@@ -5,6 +5,7 @@ import com.starters.ityogurt.dto.UserDTO;
 import com.starters.ityogurt.error.ApiException;
 import com.starters.ityogurt.service.CategoryService;
 import com.starters.ityogurt.service.EmailService;
+import com.starters.ityogurt.service.LearnRecordService;
 import com.starters.ityogurt.service.UserService;
 import com.starters.ityogurt.util.DateUtil;
 import com.starters.ityogurt.util.Encrypt;
@@ -13,13 +14,16 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.Date;
+import java.util.Map;
 import org.hamcrest.number.IsNaN;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -35,6 +39,9 @@ public class UserRestController {
 
     @Autowired
     EmailService emailService;
+
+    @Autowired
+    LearnRecordService learnRecordService;
 
     // 회원가입
     @PostMapping("/user/1")
@@ -82,7 +89,12 @@ public class UserRestController {
             }
         }
 
-        userService.AfterLoginProcess(result,request.getSession());
+        Map<String,Integer> weakCategory = learnRecordService.findWeakCategoryByUser(result.getUserSeq());
+        if(weakCategory != null) {
+            result.setWeakCategorySeq(weakCategory.get("category_seq"));
+            userService.setWeakCategoryByUser(result);
+        }
+            userService.AfterLoginProcess(result,request.getSession());
 
         if(!isStringEmpty(knowSeq))
         {
@@ -98,10 +110,21 @@ public class UserRestController {
         HttpSession session = request.getSession();
         ModelAndView mv = new ModelAndView();
         session.invalidate();
-        mv.setViewName("/");
+        mv.setViewName("redirect:/");
         return mv;
     }
 
+    @GetMapping("/user/info")
+    @ResponseBody
+    public UserDTO userInfo(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Integer userSeq = (Integer) session.getAttribute("user_seq");
+        if(userSeq == null)
+            return null;
+
+        UserDTO user = userService.getUserByUserSeq(userSeq);
+        return user;
+    }
 
     // 비밀번호 암호화
     String ConvertPassword(String pw) throws Exception {

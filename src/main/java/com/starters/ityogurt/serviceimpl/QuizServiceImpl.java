@@ -34,4 +34,11 @@ public class QuizServiceImpl implements QuizService {
 	public List<QuizDTO> getWeakQuizListByUser(int weakCategorySeq, int start, int end) {
 		return dao.getWeakQuizListByUser(weakCategorySeq, start, end);
 	}
+
+	@Override
+	public List<QuizDTO> getQuizByQuiz(int quizSeq) {
+		return dao.getQuizByQuiz(quizSeq);
+	}
+
+
 }
