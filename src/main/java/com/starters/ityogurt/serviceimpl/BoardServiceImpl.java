@@ -58,6 +58,11 @@ public class BoardServiceImpl implements BoardService {
 		dao.deleteBoardByBoardSeq(boardSeq);
 	}
 
+	@Override
+	public List<Map<String,String>> getSearchBoardList(String keyword) {
+		return dao.getSearchBoardList(keyword);
+	}
+
 	
 	
 }

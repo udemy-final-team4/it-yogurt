@@ -32,23 +32,19 @@
 			<tr>
 				<th> 번호 </th>
 				<th> 이메일 </th>
-				<th> 닉네임 </th>
-				<th> 신고 </th>
-				<th> 마지막 로그인 </th>
-				<th> 탈퇴  </th>
-				<th> 블랙 </th>
+				<th> </th>
+				
 			</tr>
 			<tbody class="listData">
-			<c:forEach items="${userList }" var="list">
+			<c:forEach items="${blackList }" var="list">
+			<c:set var="num" value="${num+1}"/>
 			<tr>
-				<td id ="userSeq">${list.userSeq }</td>
+				<td>${num }</td>
 				<td>${list.email }</td>
-				<td>${list.nickname }</td>
-				<td>${list.declaration }</td>
-				<td>${list.lastloginDate }</td>
-				<td><button class= "delUserBtn" style="border-color: #C0D8C0" onclick="clicked(${list.userSeq },'${list.nickname }')">탈퇴</button></td>
-				<td><button class= "black" onclick="black(${list.userSeq },'${list.email }','${list.nickname }')">블랙</button></td>
+				
+				<td><button class= "black" onclick="black_del('${list.email}')">삭제</button></td>
 			</tr>
+			
 			</c:forEach>
 			</tbody>
 		</table>
@@ -86,25 +82,16 @@
 <%@include file="../common/footer.jsp" %>
 <script>
 
-function clicked(clickedID,clickedName){
-	if (window.confirm(clickedName +"회원을 탈퇴시키겠습니까?"+ "\n\n"+"모든 회원 데이터가 삭제됩니다.\n")){
-		location.href="/admin/user/manage/"+clickedID;
-		alert("회원탈퇴 되었습니다.");		
+function black_del(email){
+	if (window.confirm(email +"회원을 블랙리스트에서 삭제하시겠습니까?")){
+		location.href="/admin/user/black/re?email="+email;
+		alert("삭제 되었습니다.");		
 	}
 	else {
-		alert("회원 탈퇴가 취소되었습니다.");		
+		alert("삭제가 취소되었습니다.");		
 	}
 }
-function black(clickedID,clickedEmail,clickedName){
-	if (window.confirm(clickedName +"회원을 블랙하시겠습니까?"+ "\n\n"+"모든 회원 데이터가 삭제됩니다.\n")){
-		location.href="/admin/user/manage/"+clickedID+"/"+clickedEmail;
-		alert("회원을 블랙했습니다.");
-	}
-	else {
-		alert("블랙이 취소되었습니다.");		
-	}
-	
-}
+
 
 function go_page(pageNum){
 	
@@ -115,17 +102,13 @@ function go_page(pageNum){
 		type: "GET",
 		dataType: "json",
 		success: function(result){
-			let list = result.userList;
+			let list = result.blackList;
 			let content = '';
 			for(let i=0;i<list.length;i++){
 				content += '<tr>';
-				content += '<td id ="userSeq">' + list[i].userSeq +'</td>';
+				content += '<td >' + i +'</td>';
 				content +=	'<td>'+ list[i].email +'</td>';
-				content +=	'<td>'+ list[i].nickname+ '</td>';
-				content +=	'<td>'+ list[i].declaration + '</td>';
-				content += '<td>' + list[i].lastloginDate + '</td>';
-				content += '<td><button class= "delUserBtn" style="border-color: #C0D8C0" onclick="clicked('+list[i].userSeq +',\''+list[i].nickname+'\')">탈퇴</button></td>';
-				content += '<td><button class= "black" onclick="black('+list[i].userSeq +',\''+list[i].email+ '\',\''+list[i].nickname+ '\')">블랙</button></td>';
+				content += '<td><button class= "delUserBtn" style="border-color: #C0D8C0" onclick="clicked()">삭제</button></td>';
 				content += '</tr>';
 			}
 			$('.listData').html(content);	

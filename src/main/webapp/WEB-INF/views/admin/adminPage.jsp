@@ -13,7 +13,7 @@
 </head>
 <style>
     .form {
-        margin-top: 80%;
+        margin-top: 60%;
         margin-bottom: 60%;
     }
 </style>

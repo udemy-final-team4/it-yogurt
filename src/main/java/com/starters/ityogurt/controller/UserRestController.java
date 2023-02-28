@@ -107,7 +107,7 @@ public class UserRestController {
         HttpSession session = request.getSession();
         ModelAndView mv = new ModelAndView();
         session.invalidate();
-        mv.setViewName("/");
+        mv.setViewName("redirect:/");
         return mv;
     }
 

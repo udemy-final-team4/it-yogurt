@@ -21,7 +21,7 @@
 </style>
 </head>
 <%@include file="../common/nav.jsp" %>
-<body style="background-color: #F9F2ED">
+<body style="background-color: #F9F2ED; margin-top:15%;">
 <div class="container divCss">
         <!-- Page content-->
         <div class="container">

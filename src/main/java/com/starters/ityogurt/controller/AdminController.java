@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.starters.ityogurt.dto.BlacklistDTO;
 import com.starters.ityogurt.dto.CategoryDTO;
 import com.starters.ityogurt.dto.KnowledgeDTO;
 import com.starters.ityogurt.dto.QuizDTO;
@@ -256,5 +257,31 @@ public class AdminController {
 			}
 			
    		}
+   //유저 블랙 리스트 보기(email)
+   @GetMapping("/user/black")
+	 public ModelAndView adminBlackList(Criteria cri) {
+		 ModelAndView mv = new ModelAndView();
+		 Paging paging = new Paging();
+		 paging.setCri(cri); // 현재 페이지, 페이지당 보여줄 게시글의 개수
+		 int totalBlackCnt = blacklistService.countBlackedEmail();
+		 int maxPage = (int)((double)totalBlackCnt / cri.getPerPageNum() + 0.9); // 전체 페이지 수
+		 paging.setTotalCount(totalBlackCnt);
+		 
+		 List<BlacklistDTO> blackList = blacklistService.getAllBlackedUserList(cri);
+		 
+		 mv.addObject("maxPage", maxPage);
+		 mv.addObject("paging", paging);
+		 
+		 mv.addObject("totalBlackCnt", totalBlackCnt);
+		 mv.addObject("blackList", blackList);
+		 mv.setViewName("admin/adminUserBlack");
+		 return mv;
+	 }
+   //유저 블랙 리스트에서 삭제하기
+   @GetMapping("/user/black/re")
+   	public String deleteBlackedEmail(@RequestParam("email") String email) {
+	   blacklistService.deleteBlackedEmail(email);
+	   return "redirect:/admin/user/black";
+   }
 	 
 	}
