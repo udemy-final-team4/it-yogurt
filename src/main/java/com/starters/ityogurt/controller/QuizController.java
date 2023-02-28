@@ -189,7 +189,7 @@ public class QuizController {
 			return mv;
 		}
 
-	@PostMapping("/quiz/top/{quizSeq}")
+	@GetMapping("/quiz/top/{quizSeq}")
 	public ModelAndView moveWeakQuizPage(@RequestParam int type, @RequestParam int top) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("top", top);
