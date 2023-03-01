@@ -7,8 +7,8 @@
 <html>
 <head>
  <meta charset="UTF-8">
-    <link href="/css/header.css" rel="stylesheet">
-    <link href="/css/footer.css" rel="stylesheet">
+   <!--  <link href="/css/header.css" rel="stylesheet">
+    <link href="/css/footer.css" rel="stylesheet"> -->
     <link href="/css/container.css" rel="stylesheet">
     <link href="/css/admin.css" rel="stylesheet">
  	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" rel="stylesheet"/>
@@ -60,7 +60,6 @@
 				</c:when>
 								
 			<c:otherwise>	
-				<c:set var="num" value="${paging.totalCount - ((paging.cri.page-1)* 10)}"/>
 			<tbody class="listData">
 			<c:forEach items="${userList }" var="list">
 			<c:set var="num" value="${num+1}"></c:set>

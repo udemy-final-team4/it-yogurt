@@ -6,18 +6,24 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="/css/header.css" rel="stylesheet">
-<link href="/css/footer.css" rel="stylesheet">
+<!-- <link href="/css/header.css" rel="stylesheet"> -->
+<!-- <link href="/css/footer.css" rel="stylesheet"> -->
 <link href="/css/container.css" rel="stylesheet">
 <link href="/css/knowledge.css" rel="stylesheet">
+<link href="/css/styles.css" rel="stylesheet">
 <title>매일지식 컨텐츠</title>
+<style type="text/css">
+table{
+text-align: center;
+}
+</style>
 </head>
 <%@include file="../common/nav.jsp"%>
 <body>
 	<div class="container">
 		<div class="content">
 			<div id="tblDiv">
-			<h3 style="text-align: center;">매일지식 목록</h3>
+			<h3 style="text-align: center;">&#127891;매일지식 목록&#127891;</h3>
 			<!-- 검색을 위한 form -->
 			<form action="<%=request.getContextPath()%>/knowledge/searchResult" id="knowledgeForm">
 			
@@ -31,7 +37,7 @@
 			</select>
 				<!-- 검색창 -->
 				<input type="text" placeholder="검색어 입력" name="keyword" id="keyword">
-                <button type="submit" id="search">검색</button>
+                <button type="submit" id="search" class="btn me-md-2" >검색</button>
 			</div>
 			<!-- 지식 목록 제목-->
 			<table class="table">
@@ -39,8 +45,8 @@
 					<th>번호</th>
 					<th>제목</th>
 					<th>작성일자</th>
-					<th>조회수</th>
 					<th>작성자</th>
+					<th>조회수</th>
 					<th>퀴즈풀러가기</th>
 				</tr>
 				<!-- 지식 목록 내용 -->
@@ -51,9 +57,9 @@
 						<td>${i}</td>
 						<td><a href="<%=request.getContextPath()%>/knowledge/detail/${list.knowSeq}">${list.title}</a></td>
 						<td>${list.insertDate }</td>
-						<td>${list.viewcount }</td>
 						<td>관리자</td>
-						<td><input type="button" id="quizBtn" value="퀴즈 풀러가기" onClick="location.href='<%=request.getContextPath()%>/quiz/${list.knowSeq}'"></td>
+						<td>${list.viewcount }</td>
+						<td><input type="button" id="quizBtn" value="퀴즈 풀러가기" onClick="location.href='<%=request.getContextPath()%>/quiz/${list.knowSeq}'" class="btn me-md-2" style="background-color: #91ACCC;" ></td>
 					</tr>
 					</c:forEach>
 				</tbody>
