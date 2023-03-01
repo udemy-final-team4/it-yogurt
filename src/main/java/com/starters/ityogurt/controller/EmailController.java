@@ -54,12 +54,10 @@ public class EmailController {
     @RequestMapping("/aws/email")
     public String sendEmail() throws Exception {
         List<Map<String, Object>> subEmailMap = emailService.getEmailAndSub();
-        System.out.println("subEmailMap : " + subEmailMap);
 
         int count = categoryService.countAllSub();
 
         List<Map<String, Object>> sendDetailMap = emailService.getSendDetail(count);
-        System.out.println("sendDetailMap : " + sendDetailMap);
 
         Map<String, String> userMap = new HashMap<String, String>();
 
@@ -87,9 +85,6 @@ public class EmailController {
             });
             subEmailList.put(key, emailCollectionList);
         });
-
-        System.out.println("userMap : " + userMap);
-        System.out.println("categoryMap : " + categoryMap);
 
         categoryMap.forEach((key, value) -> {
             System.out.println(value);

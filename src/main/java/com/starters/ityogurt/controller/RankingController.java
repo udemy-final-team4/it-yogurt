@@ -22,11 +22,6 @@ public class RankingController {
     @Qualifier("rankingservice")
     RankingService rankingService;
 
-//    @GetMapping("/")
-//    public String rankingPage() {
-//        return "ranking/home";
-//    }
-
     @GetMapping("/")
     public ModelAndView rankingPage() {
         ModelAndView mv = new ModelAndView();
@@ -38,21 +33,6 @@ public class RankingController {
         mv.setViewName("ranking/home");
 
         return mv;
-    }
-
-    @GetMapping("/top")
-    public ModelAndView getTopRanking() {
-        return null;
-    }
-
-    @GetMapping("/top/wrong")
-    public ModelAndView getTopRankingByWrongRate() {
-        return null;
-    }
-
-    @GetMapping("/top/category")
-    public ModelAndView getTopRankingByCategory() {
-        return null;
     }
 
 }
