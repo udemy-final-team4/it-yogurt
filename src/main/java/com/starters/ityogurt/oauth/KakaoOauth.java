@@ -40,7 +40,6 @@ public class KakaoOauth implements SocialOauth {
             .map(x -> x.getKey() + "=" + x.getValue())
             .collect(Collectors.joining("&"));
 
-        //System.out.println(KAKAO_SNS_BASE_URL + "?" + parameterString);
         return KAKAO_SNS_BASE_URL + "?" + parameterString;
     }
 

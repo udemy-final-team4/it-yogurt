@@ -182,7 +182,7 @@ public class MyPageController {
     }
 
     //오답문제 정보 갱신 시
-    @PutMapping("/mypage/wrong/answer")
+    @PutMapping("/mypage/wrong/{user_seq}/answer")
     @ResponseBody
     public void updateWrongQuiz(@RequestBody LearnRecordDTO data) {
         recodeservice.updateLearnData(Integer.parseInt(data.getUserChoice()), data.getIsRight(),
@@ -190,7 +190,7 @@ public class MyPageController {
     }
 
 
-    @PutMapping("/mypage/weak/answer")
+    @PutMapping("/mypage/weak/{user_seq}/answer")
     @ResponseBody
     public void updateWeakQuiz(@RequestBody LearnRecordDTO data) {
         recodeservice.updateLearnData(Integer.parseInt(data.getUserChoice()), data.getIsRight(),
