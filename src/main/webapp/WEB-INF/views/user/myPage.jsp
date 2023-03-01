@@ -57,12 +57,11 @@
 			<div class="infoP2">
 				<p id="updateInfo" onclick="goUpdate()">회원정보수정</p>
 			</div>
-			<div id="myBtnDiv">
-				<br>
-				<input type="button" value="오답노트" class="myBtn"  onclick="window.location.href='/mypage/wrong/${sessionScope.user_seq}'">
-				<input type="button" value="나의 약점 보러가기" class="myBtn"  onclick="window.location.href='/mypage/weak/${sessionScope.user_seq}'">
-			</div>
 			</form>
+		</div>
+		<div id="myBtnDiv">
+			<input type="button" value="오답노트" class="myBtn"  onclick="window.location.href='/mypage/wrong/${sessionScope.user_seq}'">
+			<input type="button" value="나의 약점 보러가기" class="myBtn"  onclick="window.location.href='/mypage/weak/${sessionScope.user_seq}'">
 		</div>
 	</div>
 </div>

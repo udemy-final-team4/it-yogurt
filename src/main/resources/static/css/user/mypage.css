@@ -22,7 +22,12 @@ label {
 }
 
 #myBtnDiv {
-	padding: 10% 10% 5% 10%;
+	/*padding: 10% 10% 5% 10%;*/
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+	width: 70%;
+	margin: 10% 0 10% 0;
 }
 
 #deleteInfo { /* 태그 색상 변경 */
