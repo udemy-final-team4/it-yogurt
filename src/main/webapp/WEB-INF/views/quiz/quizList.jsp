@@ -21,7 +21,7 @@
 <div class="container">
     <div class="content">
         <div id="header">
-            <h3 id="main"></h3>
+            <h1 id="main-title-left"></h1>
         </div>
         <div>
             <form action="<%=request.getContextPath()%>" id="quizForm" method=post>

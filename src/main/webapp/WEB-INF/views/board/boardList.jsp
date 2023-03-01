@@ -33,9 +33,10 @@
 <body>
 <%@include file="../common/nav.jsp"%>
 <div class="container">
+	<div class="content">
      <div class="form">
-		<h3 id="main" > 게시판 </h3> <br>
-		
+<%--		<h3 id="main" > 게시판 </h3> <br>--%>
+	<h1 id="main-title" > 게시판 </h1>
 		<!-- 검색을 위한 form -->
 	<form action="<%=request.getContextPath()%>/board/list/searchResult" id="">
 	<!-- 검색창 -->
@@ -72,7 +73,7 @@
 			</tbody>
 			</table>
 		</form>
-		
+	 </div>
 	<!-- 페이징 -->
 	<div class="paging">
 	<nav aria-label="Page navigation example" style="margin: 10px;">

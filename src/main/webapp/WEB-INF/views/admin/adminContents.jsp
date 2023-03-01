@@ -24,8 +24,8 @@
 
 <div class="container-md">
 
-<div class="contents">
-
+<%--<div class="contents">--%>
+	<div class="content">
 	
 <!-- 관리자 페이지 이동 버튼  -->
 <div class="form text-center" id="content-form">
@@ -34,8 +34,8 @@
 	
 <br><br><br>
 </div>
-	<h3 class="text-center">컨텐츠 등록</h3>
-
+<%--	<h3 class="text-center">컨텐츠 등록</h3>--%>
+		<h1 id="main-title">컨텐츠 등록</h1>
 <form class="form" id="form" style="margin-top: 50px;">
 	<label for="main"><h4>카테고리</h4></label><br>
             
@@ -46,7 +46,7 @@
             <select name="sub" id="sub">
             </select> -->
 	<div class="row" >
-		<div class="col-xl col-md-6">
+		<div class="col-xl col-md">
 			<div class="flex-fill card">
 				<div class=" py-4 card-body">
 					<div class="d-flex align-items-start">
@@ -94,7 +94,7 @@
 	</div>
 	
 	<div class="row">
-		<div class="col-xl col-md-6">
+		<div class="col-xl col-md">
 			<div class="flex-fill card">
 				<div class=" py-4 card-body">
 					<div class="d-flex align-items-start">
@@ -120,7 +120,7 @@
 	
 	<c:forEach var = "cnt"  begin="1" end="3">
 		<div class="row">
-			<div class="col-xl col-md-6">
+			<div class="col-xl col-md">
 				<div class="flex-fill card">
 					<div class=" py-4 card-body">
 						<div class="d-flex align-items-start">
@@ -161,7 +161,7 @@
 	</div>
 </form>
 	
-
+</div>
 </div>
 </div>
 

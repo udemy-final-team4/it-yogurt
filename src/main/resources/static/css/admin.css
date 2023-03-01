@@ -3,7 +3,7 @@
 }
 
 .form {
-  margin-top: 50px;
+  /*margin-top: 50px;*/
   width: 100%;
   text-align: center;
 }
@@ -66,7 +66,7 @@
 }
 
 #user-form {
-	margin-top: 20%;
+	/*margin-top: 20%;*/
 }
 
 .tableList:hover {
@@ -90,6 +90,6 @@
 .fas {
 line-height: inherit;
 }
-.form {
-	margin-top: 20%;
-}
+/*.form {*/
+/*	margin-top: 20%;*/
+/*}*/
