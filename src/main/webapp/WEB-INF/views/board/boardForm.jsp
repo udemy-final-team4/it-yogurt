@@ -34,12 +34,12 @@
 </style>
 </head>
 <%@include file="../common/nav.jsp" %>
-<body id="page-top" style="margin-top:15%; background-color: #F9F2ED;">
+<body id="page-top" style="background-color: #F9F2ED;">
 
 
 
 <div class="container divCss">
-            <div class="container-xxl">
+            <div class="container-lg">
                 <div class="row gx-5 align-items-center">
                     <!-- Post content-->
                     <article>

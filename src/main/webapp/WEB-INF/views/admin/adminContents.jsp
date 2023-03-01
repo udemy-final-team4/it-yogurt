@@ -11,20 +11,20 @@
    <!--  <script src="/js/user/signup.js"></script> -->
     <script src="/js/util/ajax.js"></script>
     <!-- <script src="/js/util/util.js"></script> -->
-    <link href="/css/styles.css" rel="stylesheet" />
+    <!-- <link href="/css/styles.css" rel="stylesheet" /> -->
     <link href="/css/container.css" rel="stylesheet">
  	<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 <title>관리자 | 문제 관리</title>
 </head>
 <style>
-	#content-form {
-		margin-top: 20%;
-	}
+	
 </style>
 <%@include file="../common/nav.jsp" %>
 <body>
 
 <div class="container-md">
+
+<div class="contents">
 
 	
 <!-- 관리자 페이지 이동 버튼  -->
@@ -162,7 +162,7 @@
 </form>
 	
 
-	
+</div>
 </div>
 
 

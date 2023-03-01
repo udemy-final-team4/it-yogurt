@@ -5,21 +5,19 @@
 <html>
 <head>
  <meta charset="UTF-8">
-    <link href="/css/header.css" rel="stylesheet">
+    <!-- <link href="/css/header.css" rel="stylesheet">
     <link href="/css/footer.css" rel="stylesheet">
+     <link href="/css/admin.css" rel="stylesheet"> -->
     <link href="/css/container.css" rel="stylesheet">
-     <link href="/css/admin.css" rel="stylesheet">
 <title> 마이페이지 | 관리자 </title>
 </head>
 <style>
-    .form {
-        margin-top: 60%;
-        margin-bottom: 60%;
-    }
+ 
 </style>
 <%@include file="../common/nav.jsp" %>
 <body>
 <div class="container">
+<div class="contents">
     <div class="form" >
 		<h3 id="main" > 회원 관리 </h3> <br>
 		<c:choose>
@@ -33,6 +31,7 @@
 			</c:otherwise>
 		</c:choose>
 	</div>
+</div>
 </div>
 </body>
 <%@include file="../common/footer.jsp" %>
