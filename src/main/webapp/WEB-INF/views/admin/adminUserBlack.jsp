@@ -27,7 +27,7 @@
         <div class="form" id="user-form">
             <button class="btn btn-primary px-5 py-2" onclick="location.href='/admin/user'">회원관리</button>
             <button class="btn btn-primary px-5 py-2" onclick="location.href='/admin/contents'">컨텐츠 관리</button> <br><br>
-            <h3 id="main" > 전체 회원 </h3> <br>
+            <h3 id="main" >👤 블랙 회원 👤</h3> <br>
             <button class="btn btn-primary px-5 py-2" onclick="location.href='/admin/user/black'">블랙 회원</button> <br><br>
             <table class="table">
                 <tr>

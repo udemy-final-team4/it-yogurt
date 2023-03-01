@@ -25,8 +25,9 @@
 <body>
 <%@include file="../common/nav.jsp"%>
 <div class="container">
+<div class="content">
      <div class="form">
-		<h3 id="main" > 검색결과 </h3> <br>
+		<h3 id="main" >📋 검색결과 📋</h3> <br>
 		
 		<!-- 검색을 위한 form -->
 	<form action="<%=request.getContextPath()%>/board/list/searchResult" id="">
@@ -80,65 +81,13 @@
 			</table>
 		
 		
-	<%-- <!-- 페이징 -->
-	<div class="paging">
-	<nav aria-label="Page navigation example" style="margin: 10px;">
-			
-		<ul class="pagination justify-content-center">
-		<!-- 페이지 처음으로 가기 -->
-	        <li class="page-item">
-	        	<a href='javascript:void(0);' onclick="go_page(1); return false;" class="page-link">
-	        		<i class="fas fa-angle-double-left"></i>
-	        	</a>
-	        </li>
-	    <c:if test="${paging.prev}">
-	        <li class="page-item">
-	        	<a href='javascript:void(0);' onclick="go_page(${paging.startPage-1});" class="page-link">
-		        	<i class="fas fa-angle-left"></i>
-		        </a>
-	        </li>
-	    </c:if>
-	    <c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="num">
-	    	<c:choose>
-	    		<c:when test= "${num==1 }">
-	        		<li class="page-item active" style="pagination-bg: #91ACCC"><span><a href='javascript:void(0);' onclick="go_page(${num}); return false;" class="page-link">${num}</a></span></li>
-				</c:when>
-				<c:otherwise>
-	        		<li class="page-item" style="pagination-bg: #91ACCC"><span><a href='javascript:void(0);' onclick="go_page(${num}); return false;" class="page-link">${num}</a></span></li>
-				</c:otherwise>
-			</c:choose>	        
-	    </c:forEach>
-	    <c:if test="${paging.next && paging.endPage>0}">
-
-	        <li class="page-item">
-	        	<a href='javascript:void(0);' onclick="go_page(${paging.endPage+1});return false;" class="page-link">
-	        		<i class="fas fa-angle-right"></i>
-	        	</a>
-	        </li>
-		 </c:if>
-	        <li class="page-item">
-	        	<a href='javascript:void(0);' onclick="go_page(${maxpage});return false;" class="page-link">
-	        		<i class="fas fa-angle-double-right"></i>
-	        	</a>
-	        </li>
-		</ul>
-
-	</nav>
-	</div>
-	 --%>
 <div class="d-grid gap-2 d-sm-flex justify-content-sm-end">
 <!-- 글쓰기 버튼  -->
-<c:choose>
-	<c:when test="${ not empty sessionScope.user_seq}">
   		<button class="btn btn-primary" style="background-color: #91ACCC; font-size: 15px; width: 80px;" type="button" onClick="location.href='/board/form'">글쓰기</button>
-	</c:when>
-	<c:otherwise>
-  		<button class="btn btn-primary" disabled="disabled" style="background-color: #91ACCC; font-size: 15px; width: 80px;" type="button" onClick="location.href='/board/form'">글쓰기</button>
-	</c:otherwise>
-</c:choose>
 </div>
 	</div>
 
+</div>
 </div>
 </body>
 
@@ -159,13 +108,6 @@ $(document).ready(function () {
 
 
 
-
-
-
-
-
-
-W
 </script>
 
 <%@include file="../common/footer.jsp" %>
