@@ -131,7 +131,7 @@
 			alert('탈퇴되었습니다. 나중에 또 공부하러 오세요!');
 			location.href="${pageContext.request.contextPath}/mypage/cancel/${sessionScope.user_seq}";
 		}else{
-			e.preventDefalut();
+			e.preventDefault();
 
 		}
 	}

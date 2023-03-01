@@ -5,6 +5,6 @@ function sendEmail(e){
         location.href="../aws/email";
     }else{
         alert('이메일 발송을 취소하였습니다!');
-        e.preventDefalut();
+        e.preventDefault();
     }
 }
