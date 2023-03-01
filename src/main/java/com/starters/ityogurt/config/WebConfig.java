@@ -2,6 +2,7 @@ package com.starters.ityogurt.config;
 
 import com.starters.ityogurt.Interceptor.AuthAdminInterceptor;
 import com.starters.ityogurt.Interceptor.AuthLoginInterceptor;
+import com.starters.ityogurt.Interceptor.MyPageInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -24,5 +25,8 @@ public class WebConfig implements WebMvcConfigurer {
             				"/admin/user/manage/**","/admin/user/manage/**/**",
             				"/admin/contents",
             				"/admin/user/black", "/admin/user/black/re");
+		registry.addInterceptor(new MyPageInterceptor())
+			.order(1)
+			.addPathPatterns("/mypage/**");
     }
 }

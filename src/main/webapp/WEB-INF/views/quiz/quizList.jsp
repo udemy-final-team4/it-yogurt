@@ -22,6 +22,7 @@
     <div class="content">
         <div id="header">
             <h1 id="main-title-left"></h1>
+            <div id="weakCategory"></div>
         </div>
         <div>
             <form action="<%=request.getContextPath()%>" id="quizForm" method=post>

@@ -103,8 +103,7 @@ let success = (result) => {
   else {
     $("#main-title-left").text("나의 약점 문제");
     if (list.length != 0) {
-      $("#header").append(`<div id="weakCategory">
-          ${result.weakCategory.sub}-${result.weakCategory.detail} 카테고리의 문제를 가장 많이 틀리셨습니다.</div>`)
+      $("#weakCategory").text(`${result.weakCategory.sub}-${result.weakCategory.detail} 카테고리의 문제를 가장 많이 틀리셨습니다.`)
     }
   }
   if (list.length == 0) {
