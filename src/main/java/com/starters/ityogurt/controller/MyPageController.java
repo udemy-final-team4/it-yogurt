@@ -102,7 +102,7 @@ public class MyPageController {
 
     //정보 수정중
     @PostMapping("/mypage/newInfo/{user_seq}")
-    public ModelAndView newInfo(@PathVariable("user_seq") String user_seq, UserDTO userDto, String newPass, String userDtoPass) throws Exception {
+    public ModelAndView newInfo(@PathVariable("user_seq") String user_seq, UserDTO userDto, String newPass, String userDtoPass, String sub) throws Exception {
         ModelAndView mv = new ModelAndView();
         UserRestController userRestController = new UserRestController();//암호화때문에 객체 생성해줌
         Encrypt encrypt = new Encrypt();
@@ -116,10 +116,14 @@ public class MyPageController {
         }
         String pwd = userRestController.ConvertPassword(newPass); //수정한 암호는 암호화 해주기
 
+        int categorySeq = categoryService.getCategoryBySub(sub); //선택한 카테고리 번호 불러오기
+        
+        
         Map<Object, Object> map = new HashMap<>();
         map.put("nickname", userDto.getNickname());
         map.put("phone", userDto.getPhone());
         map.put("password", pwd);
+        map.put("categorySeq", categorySeq);
         map.put("userSeq", userSeq);
         userService.updateUserInfo(map);
         userDto = userService.getUserByUserSeq(userSeq);
