@@ -14,15 +14,39 @@
 .content {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  /*align-items: center;*/
   justify-content: center;
   width: 100%;
-  margin: 20% 10% 0 10%;
+  margin-top: 20%;
+  min-height: 400px;
 }
 
+#main-title {
+  text-align:center;
+  width: 100%;
+  margin-bottom: 5%;
+}
+
+#main-title-left {
+  text-align:left;
+  width: 100%;
+  margin-bottom: 5%;
+}
 @font-face {
   font-family: 'NEXON Lv1 Gothic OTF';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
   font-weight: normal;
   font-style: normal;
+}
+
+@media (max-width: 450px) {
+  .content {
+    display: flex;
+    flex-wrap: wrap;
+    /*align-items: center;*/
+    justify-content: center;
+    width: 100%;
+    margin-top: 30%;
+    min-height: 400px;
+  }
 }

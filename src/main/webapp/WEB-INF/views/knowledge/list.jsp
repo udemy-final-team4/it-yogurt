@@ -23,7 +23,8 @@ text-align: center;
 	<div class="container">
 		<div class="content">
 			<div id="tblDiv">
-			<h3 style="text-align: center;">&#127891;매일지식 목록&#127891;</h3>
+<%--			<h1 style="text-align: center;">&#127891;매일지식 목록&#127891;</h1>--%>
+	<h1 id="main-title">&#127891;매일지식 목록&#127891;</h1>
 			<!-- 검색을 위한 form -->
 			<form action="<%=request.getContextPath()%>/knowledge/searchResult" id="knowledgeForm">
 			
@@ -176,5 +177,6 @@ function go_page(pageNum){
 
 </script>
 </body>
+
 <%@include file="../common/footer.jsp"%>
 </html>

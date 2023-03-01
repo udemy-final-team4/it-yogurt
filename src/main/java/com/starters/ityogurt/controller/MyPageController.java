@@ -149,12 +149,12 @@ public class MyPageController {
 
     @GetMapping("/mypage/wrong/{user_seq}")
     public String moveWrongQuizPage() {
-        return "/quiz/wrong";
+        return "/quiz/quizList";
     }
 
     @GetMapping("/mypage/weak/{user_seq}")
     public String moveWeakQuizPage() {
-        return "/quiz/wrong";
+        return "/quiz/quizList";
     }
 
     // 틀린 문제 개수 가져오기. limit 기본값 : 5
