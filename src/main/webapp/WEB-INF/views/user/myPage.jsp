@@ -7,10 +7,9 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link href="/css/header.css" rel="stylesheet">
-	<link href="/css/footer.css" rel="stylesheet">
+<!-- 	<link href="/css/header.css" rel="stylesheet"> -->
+<!-- 	<link href="/css/footer.css" rel="stylesheet"> -->
 	<link href="/css/container.css" rel="stylesheet">
-	<!-- <link href="/css/login.css" rel="stylesheet"> -->
 	<link href="/css/quiz.css" rel="stylesheet">
 	<script src="/js/util/ajax.js"></script>
 
@@ -113,7 +112,6 @@
 				<p id="updateInfo" onclick="goUpdate()">회원정보수정</p>
 			</div>
 			<div id="myBtnDiv">
-<!-- 				<input type="submit" value="정보수정하기" class="myBtn"> -->
 				<br>
 				<input type="button" value="오답노트" class="myBtn"  onclick="window.location.href='/mypage/wrong/${sessionScope.user_seq}'">
 				<input type="button" value="나의 약점 보러가기" class="myBtn"  onclick="window.location.href='/mypage/weak/${sessionScope.user_seq}'">

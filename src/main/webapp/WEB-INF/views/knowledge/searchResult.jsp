@@ -8,17 +8,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="/css/header.css" rel="stylesheet">
-<link href="/css/footer.css" rel="stylesheet">
+<!-- <link href="/css/header.css" rel="stylesheet"> -->
+<!-- <link href="/css/footer.css" rel="stylesheet"> -->
 <link href="/css/container.css" rel="stylesheet">
 <link href="/css/knowledge.css" rel="stylesheet">
 <title>매일지식 컨텐츠</title>
 </head>
-<style>
-	#tblDiv {
-		margin-top: 20%;
-	}
-</style>
+<!-- <style> -->
+<!-- 	#tblDiv { -->
+<!-- 		margin-top: 20%; -->
+<!-- 	} -->
+<!-- </style> -->
 <%@include file="../common/nav.jsp"%>
 <body>
 	<div class="container">
