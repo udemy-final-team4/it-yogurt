@@ -115,7 +115,7 @@
 								</div>
 							</table>
 							<div style="width:100%;margin-bottom:80px;">
-								<input type="button" value="매일지식 목록 바로가기" onclick="goKnowledgeList()" id="listBtn">
+								<input type="button" value="매일지식 목록 바로가기" class="btn me-md-2" style="background-color: #91ACCC;" onclick="goKnowledgeList()" id="listBtn">
 							</div>
 					</div><!-- 전체 div -->
 		</div><!-- content -->

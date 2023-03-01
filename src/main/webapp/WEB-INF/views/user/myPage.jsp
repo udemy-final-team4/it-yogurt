@@ -11,66 +11,12 @@
 <!-- 	<link href="/css/footer.css" rel="stylesheet"> -->
 	<link href="/css/container.css" rel="stylesheet">
 	<link href="/css/quiz.css" rel="stylesheet">
+	<link href="/css/user/mypage.css" rel="stylesheet">
 	<script src="/js/util/ajax.js"></script>
 
 	<title>myPage</title>
 	<style type="text/css">
-		.myDiv{
-			height:80px;
-			border: 1px solid black;
-			margin: auto;
-		}
-		label {
-			width: 180px;
-			display: inline-block;
-			margin-top: 23px;
-			margin-left: 50px;
-		}
-		.myBtn{
-			width: 250px;
-			height: 40px;
-			border-style: solid;
-			border-width: medium;
-			margin: auto;
-			border-color: #91ACCC;
-			font-size: 20px;
-		}
-
-		#myBtnDiv{
-			padding: 10% 10% 5% 10%;
-		}
-		#deleteInfo{/* 태그 색상 변경 */
-			color: black;
-			text-decoration: underline;
-			cursor: pointer;
-		}
-		#updateInfo{/* 태그 색상 변경 */
-			color: black;
-			text-decoration: underline;
-			cursor: pointer;
-		}
-
-		#userRecord {
-			margin : 0 0px 30px 0px;
-			font-size: 20px;
-			font-weight: bold;
-			text-align: center;
-		}
-		.infoP1{
-			float : right;
-			display: inline-block;
-			cursor: pointer;
-		}
-		.infoP2{
-			float : right;
-			display: inline-block;
-			margin-right: 30px;
-			cursor: pointer;
-		}
-		#deleteInfo{
-			
-			color : 90AACB;
-		}
+		
 	</style>
 </head>
 <body>
@@ -81,7 +27,7 @@
 <!--     	<h3>마이페이지</h3><br> -->
 		<form action="<%=request.getContextPath()%>/mypage/info/${userDto.userSeq}" method="post" id="myForm">
 			<br>
-			<h1>${userDto.nickname}님!</h1>
+			<h1>${userDto.nickname}님!📝</h1>
 			<p>오늘의 지식과 퀴즈를 확인해보셨나요?</p><br><br>
 			<div id="userRecord"></div>
 			<b>유저정보</b>

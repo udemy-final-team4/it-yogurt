@@ -7,6 +7,9 @@
 /* 	margin-top:200px; */
 /* 	margin-bottom:200px; */
 /* } */
+table{
+text-align: center;
+}
 
 #quizBtn{
   width: 100%;
@@ -17,9 +20,9 @@
   font-size: 20px;
 }
 
-h3{
-	margin: 30px;
-}
+/* h3{ */
+/* 	margin: 30px; */
+/* } */
 
 #listTbl {
 	border: 3px solid black;
@@ -45,6 +48,9 @@ h3{
 /* 	margin-top: 40%; */
 /* } */
 
+#tblDiv{
+	width:100%;
+}
 	
 .tableList:hover {
 	background-color: #91ACCC;
@@ -81,6 +87,7 @@ line-height: inherit;
 
 
 #keyword{
+	margin-left: 20%;
 	border-radius: 15px;
 	width: 300px;
 }
@@ -126,15 +133,15 @@ line-height: inherit;
 
 /* detail */
 
-.detailInput{
-	width: 250px;
-    height: 40px;
-    border-style: solid;
-    border-width: medium;
-    margin: auto;
-    border-color: #91ACCC;
-    font-size: 20px;
-}
+/* .detailInput{ */
+/* 	width: 250px; */
+/*     height: 40px; */
+/*     border-style: solid; */
+/*     border-width: medium; */
+/*     margin: auto; */
+/*     border-color: #91ACCC; */
+/*     font-size: 20px; */
+/* } */
 
 /* #subBtn, #knowList{ */
 /*   width: 250px; */
@@ -152,7 +159,9 @@ line-height: inherit;
 	height:50px;
 }
 
-
+#detailContentTd{
+	text-align: left;
+}
 #detailCategoryTd{	
 	padding-bottom: 30px;
 }

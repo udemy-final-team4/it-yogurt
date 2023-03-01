@@ -63,7 +63,7 @@
 					<a id="a1" onclick="openPass()">수정하기</a>
 					<a id="a2" onclick="closePass()" style="display: none;">닫기</a>
 					<div id="hide" style="display: none;">
-						<input type="password" placeholder="수정할 비밀번호 입력" id="newPass" name="newPass" class="pw"><input type="reset" value="지우기" id="clear" style="background-color: #91ACCC;" ><br>
+						<input type="password" placeholder="수정할 비밀번호 입력" id="newPass" name="newPass" class="pw"><br>
 						<input type="password" placeholder="비밀번호 확인" id="newPassCheck" name="newPassCheck" class="pw"><br>
 						<span id="alert-form" style="display: none; color: red;">형식 불일치(영문,숫자 6~12자)</span>
 						<span id="alert-success" style="display: none; color: blue;">비밀번호 일치</span>
@@ -72,8 +72,8 @@
 				</div><br>
 			</div>
 			<div id="infoDiv">
-				<input type="submit" value="수정하기" id="infoBtn" onclick="goSubmit()" style="background-color: #91ACCC;" >
-				<input type="button" value="뒤로가기" id="back" onclick="backInfo()"> <!-- style="background-color: #91ACCC;"  -->
+				<input type="submit" value="수정하기" id="infoBtn" onclick="goSubmit()">
+				<input type="button" value="뒤로가기" id="back" onclick="backInfo()">
 			</div>	
 			</form>
 		</div>

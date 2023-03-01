@@ -1,0 +1,58 @@
+.myDiv {
+	height: 80px;
+	border: 1px solid black;
+	margin: auto;
+}
+
+label {
+	width: 180px;
+	display: inline-block;
+	margin-top: 23px;
+	margin-left: 50px;
+}
+
+.myBtn {
+	width: 250px;
+	height: 40px;
+	border-style: solid;
+	border-width: medium;
+	margin: auto;
+	border-color: #91ACCC;
+	font-size: 20px;
+}
+
+#myBtnDiv {
+	padding: 10% 10% 5% 10%;
+}
+
+#deleteInfo { /* 태그 색상 변경 */
+	color: black;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+#updateInfo { /* 태그 색상 변경 */
+	color: black;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+#userRecord {
+	margin: 0 0px 30px 0px;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.infoP1 {
+	float: right;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.infoP2 {
+	float: right;
+	display: inline-block;
+	margin-right: 30px;
+	cursor: pointer;
+}

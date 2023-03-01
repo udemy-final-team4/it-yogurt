@@ -42,8 +42,8 @@
                     </tr>
                     <tr>
                         <td id="detailBtnDiv" >
-	                        <input type="submit" value="퀴즈 풀러가기" id="subBtn" class="detailInput">
-	                        <input type="button" value="목록" id="knowList" class="detailInput" onclick="goKnowList()">
+	                        <input type="submit" value="퀴즈 풀러가기" id="subBtn" class="btn me-md-2" style="background-color: #91ACCC;">
+	                        <input type="button" value="목록" id="knowList" class="btn me-md-2" style="background-color: #91ACCC;"  onclick="goKnowList()">
                             <input type="hidden" value="${knowSeq}" name="knowSeq">
                         </td>
                     </tr>
