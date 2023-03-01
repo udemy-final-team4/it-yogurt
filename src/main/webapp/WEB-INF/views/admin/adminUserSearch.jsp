@@ -39,6 +39,7 @@
     <button type="submit" id="search">검색</button>
 		
 		
+	</form>
 		<table class="table">
 			<tr>
 				<th> 번호 </th>
@@ -77,7 +78,6 @@
 		</c:choose>
 			</tbody>
 		</table>
-	</form>
 
 <%-- 	<div class="paging">
 		<nav aria-label="Page navigation example" style="margin: 10px;">
@@ -131,7 +131,7 @@ function black(clickedID,clickedEmail,clickedName){
 	
 }
 
-/* function go_page(pageNum){
+/*  function go_page(pageNum){
 	
 	
 	
@@ -162,12 +162,13 @@ function black(clickedID,clickedEmail,clickedName){
 				content2 += '<nav aria-label="Page navigation example" style="margin: 10px;">';
 				content2 += '<ul class="pagination justify-content-center">';
 				content2 += '<li class="page-item"><a href=\'javascript:void(0);\' onclick="go_page(1); return false;" class="page-link"><i class="fas fa-angle-double-left"></i></a></li>';
-				
+				 */
 				
 				/* if(paging.prev){ */
-					content2 += '<li class="page-item"><a href=\'javascript:void(0);\' onclick="go_page('+(Number(paging.startPage)-1)+');return false;" class="page-link"><i class="fas fa-angle-left"></i></a></li>';
+					/* content2 += '<li class="page-item"><a href=\'javascript:void(0);\' onclick="go_page('+(Number(paging.startPage)-1)+');return false;" class="page-link"><i class="fas fa-angle-left"></i></a></li>'; */
 				/* } */
-				for (let num = Number(paging.startPage) ; num <=Number(paging.endPage); num++){
+				
+				/*for (let num = Number(paging.startPage) ; num <=Number(paging.endPage); num++){
 					if (num == Number(paging.cri.page)){
 						content2 += '<li class="page-item active" style="pagination-bg: #91ACCC"><span><a href=\'javascript:void(0);\' onclick="go_page('+num+'); return false;" class="page-link">'+ num +'</a></span></li>';
 						
@@ -189,7 +190,7 @@ function black(clickedID,clickedEmail,clickedName){
 		error: function(){
 			console.log('error');
 		}
-	}) */
-}
+	}) 
+} */
 </script>
 </html>
