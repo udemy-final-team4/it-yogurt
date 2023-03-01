@@ -11,6 +11,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -208,4 +210,10 @@ public class QuizController {
 		return map;
 	}
 
+	@PutMapping("/quiz/top/{quizSeq}/answer")
+	@ResponseBody
+	public void updateWeakQuiz(@RequestBody LearnRecordDTO data) {
+		learnRecordService.updateLearnData(Integer.parseInt(data.getUserChoice()), data.getIsRight(),
+			data.getUserSeq(), data.getQuizSeq());
+	}
 }
