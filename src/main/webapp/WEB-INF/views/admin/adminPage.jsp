@@ -7,8 +7,9 @@
  <meta charset="UTF-8">
     <!-- <link href="/css/header.css" rel="stylesheet">
     <link href="/css/footer.css" rel="stylesheet">
-     <link href="/css/admin.css" rel="stylesheet"> -->
+    <link href="/css/admin.css" rel="stylesheet"> -->
     <link href="/css/container.css" rel="stylesheet">
+	  <script src="/js/admin/email.js"></script>
 <title> 마이페이지 | 관리자 </title>
 </head>
 <style>
@@ -24,7 +25,7 @@
 			<c:when test="${sessionScope.user_seq eq 1 || sessionScope.user_seq eq 2}">
 				<button class="btn btn-primary px-5 py-2" onclick="location.href='user'">회원관리</button>
 				<button class="btn btn-primary px-5 py-2" onclick="location.href='contents'">컨텐츠 등록</button>
-				<button class="btn btn-primary px-5 py-2" onclick="location.href='../aws/email'">메일 발송</button>
+				<button class="btn btn-primary px-5 py-2" id="email-sender" onclick="sendEmail()">메일 발송</button>
 			</c:when>
 			<c:otherwise>
 				<p> 관리자 로그인을 해주세요! </p>
