@@ -39,16 +39,13 @@ public class EmailScheduler {
     private String liveDomain;
 
     //이메일 전송 API
-    // @RequestMapping("/aws/email")
-    @Scheduled(cron = "0 8 14 * * ?", zone = "Asia/Seoul")
+    @Scheduled(cron = "0 59 21 * * ?", zone = "Asia/Seoul")
     public String sendEmail() throws Exception {
         List<Map<String, Object>> subEmailMap = emailService.getEmailAndSub();
-        System.out.println("subEmailMap : " + subEmailMap);
 
         int count = categoryService.countAllSub();
 
         List<Map<String, Object>> sendDetailMap = emailService.getSendDetail(count);
-        System.out.println("sendDetailMap : " + sendDetailMap);
         Map<String, String> userMap = new HashMap<String, String>();
         Map<String, Integer> categoryMap = new HashMap<String, Integer>();
         List<Object> updateCategorySeqList = new ArrayList<Object>();
@@ -72,9 +69,6 @@ public class EmailScheduler {
             subEmailList.put(key, emailCollectionList);
         });
 
-        System.out.println("userMap : " + userMap);
-        System.out.println("categoryMap : " + categoryMap);
-
         categoryMap.forEach((key, value) -> {
             KnowledgeDTO knowledgeDTO = knowledgeService.getKnowledgeByCategorySeq(value);
             emailService.send("오늘의 지식은 " + knowledgeDTO.getTitle() + "이야!",
@@ -85,11 +79,9 @@ public class EmailScheduler {
         return "true";
     }
 
-    // 나중에 탄력적 ip로 img 주소 변경
     public String headerText() {
         String headerText = "<div style=\"text-align : center;\">\n" +
                 "  <h1>IT-Yogurt!</h1>\n" +
-                // "  <img style=\"width:300px; height: 300px; \"  src=\"/static/image/yogurt.jpg\">\n" +
                 "  </div>" +
                 "  <br><br><hr><br><br>";
         return headerText;
@@ -102,26 +94,33 @@ public class EmailScheduler {
                     "       <a href='"+liveDomain+detailPath+knowSeq+"'>\n" +
                     "               <button class=\"btn\" style=\"width: 250px; background-color: #86b7fe; padding: 15px 30px;\n" +
                     "                border-radius: 5px; color:white; font-size: 18px; font-weight: bold; cursor: pointer;\" >웹사이트에서 보기!</button>\n" +
-                    "       </a><br>\n" +
+                    "       </a><br><br>\n" +
                     "</div>";
         } else {
             buttonText = "<div style=\"text-align: center;\"><br>\n" +
                     "       <a href='"+liveDomain+checkPath+knowSeq+"'>\n" +
                     "               <button class=\"btn\" style=\"width: 250px; background-color: #86b7fe; padding: 15px 30px;\n" +
                     "                border-radius: 5px; color:white; font-size: 18px; font-weight: bold; cursor: pointer;\" >문제 풀기!</button>\n" +
-                    "       </a><br>\n" +
+                    "       </a><br><br>\n" +
                     "</div>";
         }
         return buttonText;
     }
 
     public String footerText() {
-        String footerText = "<div class=\"footer\" style=\"text-align : center; background-color: #F9F2ED\">\n" +
-                "  <div class=\"info\" ><br>\n" +
-                "    ItYogurt / 대표: 김민지<br>\n" +
-                "    서울특별시 용산구 용산동2가 1 - 34<br><br><br><br>\n" +
-                "  </div>\n" +
-                "</div>";
+        String footerText =
+                "<div class=\"footer\" style=\"text-align : center; background-color: #2C3E50\">\n" +
+                        "    <div class=\"info\" style=\"color:white;\"><br>\n" +
+                        "        ItYogurt / 대표: 김민지<br>\n" +
+                        "        서울특별시 용산구 용산동2가 1 - 34<br><br>\n" +
+                        "    </div>\n" +
+                        "    <div style=\"color:white;\">\n" +
+                        "        <a class=\"btn\" style=\"color:snow; text-decoration: none;\" href=\"https://twitter.com/eat_it_yogurt\">twitter</a>\n" +
+                        "        &nbsp;|&nbsp;\n" +
+                        "        <a class=\"btn\" style=\"color:snow; text-decoration: none;\" href=\"https://www.instagram.com/eat_it_yogurt/\">instagram</a>\n" +
+                        "        <br><br>\n" +
+                        "    </div>\n" +
+                        "</div>";
         return footerText;
     }
 }

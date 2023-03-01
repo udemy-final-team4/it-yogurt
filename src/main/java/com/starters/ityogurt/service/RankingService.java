@@ -9,6 +9,5 @@ public interface RankingService {
 
     List<Map<String,Object>> getMostSolvedQuiz();
     List<Map<String,Object>> getMostWrongQuiz();
-    // List<Map<String,String>> getMostSelectedCategory();
 
 }
