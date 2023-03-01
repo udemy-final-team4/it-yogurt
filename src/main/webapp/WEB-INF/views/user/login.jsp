@@ -3,8 +3,6 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <link href="/css/header.css" rel="stylesheet">
-    <link href="/css/footer.css" rel="stylesheet">
     <link href="/css/container.css" rel="stylesheet">
     <link href="/css/user/login.css" rel="stylesheet">
     <script src="/js/jquery-3.6.1.min.js"></script>
@@ -13,17 +11,13 @@
     <script src="/js/util/util.js"></script>
     <title>Title</title>
 </head>
-<style>
-  #login_form {
-    margin-top: 20%;
-  }
-</style>
+
 <body>
 <%@include file="../common/nav.jsp" %>
 <div class="container">
     <div class="content">
         <form id="login_form">
-            <div class="login" type="POST" href="/user" style="margin-top:200px;">
+            <div class="login" type="POST" href="/user">
                 <label for="email">이메일</label>
                 <input type="text" name="email" id="email" placeholder="이메일을 입력해주세요.">
                 <br>

@@ -10,7 +10,7 @@
     <link href="/css/header.css" rel="stylesheet">
     <link href="/css/footer.css" rel="stylesheet">
     <link href="/css/container.css" rel="stylesheet">
-    <link href="/css/quiz/wrong.css" rel="stylesheet">
+    <link href="/css/quiz/quizList.css" rel="stylesheet">
     <script src="/js/util/ajax.js"></script>
     <script src="/js/quiz/quizList.js"></script>
 
