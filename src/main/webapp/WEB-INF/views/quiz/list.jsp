@@ -66,8 +66,8 @@
 						</div>
 					</table>
 				</c:forEach>
-				<br> <input type="submit" value="정답 확인" class="a" >
-				<input type="button" value="초기화" class="a" onclick="removeAll()">
+				<br> <input type="submit" value="정답 확인" <%-- class="a"  --%>class="btn me-md-2" style="background-color: #91ACCC;" >
+				<input type="button" value="초기화" <%-- class="a"  --%>class="btn me-md-2" style="background-color: #91ACCC;"  onclick="removeAll()">
 			</form>
 		</div><!-- 전체 div -->
 	</div><!-- content -->

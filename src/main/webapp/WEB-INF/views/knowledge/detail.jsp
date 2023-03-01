@@ -4,8 +4,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <link href="/css/header.css" rel="stylesheet">
-    <link href="/css/footer.css" rel="stylesheet">
+<!--     <link href="/css/header.css" rel="stylesheet"> -->
+<!--     <link href="/css/footer.css" rel="stylesheet"> -->
     <link href="/css/container.css" rel="stylesheet">
      <link href="/css/styles.css" rel="stylesheet">
     <link href="/css/login.css" rel="stylesheet">
@@ -22,7 +22,7 @@
                 <!-- 퀴즈 목록 테이블 -->
                 <table id="detailTbl">
                     <div id="knowledgeDetailDiv">
-                    	<tr style="height: 100px;">
+                    	<tr>
                             <td><h1>${title}</h1></td>
                         </tr>
                         <tr>
