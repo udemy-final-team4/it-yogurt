@@ -32,7 +32,7 @@
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="<%=request.getContextPath()%>/ranking/">랭킹</a></li>
                 <c:choose>
 					<c:when test="${ sessionScope.user_seq eq 1 || sessionScope.user_seq eq 2}">	
-                    	<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="<%=request.getContextPath()%>/admin/page">회원관리</a></li>
+                    	<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="<%=request.getContextPath()%>/admin/page">관리자기능</a></li>
                 	</c:when>
 					<c:otherwise>
                     <c:if test="${not empty sessionScope.user_seq}">

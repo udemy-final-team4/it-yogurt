@@ -188,11 +188,6 @@
 </div>
 
 
-<!-- Bootstrap core JS-->
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> -->
-<!-- Core theme JS-->
-<!-- <script src="js/scripts.js"></script> -->
-
 
 <%@include file="../common/footer.jsp" %>
 
@@ -200,12 +195,6 @@
 </body>
 
 <script>
-  /* // 개행 => <br>
-  var text = document.getElementById("content").value;
-  text = text.replace(/(?:\r\n|\r|\n)/g, '<br>');
-  //<br> => enter
-  var text = document.getElementById("content").value;
-  text = text.replaceAll("<br>", "\r\n"); */
 
   function delboard(boardSeq) {
     if (window.confirm("게시물을 삭제하시겠습니까?\n")) {
@@ -249,6 +238,5 @@
     $("#edit").html(commentBox);
   }
 
-  /* "/board/comment/${List.commentSeq}" */
 </script>
 </html>

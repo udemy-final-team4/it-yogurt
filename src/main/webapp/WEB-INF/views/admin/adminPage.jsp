@@ -22,7 +22,7 @@
 <div class="content">
     <div class="form" >
 <%--		<h3 id="main" > 회원 관리 </h3> <br>--%>
-		<h1 id="main-title" > 회원 관리 </h1>
+		<h1 id="main-title" >👨‍🔧 관리자 메뉴 👩‍🔧</h1>
 		<c:choose>
 			<c:when test="${sessionScope.user_seq eq 1 || sessionScope.user_seq eq 2}">
 				<button class="btn btn-primary px-5 py-2" onclick="location.href='user'">회원관리</button>

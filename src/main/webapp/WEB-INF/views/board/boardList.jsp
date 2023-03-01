@@ -36,13 +36,13 @@
 	<div class="content">
      <div class="form">
 <%--		<h3 id="main" > 게시판 </h3> <br>--%>
-	<h1 id="main-title" > 게시판 </h1>
+	<h1 id="main-title" >📋 게시판 📋</h1>
 		<!-- 검색을 위한 form -->
 	<form action="<%=request.getContextPath()%>/board/list/searchResult" id="">
 	<!-- 검색창 -->
-	<input type="text" placeholder="검색어 입력" name="keyword" id="keyword">
-    <button class="btn me-md-2" style="background-color: #91ACCC;" type="submit" id="search">검색</button>
-			
+		<input type="text" placeholder="검색어 입력" name="keyword" id="keyword">
+    	<button class="btn me-md-2" style="background-color: #91ACCC;" type="submit" id="search">검색</button>
+	</form>
 	<!-- 게시판 테이블 -->		
 		<table class="table">
 		<!-- 게시판 제목 -->
@@ -72,8 +72,8 @@
 			</c:forEach>
 			</tbody>
 			</table>
-		</form>
-	 </div>
+		
+	 
 	<!-- 페이징 -->
 	<div class="paging">
 	<nav aria-label="Page navigation example" style="margin: 10px;">
@@ -124,8 +124,8 @@
 <!-- 글쓰기 버튼  -->
   		<button class="btn btn-primary" style="background-color: #91ACCC; font-size: 15px; width: 80px;" type="button" onClick="location.href='/board/form'">글쓰기</button>
 </div>
-	</div>
-
+</div>
+</div>
 </div>
 </body>
 
