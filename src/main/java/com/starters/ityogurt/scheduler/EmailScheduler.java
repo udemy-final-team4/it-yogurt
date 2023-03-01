@@ -39,7 +39,7 @@ public class EmailScheduler {
     private String liveDomain;
 
     //이메일 전송 API
-    @Scheduled(cron = "0 59 21 * * ?", zone = "Asia/Seoul")
+    @Scheduled(cron = "0 30 7 * * ?", zone = "Asia/Seoul")
     public String sendEmail() throws Exception {
         List<Map<String, Object>> subEmailMap = emailService.getEmailAndSub();
 
