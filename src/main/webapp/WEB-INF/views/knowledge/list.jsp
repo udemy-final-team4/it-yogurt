@@ -127,8 +127,8 @@ function go_page(pageNum){
 				content +=	'<td id="listSeq">'+ (i+1) +'</td>';
 				content += '<td><a href="${pageContext.request.contextPath}/knowledge/detail/'+list[i].knowSeq+'\">' + list[i].title +'</a></td>';
 				content +=	'<td>'+ list[i].insertDate +'</td>';
-				content +=	'<td>'+ list[i].viewcount +'</td>';
 				content +=	'<td> 관리자 </td>';
+				content +=	'<td>'+ list[i].viewcount +'</td>';
 				content +=	'<td><input type="button" id="quizBtn" value="퀴즈 풀러가기" class="btn me-md-2" style="background-color: #91ACCC;"  onClick="location.href=\'/quiz/'+list[i].knowSeq+'\'"></td>';
 				content += '</tr>';
 			}
