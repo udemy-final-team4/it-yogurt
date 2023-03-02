@@ -144,6 +144,7 @@
                                             <div name="edit${commentSeq }">
                                             <input type="hidden" name="edit${commentSeq }"
                                                            value="${List.content }">
+                                                           
                                                 <div style="white-space:pre-wrap;"><c:out value="${List.content}"/></div>
 
                                             </div>
@@ -173,14 +174,6 @@
 </body>
 
 <script>
-
-//enter => <br>
-var text = document.getElementById("content").value;
-text = text.replace(/(?:\r\n|\r|\n)/g, '<br>');
-
-/* //<br> => enter
-var text = document.getElementById("content").value;
-text = text.replaceAll("<br>", "\r\n"); */
 
   function delboard(boardSeq) {
     if (window.confirm("게시물을 삭제하시겠습니까?\n")) {
