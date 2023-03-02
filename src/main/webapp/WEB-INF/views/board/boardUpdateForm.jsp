@@ -7,8 +7,6 @@
 <html>
 <head>
  <meta charset="UTF-8">
-    <!-- <link href="/css/header.css" rel="stylesheet">
-    <link href="/css/footer.css" rel="stylesheet"> -->
     <link href="/css/container.css" rel="stylesheet">
      <link href="/css/admin.css" rel="stylesheet">
      <script src="/js/user/signup.js"></script>
@@ -16,21 +14,19 @@
     <script src="/js/util/util.js"></script>
 <title> 커뮤니티 | 게시판 | 글쓰기 </title>
 <style>
-.tableList:hover {
-	background-color: #91ACCC;
-	color: white;
-	cursor: pointer;
-}
+
 </style>
 </head>
 <%@include file="../common/nav.jsp" %>
 <body id="page-top" style="background-color: #F9F2ED;">
 <header></header>
 <div class="container divCss">
-
 <div class="container-lg">
-                <div class="col-lg-auto">
-                
+
+                <div class="row gx-5 align-items-center">
+                <header class="masthead bg-self text-center" style="background-color: #F9F2ED;" >
+    							<h2>✏ 게시글 수정 ✏</h2>
+				</header>
                 
                     <!-- Post content-->
                   <form action="/board/form/${oneBoard.boardSeq }" method="post">
@@ -49,7 +45,7 @@
                         <header class="mb-4">
                             <!-- Post title-->
                             <p>제목</p>
-                            <h1 class="fw-bolder mb-1"><input type="text" class="fw-bolder mb-1" name="title" value="${oneBoard.title }"></h1>
+                            <h4 class="fw-bolder mb-1"><input type="text" class="fw-bolder mb-1 form-control" name="title" value="${oneBoard.title }"></h4>
                             <!-- Post meta content-->
                             <div class="text-muted fst-italic mb-2"> <table> <tr><td> 작성자  </td><td> | ${oneBoard.nickname }</td></tr></table> </div>
                         </header>
@@ -64,7 +60,7 @@
                         
                         </section>
                     </article>
-                    	<button type="submit" class="btn me-md-2" style="background-color: #91ACCC;">수정</button>
+                    	<button type="submit" class="btn me-md-2" style="background-color: #91ACCC; margin-top:1%">수정</button>
                    </form>
                     <section class="mb-2">
                     <div class="d-md-flex justify-content-md-end" >
@@ -76,6 +72,7 @@
                     
     
 	</div>
+	
 <%@include file="../common/footer.jsp" %>
 
 </body>

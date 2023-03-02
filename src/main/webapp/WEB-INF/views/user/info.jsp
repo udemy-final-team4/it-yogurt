@@ -7,8 +7,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<!-- <link href="/css/header.css" rel="stylesheet"> -->
-<!-- <link href="/css/footer.css" rel="stylesheet"> -->
 <link href="/css/container.css" rel="stylesheet">
 <link href="/css/login.css" rel="stylesheet">
 <link href="/css/quiz.css" rel="stylesheet">
@@ -78,8 +76,8 @@
 			</form>
 		</div>
 		</div>
-		<%@include file="../common/footer.jsp"%>
 	</div>
+		<%@include file="../common/footer.jsp"%>
 <script type="text/javascript">
 	
 

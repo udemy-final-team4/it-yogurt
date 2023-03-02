@@ -67,8 +67,7 @@ public class BoardController {
 				paging.setTotalCount(totalBoardCnt); //전체 게시글 수 설정
 				List<Map<String,String>> boardList = boardService.getBoardJoinUser(cri); // 게시글 데이터 가져오기
 				
-				
-				//댓글 개수
+		
 				
 				
 				mv.addObject("totalBoardCnt", totalBoardCnt);

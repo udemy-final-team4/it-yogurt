@@ -123,7 +123,7 @@ function go_page(pageNum){
 			let list = result.knowledgeList;
 			let content = '';
 			for(let i=0;i<list.length;i++){
-				content += '<tr>';
+				content += '<tr class="tableList">';
 				content +=	'<td id="listSeq">'+ (i+1) +'</td>';
 				content += '<td><a href="${pageContext.request.contextPath}/knowledge/detail/'+list[i].knowSeq+'\">' + list[i].title +'</a></td>';
 				content +=	'<td>'+ list[i].insertDate +'</td>';

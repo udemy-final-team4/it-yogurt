@@ -19,18 +19,9 @@
     <script src="/js/util/ajax.js"></script>
     <script src="/js/util/util.js"></script>	
     <link href="/css/styles.css" rel="stylesheet" />
- <!-- <meta charset="UTF-8">
-    <link href="/css/header.css" rel="stylesheet">
-    <link href="/css/footer.css" rel="stylesheet">
-    <link href="/css/container.css" rel="stylesheet">
-     <link href="/css/admin.css" rel="stylesheet"> -->
 <title> 커뮤니티 | 게시판 | 글쓰기 </title>
 <style>
-.tableList:hover {
-	background-color: #91ACCC;
-	color: white;
-	cursor: pointer;
-}
+
 </style>
 </head>
 <%@include file="../common/nav.jsp" %>
@@ -65,7 +56,7 @@
     							
 	                            <!-- Post title-->
 	                            <p>제목</p>
-	                            <h4 class="fw-bolder mb-1"><input type="text" class="fw-bolder mb-1" name="title"></h4>
+	                            <h4 class="fw-bolder mb-1"><input type="text" class="fw-bolder mb-1 form-control"  name="title"></h4>
 	                            <!-- Post meta content-->
 	                            <div class="text-muted fst-italic mb-2"> <table> <tr><td> 작성자  </td><td> | ${sessionUserInfo.nickname }</td></tr></table> </div>
 	                     		
@@ -80,7 +71,7 @@
 								<!-- <input type="hidden" name="categorySeq" value="18"> -->
                         
                         </section>
-                    	<button type="submit" class="btn me-md-2" style="background-color: #91ACCC;">등록</button>
+                    	<button type="submit" class="btn me-md-2" style="background-color: #91ACCC; margin-top:1%">등록</button>
                         </form>
                     </article>
                     <section class="mb-2">
