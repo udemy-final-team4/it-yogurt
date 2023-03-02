@@ -21,10 +21,11 @@
 		<div class="content">
 			<div id="tblDiv">
 			<h1 id="main-title">🔍검색결과 목록🔍</h1>
-			<form action="<%=request.getContextPath()%>/knowledge/searchResult">
+			<form action="<%=request.getContextPath()%>/knowledge/searchResult" style="margin-left:16%">
 				<!-- 검색창 -->
-				<input type="text" placeholder="검색어 입력" name="keyword" id="keyword">
+				<input type="text" placeholder="검색어 입력" name="keyword" id="keyword" >
                 <button type="submit" id="search" class="btn me-md-2" >검색</button>
+             </form>   
 			</div>
 			<table class="table">
 				<tr>
@@ -57,7 +58,7 @@
 						</c:choose>
 				</tbody>
 			</table>
-			</form>
+			
 		</div>
 		</div>
 	</div>

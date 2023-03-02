@@ -7,22 +7,13 @@
 <html>
 <head>
  <meta charset="UTF-8">
-    <!-- <link href="/css/header.css" rel="stylesheet"> -->
-   <!--  <link href="/css/footer.css" rel="stylesheet"> -->
      <link href="/css/admin.css" rel="stylesheet">
      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
 		    rel="stylesheet"/>
- <!--     <link href="/css/styles.css" rel="stylesheet"> -->
      <link href="/css/container.css" rel="stylesheet">
 <title> 커뮤니티 | 게시판 </title>
 
 <style>
-/*  @font-face {
-  font-family: 'NEXON Lv1 Gothic OTF';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-} */
  
 #keyword {
     border-radius: 15px;
@@ -35,7 +26,6 @@
 <div class="container">
 	<div class="content">
      <div class="form">
-<%--		<h3 id="main" > 게시판 </h3> <br>--%>
 	<h1 id="main-title" >📋 게시판 📋</h1>
 		<!-- 검색을 위한 form -->
 	<form action="<%=request.getContextPath()%>/board/list/searchResult" id="">
@@ -85,13 +75,11 @@
 	        		<i class="fas fa-angle-double-left"></i>
 	        	</a>
 	        </li>
-	    <%-- <c:if test="${paging.prev}"> --%>
 	        <li class="page-item">
 	        	<a href='javascript:void(0);' onclick="go_page(${paging.startPage-1});" class="page-link">
 		        	<i class="fas fa-angle-left"></i>
 		        </a>
 	        </li>
-	   <%--  </c:if> --%>
 	    <c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="num">
 	    	<c:choose>
 	    		<c:when test= "${num==1 }">

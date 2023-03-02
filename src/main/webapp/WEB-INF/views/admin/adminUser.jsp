@@ -7,8 +7,6 @@
 <html>
 <head>
  <meta charset="UTF-8">
-   <!--  <link href="/css/header.css" rel="stylesheet">
-    <link href="/css/footer.css" rel="stylesheet"> -->
     <link href="/css/admin.css" rel="stylesheet">
     <link href="/css/container.css" rel="stylesheet">
  	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" rel="stylesheet"/>
@@ -71,9 +69,9 @@
 		<nav aria-label="Page navigation example" style="margin: 10px;">
 			<ul class="pagination justify-content-center">
 	        <li class="page-item"><span><a href='javascript:void(0);' onclick="go_page(1); return false;" class="page-link"><i class="fas fa-angle-double-left"></i></a></span></li>
-	    <%-- <c:if test="${paging.prev}"> --%>
+	    <c:if test="${paging.prev}">
 	        <li class="page-item"><span><a href='javascript:void(0);' onclick="go_page(${paging.startPage-1});" class="page-link"><i class="fas fa-angle-left"></i></a></span></li>
-	   <%--  </c:if> --%>
+	    </c:if>
 	    <c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="num">
 	    	<c:choose>
 	    		<c:when test= "${num==1 }">
@@ -84,9 +82,9 @@
 				</c:otherwise>
 			</c:choose>	        
 	    </c:forEach>
-	    <%-- <c:if test="${paging.next && paging.endPage>0}"> --%>
+	    <c:if test="${paging.next && paging.endPage>0}">
 	        <li class="page-item"><span><a href='javascript:void(0);' onclick="go_page(${paging.endPage+1});return false;" class="page-link"><i class="fas fa-angle-right"></i></a></span></li>
-		 <%--</c:if> --%>
+		 </c:if>
 	        <li class="page-item"><span><a href='javascript:void(0);' onclick="go_page(${maxpage});return false;" class="page-link"><i class="fas fa-angle-double-right"></i></a></span></li>
 			</ul>
 		</nav>
@@ -153,9 +151,7 @@ function go_page(pageNum){
 				content2 += '<li class="page-item"><a href=\'javascript:void(0);\' onclick="go_page(1); return false;" class="page-link"><i class="fas fa-angle-double-left"></i></a></li>';
 				
 				
-				/* if(paging.prev){ */
 					content2 += '<li class="page-item"><a href=\'javascript:void(0);\' onclick="go_page('+(Number(paging.startPage)-1)+');return false;" class="page-link"><i class="fas fa-angle-left"></i></a></li>';
-				/* } */
 				for (let num = Number(paging.startPage) ; num <=Number(paging.endPage); num++){
 					if (num == Number(paging.cri.page)){
 						content2 += '<li class="page-item active" style="pagination-bg: #91ACCC"><span><a href=\'javascript:void(0);\' onclick="go_page('+num+'); return false;" class="page-link">'+ num +'</a></span></li>';

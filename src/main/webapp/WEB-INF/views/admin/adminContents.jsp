@@ -7,11 +7,7 @@
 <head>
  <meta charset="UTF-8">
     
-    <!-- <link href="/css/user/signup.css" rel="stylesheet"> -->
-   <!--  <script src="/js/user/signup.js"></script> -->
     <script src="/js/util/ajax.js"></script>
-    <!-- <script src="/js/util/util.js"></script> -->
-    <!-- <link href="/css/styles.css" rel="stylesheet" /> -->
     <link href="/css/container.css" rel="stylesheet">
  	<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 <title>관리자 | 문제 관리</title>
@@ -24,7 +20,6 @@
 
 <div class="container-md">
 
-<%--<div class="contents">--%>
 	<div class="content">
 	
 <!-- 관리자 페이지 이동 버튼  -->
@@ -34,7 +29,6 @@
 	
 <br><br><br>
 </div>
-<%--	<h3 class="text-center">컨텐츠 등록</h3>--%>
 		<h1 id="main-title">📝 컨텐츠 등록 📝</h1>
 <form class="form" id="form" style="margin-top: 50px;">
 	<label for="main"><h4>카테고리</h4></label><br>
@@ -164,7 +158,7 @@ $("#submitBtn").on("click", function(){
 let formData = $('form').serializeArray();
 $.ajax({
     url: '/admin/contents',
-    enctype: 'multipart/form-data',
+    
     type: 'POST',
     dataType:'text',
     contentType: 'application/json; charset=utf-8',

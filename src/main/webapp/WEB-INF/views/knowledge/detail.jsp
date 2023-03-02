@@ -4,8 +4,6 @@
 <html>
 <head>
     <meta charset="UTF-8">
-<!--     <link href="/css/header.css" rel="stylesheet"> -->
-<!--     <link href="/css/footer.css" rel="stylesheet"> -->
     <link href="/css/container.css" rel="stylesheet">
      <link href="/css/styles.css" rel="stylesheet">
     <link href="/css/login.css" rel="stylesheet">
@@ -22,14 +20,14 @@
                 <!-- 퀴즈 목록 테이블 -->
                 <table id="detailTbl">
                     <div id="knowledgeDetailDiv">
-                    	<tr>
+                    	<tr style="text-align:left;">
                             <td><h1>${title}</h1></td>
                         </tr>
-                        <tr>
+                        <tr style="text-align:left;">
                         	<td id="detailWriterTd">작성자 : 관리자</td>
                         </tr>
                         <!-- 카테고리 -->
-                        <tr>
+                        <tr style="text-align:left;">
                             <td id="detailCategoryTd">
                             	<a class="badge bg-secondary text-decoration-none link-light" href="<%=request.getContextPath()%>/knowledge/list?category=all">${categoryInfo.main}</a>
                             	<a class="badge bg-secondary text-decoration-none link-light" href="<%=request.getContextPath()%>/knowledge/list?category=${categoryInfo.middle}">${categoryInfo.middle}</a>

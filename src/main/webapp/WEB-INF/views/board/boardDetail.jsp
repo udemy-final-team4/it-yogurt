@@ -7,9 +7,6 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <!--   <link href="/css/header.css" rel="stylesheet">
-      <link href="/css/footer.css" rel="stylesheet"> -->
-    <!-- <link href="/css/styles.css" rel="stylesheet"> -->
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
           integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
@@ -18,25 +15,14 @@
     <link href="/css/container.css" rel="stylesheet">
     <title> 커뮤니티 | 게시판 </title>
     <style>
-      /*.divCss {*/
-      /*    margin-top: 7%;*/
-      /*}*/
-      /*     @font-face {
-        font-family: 'NEXON Lv1 Gothic OTF';
-        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
-        font-weight: normal;
-        font-style: normal;
-      }
-       */
     </style>
 </head>
 <%@include file="../common/nav.jsp" %>
-<body id="page-top" style="background-color: #F9F2ED; /*margin-top:15%;*/">
+<body id="page-top" style="background-color: #F9F2ED;">
 <header></header>
 <div class="container divCss">
     <!-- Page content-->
     <div class="content">
-        <%--<div class="contents">--%>
         <div style="width: 70%">
             <!-- Post content-->
             <article>
@@ -137,7 +123,7 @@
                                                            id="content">
                                                     <a style="font-size:small; text-decoration: none;"
                                                        href='javascript:void(0);'
-                                                       onclick="editComment(${List.commentSeq},'${List.content }');">수정</a>
+                                                       onclick="editComment(${commentSeq});">수정</a>
                                                     <a style="font-size:small; text-decoration: none;"
                                                        href="/board/comment/${boardSeq }/${commentSeq}">삭제</a>
                                                 </c:when>
@@ -154,19 +140,12 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="chart-area">
-                                            <div class="chartjs-size-monitor">
-                                                <div class="chartjs-size-monitor-expand">
-                                                    <div class="">
-                                                    </div>
-                                                </div>
-                                                <div class="chartjs-size-monitor-shrink">
-                                                    <div class="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div id="edit">
-                                                <div style="white-space:pre-wrap;"><c:out
-                                                        value="${List.content}"/></div>
+                                            
+                                            <div name="edit${commentSeq }">
+                                            <input type="hidden" name="edit${commentSeq }"
+                                                           value="${List.content }">
+                                                           
+                                                <div style="white-space:pre-wrap;"><c:out value="${List.content}"/></div>
 
                                             </div>
                                         </div>
@@ -222,20 +201,20 @@
     }
   }
 
-  function editComment(commentSeq, commentContent) {
-    let content = $("#content").val();
+  function editComment(commentSeq) {
+    let content = $('input[name=edit'+commentSeq+']').val();
     let commentBox = "";
     let comment = "";
-
-    commentBox = `<form class="mb-4" action="/board/comment/${commentSeq}" method="post">
+	
+    commentBox = `<form class="mb-4" action="/board/comment/\${commentSeq}" method="post"">
 		    	<input type="hidden" name="boardSeq" value=${oneboard.boardSeq }>
 		    	<input type="hidden" name="userSeq" value=${sessionScope.user_seq }>
 		    	<textarea name="content" class="form-control" rows="3" >\${content}</textarea>
 					<button type="submit" class="btn me-md-2" id="commentEdit" style="background-color: #91ACCC;" >수정</button>
-					<button type="reset" class="btn me-md-2" id="commentEdit" style="background-color: #91ACCC;" >취소</button>
 		    </form> `;
 
-    $("#edit").html(commentBox);
+    $('div[name=edit'+commentSeq+']').html(commentBox);
+    console.log("ddd");
   }
 
 </script>
