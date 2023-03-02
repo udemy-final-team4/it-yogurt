@@ -7,9 +7,6 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <!--   <link href="/css/header.css" rel="stylesheet">
-      <link href="/css/footer.css" rel="stylesheet"> -->
-    <!-- <link href="/css/styles.css" rel="stylesheet"> -->
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
           integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
@@ -18,25 +15,14 @@
     <link href="/css/container.css" rel="stylesheet">
     <title> 커뮤니티 | 게시판 </title>
     <style>
-      /*.divCss {*/
-      /*    margin-top: 7%;*/
-      /*}*/
-      /*     @font-face {
-        font-family: 'NEXON Lv1 Gothic OTF';
-        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
-        font-weight: normal;
-        font-style: normal;
-      }
-       */
     </style>
 </head>
 <%@include file="../common/nav.jsp" %>
-<body id="page-top" style="background-color: #F9F2ED; /*margin-top:15%;*/">
+<body id="page-top" style="background-color: #F9F2ED;">
 <header></header>
 <div class="container divCss">
     <!-- Page content-->
     <div class="content">
-        <%--<div class="contents">--%>
         <div style="width: 70%">
             <!-- Post content-->
             <article>

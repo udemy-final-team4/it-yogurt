@@ -5,9 +5,6 @@
 <html>
 <head>
  <meta charset="UTF-8">
-    <!-- <link href="/css/header.css" rel="stylesheet">
-    <link href="/css/footer.css" rel="stylesheet">
-    <link href="/css/admin.css" rel="stylesheet"> -->
     <link href="/css/container.css" rel="stylesheet">
 	  <script src="/js/admin/email.js"></script>
 <title> 마이페이지 | 관리자 </title>
@@ -18,10 +15,8 @@
 <%@include file="../common/nav.jsp" %>
 <body>
 <div class="container">
-<%--<div class="contents">--%>
 <div class="content">
-    <div class="form" >
-<%--		<h3 id="main" > 회원 관리 </h3> <br>--%>
+    <div class="form">
 		<h1 id="main-title" >👨‍🔧 관리자 메뉴 👩‍🔧</h1>
 		<c:choose>
 			<c:when test="${sessionScope.user_seq eq 1 || sessionScope.user_seq eq 2}">
