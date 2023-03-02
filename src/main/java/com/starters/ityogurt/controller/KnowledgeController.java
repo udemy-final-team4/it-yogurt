@@ -86,7 +86,6 @@ public class KnowledgeController {
 		map.put("limit", limit);
 		map.put("category", category);
 		List<KnowledgeDTO> knowledgeList = service.getList(map);
-		System.out.println(knowledgeList.size());
 		jsonObjBoard.put("maxPage", maxPage);
 		jsonObjBoard.put("paging", paging);
 		jsonObjBoard.put("knowledgeList", knowledgeList);
