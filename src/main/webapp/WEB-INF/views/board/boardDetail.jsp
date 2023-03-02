@@ -123,7 +123,7 @@
                                                            id="content">
                                                     <a style="font-size:small; text-decoration: none;"
                                                        href='javascript:void(0);'
-                                                       onclick="editComment(${List.commentSeq},'${List.content }');">수정</a>
+                                                       onclick="editComment(${commentSeq});">수정</a>
                                                     <a style="font-size:small; text-decoration: none;"
                                                        href="/board/comment/${boardSeq }/${commentSeq}">삭제</a>
                                                 </c:when>
@@ -140,19 +140,11 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="chart-area">
-                                            <div class="chartjs-size-monitor">
-                                                <div class="chartjs-size-monitor-expand">
-                                                    <div class="">
-                                                    </div>
-                                                </div>
-                                                <div class="chartjs-size-monitor-shrink">
-                                                    <div class="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div id="edit">
-                                                <div style="white-space:pre-wrap;"><c:out
-                                                        value="${List.content}"/></div>
+                                            
+                                            <div name="edit${commentSeq }">
+                                            <input type="hidden" name="edit${commentSeq }"
+                                                           value="${List.content }">
+                                                <div style="white-space:pre-wrap;"><c:out value="${List.content}"/></div>
 
                                             </div>
                                         </div>
@@ -182,6 +174,14 @@
 
 <script>
 
+//enter => <br>
+var text = document.getElementById("content").value;
+text = text.replace(/(?:\r\n|\r|\n)/g, '<br>');
+
+/* //<br> => enter
+var text = document.getElementById("content").value;
+text = text.replaceAll("<br>", "\r\n"); */
+
   function delboard(boardSeq) {
     if (window.confirm("게시물을 삭제하시겠습니까?\n")) {
       location.href = "/board/d/" + boardSeq;
@@ -208,20 +208,20 @@
     }
   }
 
-  function editComment(commentSeq, commentContent) {
-    let content = $("#content").val();
+  function editComment(commentSeq) {
+    let content = $('input[name=edit'+commentSeq+']').val();
     let commentBox = "";
     let comment = "";
-
-    commentBox = `<form class="mb-4" action="/board/comment/${commentSeq}" method="post">
+	
+    commentBox = `<form class="mb-4" action="/board/comment/\${commentSeq}" method="post"">
 		    	<input type="hidden" name="boardSeq" value=${oneboard.boardSeq }>
 		    	<input type="hidden" name="userSeq" value=${sessionScope.user_seq }>
 		    	<textarea name="content" class="form-control" rows="3" >\${content}</textarea>
 					<button type="submit" class="btn me-md-2" id="commentEdit" style="background-color: #91ACCC;" >수정</button>
-					<button type="reset" class="btn me-md-2" id="commentEdit" style="background-color: #91ACCC;" >취소</button>
 		    </form> `;
 
-    $("#edit").html(commentBox);
+    $('div[name=edit'+commentSeq+']').html(commentBox);
+    console.log("ddd");
   }
 
 </script>
