@@ -48,4 +48,8 @@
 		ORDER BY count, category_seq
 			LIMIT 0,1;
 	</select>
+
+	<select id="getLearnRecordByUserANDQuiz" resultType="learnrecorddto">
+		SELECT * FROM learn_record WHERE user_seq = #{userSeq} AND quiz_seq = #{quizSeq};
+	</select>
 </mapper>

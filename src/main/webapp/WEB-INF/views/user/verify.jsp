@@ -19,7 +19,7 @@
 <body>
 <div class="container">
     <div class="content">
-        <img id="logo" src="/image/logo.png">
+        <img id="logo" src="/image/logo-dark-text.png" alt="logo">
         <div id="message">${result}</div>
         <br>
         <div class="button">
@@ -31,48 +31,45 @@
 <%@include file="../common/footer.jsp" %>
 </html>
 <style>
-  .content {
-    height: 500px;
-  }
+    #logo {
+        width: 50%;
+    }
 
-  #logo {
-    width: 50%;
-  }
-#message {
-  font-size: 30px;
-  margin-bottom: 20px;
-  width: 70%;
-  align-items: center;
-  text-align: center;
-  word-break: keep-all;
-}
+    #message {
+        font-size: 30px;
+        margin-bottom: 20px;
+        width: 70%;
+        align-items: center;
+        text-align: center;
+        word-break: keep-all;
+    }
 
-  #main {
-    width: 250px;
-    height: 40px;
-    border-style: solid;
-    border-width: medium;
-    /*margin-bottom: 35px;*/
-    margin-bottom: 50px;
-    border-color: #fab46e;
-    background-color: #fab46e;
-    font-size: 15px;
-    color: #ffffff;
-    text-align: center;
-    line-height: 40px;
-  }
+    #main {
+        width: 250px;
+        height: 40px;
+        border-style: solid;
+        border-width: medium;
+        /*margin-bottom: 35px;*/
+        margin-bottom: 50px;
+        border-color: #fab46e;
+        background-color: #fab46e;
+        font-size: 15px;
+        color: #ffffff;
+        text-align: center;
+        line-height: 40px;
+    }
 
-  #main:focus {
-    outline-style: solid;
-    outline-color: #fcae60;
-    margin: 0px;
-    text-align: center;
-    line-height: 40px;
-  }
-  .button {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+    #main:focus {
+        outline-style: solid;
+        outline-color: #fcae60;
+        margin: 0px;
+        text-align: center;
+        line-height: 40px;
+    }
+    .button {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 </style>

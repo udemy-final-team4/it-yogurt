@@ -34,5 +34,5 @@ public interface LearnRecordDAO {
 
 	public HashMap<String, Integer> findWeakCategoryByUser(int userSeq);
 
-	
+	LearnRecordDTO getLearnRecordByUserANDQuiz(int userSeq, int quizSeq);
 }

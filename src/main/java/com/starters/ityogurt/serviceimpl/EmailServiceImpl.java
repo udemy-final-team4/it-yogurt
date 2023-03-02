@@ -103,13 +103,18 @@ public class EmailServiceImpl implements EmailService {
                 +
                 "  </a><br><br>\n" +
                 "</div>\n" +
-                "<div class=\"footer\" style=\"text-align : center; background-color: #F9F2ED\">\n" +
-                "  <div class=\"info\" ><br>\n" +
-                "    ItYogurt / 대표: 김민지<br>\n" +
-                "    서울특별시 용산구 용산동2가 1 - 34<br><br><br><br>\n" +
-                "  </div>\n" +
+                "<div class=\"footer\" style=\"text-align : center; background-color: #2C3E50\">\n" +
+                "    <div class=\"info\" style=\"color:white;\"><br>\n" +
+                "        ItYogurt / 대표: 김민지<br>\n" +
+                "        서울특별시 용산구 용산동2가 1 - 34<br><br>\n" +
+                "    </div>\n" +
+                "    <div style=\"color:white;\">\n" +
+                "        <a class=\"btn\" style=\"color:snow; text-decoration: none;\" href=\"https://twitter.com/eat_it_yogurt\">twitter</a>\n" +
+                "        &nbsp;|&nbsp;\n" +
+                "        <a class=\"btn\" style=\"color:snow; text-decoration: none;\" href=\"https://www.instagram.com/eat_it_yogurt/\">instagram</a>\n" +
+                "        <br><br>\n" +
+                "    </div>\n" +
                 "</div>";
-
         send(title, content, userDto);
 
     }
