@@ -25,4 +25,6 @@ public interface LearnRecordService {
 	/*학습 기록에서 유저가 가장 많이 틀린 분야의 문제 찾아오기*/
 	public HashMap<String, Integer> findWeakCategoryByUser(int userSeq);
 
+	LearnRecordDTO getLearnRecordByUserANDQuiz(int userSeq, int quizSeq);
+
 }

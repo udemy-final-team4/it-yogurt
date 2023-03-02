@@ -1,5 +1,6 @@
 package com.starters.ityogurt.controller;
 
+import jakarta.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -212,8 +213,20 @@ public class QuizController {
 
 	@PutMapping("/quiz/top/{quizSeq}/answer")
 	@ResponseBody
-	public void updateWeakQuiz(@RequestBody LearnRecordDTO data) {
-		learnRecordService.updateLearnData(Integer.parseInt(data.getUserChoice()), data.getIsRight(),
-			data.getUserSeq(), data.getQuizSeq());
+	public void updateWeakQuiz(@RequestBody LearnRecordDTO data, HttpServletRequest request) {
+
+		HttpSession session = request.getSession();
+		if(session.getAttribute("user_seq") != null)
+		{
+			Integer userSeq = (Integer) session.getAttribute("user_seq");
+			LearnRecordDTO dto = learnRecordService.getLearnRecordByUserANDQuiz(userSeq,data.getQuizSeq());
+			if(dto != null)
+			{
+				learnRecordService.updateLearnData(Integer.parseInt(data.getUserChoice()), data.getIsRight(), userSeq, data.getQuizSeq());
+			}
+			else {
+				learnRecordService.learnData(Integer.parseInt(data.getUserChoice()), data.getIsRight(), userSeq, data.getQuizSeq());
+			}
+		}
 	}
 }

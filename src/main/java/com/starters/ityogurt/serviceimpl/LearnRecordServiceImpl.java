@@ -57,4 +57,9 @@ public class LearnRecordServiceImpl implements LearnRecordService{
 		return dao.findWeakCategoryByUser(userSeq);
 	}
 
+	@Override
+	public LearnRecordDTO getLearnRecordByUserANDQuiz(int userSeq, int quizSeq) {
+		return dao.getLearnRecordByUserANDQuiz(userSeq, quizSeq);
+	}
+
 }
