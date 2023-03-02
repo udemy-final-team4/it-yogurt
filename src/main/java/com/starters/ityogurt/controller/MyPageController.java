@@ -102,7 +102,7 @@ public class MyPageController {
 
     //정보 수정중
     @PostMapping("/mypage/newInfo/{user_seq}")
-    public ModelAndView newInfo(@PathVariable("user_seq") String user_seq, UserDTO userDto, String newPass, String userDtoPass) throws Exception {
+    public ModelAndView newInfo(@PathVariable("user_seq") String user_seq, UserDTO userDto, String newPass, String userDtoPass, String sub) throws Exception {
         ModelAndView mv = new ModelAndView();
         UserRestController userRestController = new UserRestController();//암호화때문에 객체 생성해줌
         Encrypt encrypt = new Encrypt();
@@ -116,10 +116,14 @@ public class MyPageController {
         }
         String pwd = userRestController.ConvertPassword(newPass); //수정한 암호는 암호화 해주기
 
+        int categorySeq = categoryService.getCategoryBySub(sub); //선택한 카테고리 번호 불러오기
+        
+        
         Map<Object, Object> map = new HashMap<>();
         map.put("nickname", userDto.getNickname());
         map.put("phone", userDto.getPhone());
         map.put("password", pwd);
+        map.put("categorySeq", categorySeq);
         map.put("userSeq", userSeq);
         userService.updateUserInfo(map);
         userDto = userService.getUserByUserSeq(userSeq);
@@ -145,12 +149,12 @@ public class MyPageController {
 
     @GetMapping("/mypage/wrong/{user_seq}")
     public String moveWrongQuizPage() {
-        return "/quiz/wrong";
+        return "/quiz/quizList";
     }
 
     @GetMapping("/mypage/weak/{user_seq}")
     public String moveWeakQuizPage() {
-        return "/quiz/wrong";
+        return "/quiz/quizList";
     }
 
     // 틀린 문제 개수 가져오기. limit 기본값 : 5
@@ -178,7 +182,7 @@ public class MyPageController {
     }
 
     //오답문제 정보 갱신 시
-    @PutMapping("/mypage/wrong/answer")
+    @PutMapping("/mypage/wrong/{user_seq}/answer")
     @ResponseBody
     public void updateWrongQuiz(@RequestBody LearnRecordDTO data) {
         recodeservice.updateLearnData(Integer.parseInt(data.getUserChoice()), data.getIsRight(),
@@ -186,7 +190,7 @@ public class MyPageController {
     }
 
 
-    @PutMapping("/mypage/weak/answer")
+    @PutMapping("/mypage/weak/{user_seq}/answer")
     @ResponseBody
     public void updateWeakQuiz(@RequestBody LearnRecordDTO data) {
         recodeservice.updateLearnData(Integer.parseInt(data.getUserChoice()), data.getIsRight(),

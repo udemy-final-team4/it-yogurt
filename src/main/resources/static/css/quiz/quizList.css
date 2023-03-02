@@ -25,10 +25,6 @@
   border-color: #ccc;
 }
 
-#main {
-  width: 100%;
-}
-
 #header {
   width: 100%;
 }
@@ -37,15 +33,15 @@
 border: solid #000000 2px;
   font-size: 14px;
 }
-.content{
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  margin-top: 150px;
-  min-height: 400px;
-}
+/*.content{*/
+/*  display: flex;*/
+/*  flex-wrap: wrap;*/
+/*  align-items: center;*/
+/*  justify-content: flex-start;*/
+/*  width: 100%;*/
+/*  margin-top: 150px;*/
+/*  min-height: 400px;*/
+/*}*/
 
 #listEmpty {
   margin: 20px 0 20px 0;
@@ -70,4 +66,8 @@ border: solid #000000 2px;
 }
 .badge {
   margin-bottom: 10px;
+}
+
+.quiz-item {
+  margin-top: 30px;
 }

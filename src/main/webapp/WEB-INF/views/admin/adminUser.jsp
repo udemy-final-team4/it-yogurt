@@ -7,10 +7,10 @@
 <html>
 <head>
  <meta charset="UTF-8">
-    <link href="/css/header.css" rel="stylesheet">
-    <link href="/css/footer.css" rel="stylesheet">
-    <link href="/css/container.css" rel="stylesheet">
+   <!--  <link href="/css/header.css" rel="stylesheet">
+    <link href="/css/footer.css" rel="stylesheet"> -->
     <link href="/css/admin.css" rel="stylesheet">
+    <link href="/css/container.css" rel="stylesheet">
  	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" rel="stylesheet"/>
     
 
@@ -26,18 +26,19 @@
 <%@include file="../common/nav.jsp" %>
 <body>
 <div class="container">
+	<div class="content">
     <div class="form" id="user-form">
 		<button class="btn btn-primary px-5 py-2" onclick="location.href='/admin/user'">회원관리</button>
 		<button class="btn btn-primary px-5 py-2" onclick="location.href='/admin/contents'">컨텐츠 등록</button> <br><br>
-		<h3 id="main" > 전체 회원 </h3> <br>
+		<h3 id="main" >👨‍💼 전체 회원 👩‍💼</h3> <br>
 		<button class="btn btn-primary px-5 py-2" onclick="location.href='/admin/user/black'">블랙 회원</button> <br><br>
-		
+
 		<!-- 검색을 위한 form -->
 	<form action="<%=request.getContextPath()%>/admin/list/searchResult" id="">
 	<!-- 검색창 -->
 	<input type="text" placeholder="닉네임 입력" name="keyword" id="keyword">
     <button type="submit" id="search">검색</button>
-		
+
 		
 		<table class="table">
 			<tr>
@@ -93,6 +94,7 @@
 	
 </div>
 
+</div>
 </div>
 </body>
 <%@include file="../common/footer.jsp" %>

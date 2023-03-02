@@ -4,8 +4,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <link href="/css/header.css" rel="stylesheet">
-    <link href="/css/footer.css" rel="stylesheet">
+<!--     <link href="/css/header.css" rel="stylesheet"> -->
+<!--     <link href="/css/footer.css" rel="stylesheet"> -->
     <link href="/css/container.css" rel="stylesheet">
      <link href="/css/styles.css" rel="stylesheet">
     <link href="/css/login.css" rel="stylesheet">
@@ -22,7 +22,7 @@
                 <!-- 퀴즈 목록 테이블 -->
                 <table id="detailTbl">
                     <div id="knowledgeDetailDiv">
-                    	<tr style="height: 100px;">
+                    	<tr>
                             <td><h1>${title}</h1></td>
                         </tr>
                         <tr>
@@ -42,8 +42,8 @@
                     </tr>
                     <tr>
                         <td id="detailBtnDiv" >
-	                        <input type="submit" value="퀴즈 풀러가기" id="subBtn" class="detailInput">
-	                        <input type="button" value="목록" id="knowList" class="detailInput" onclick="goKnowList()">
+	                        <input type="submit" value="퀴즈 풀러가기" id="subBtn" class="btn me-md-2" style="background-color: #91ACCC;">
+	                        <input type="button" value="목록" id="knowList" class="btn me-md-2" style="background-color: #91ACCC;"  onclick="goKnowList()">
                             <input type="hidden" value="${knowSeq}" name="knowSeq">
                         </td>
                     </tr>

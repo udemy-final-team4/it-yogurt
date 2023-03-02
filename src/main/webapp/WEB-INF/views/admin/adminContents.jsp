@@ -11,21 +11,21 @@
    <!--  <script src="/js/user/signup.js"></script> -->
     <script src="/js/util/ajax.js"></script>
     <!-- <script src="/js/util/util.js"></script> -->
-    <link href="/css/styles.css" rel="stylesheet" />
+    <!-- <link href="/css/styles.css" rel="stylesheet" /> -->
     <link href="/css/container.css" rel="stylesheet">
  	<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 <title>관리자 | 문제 관리</title>
 </head>
 <style>
-	#content-form {
-		margin-top: 20%;
-	}
+	
 </style>
 <%@include file="../common/nav.jsp" %>
 <body>
 
 <div class="container-md">
 
+<%--<div class="contents">--%>
+	<div class="content">
 	
 <!-- 관리자 페이지 이동 버튼  -->
 <div class="form text-center" id="content-form">
@@ -34,43 +34,26 @@
 	
 <br><br><br>
 </div>
-	<h3 class="text-center">컨텐츠 등록</h3>
-
+<%--	<h3 class="text-center">컨텐츠 등록</h3>--%>
+		<h1 id="main-title">📝 컨텐츠 등록 📝</h1>
 <form class="form" id="form" style="margin-top: 50px;">
 	<label for="main"><h4>카테고리</h4></label><br>
             
-            <!-- <select name="main" id="main">
-            </select>
-            <select name="middle" id="middle">
-            </select>
-            <select name="sub" id="sub">
-            </select> -->
+ 
 	<div class="row" >
-		<div class="col-xl col-md-6">
+		<div class="col-xl col-md">
 			<div class="flex-fill card">
 				<div class=" py-4 card-body">
 					<div class="d-flex align-items-start">
 						<div class="flex-grow-1">
             
-				            <!-- <div class="mb-3">
-				            <div>
-					            <label for="main"><h2>카테고리</h2></label>
-					        </div>
-					        <br>
-					        <div class="input-group mb-3" style="align-items:center;"> -->
 	         				<label for="main">대분류</label>
-					         <!-- <select name="main" id="main">
-				            </select> -->
             				<br>
             				<input type="text" name="main" id="mainInput" value="it" class="form-control"><br>
               				<label for="middle">중분류</label> 
-             				<!--  <select name="middle" id="middle">
-            				</select> --> 
             				<br>
-            				<input type="text" name="middle" id="middleInput" value="프로그래밍" class="form-control"><br>
+            				<input type="text" name="middle" id="middleInput" value="프로그래밍언어" class="form-control"><br>
               				<label for="sub">소분류</label>
-              				<!-- <select name="sub" id="sub">
-            				</select> -->
             				<br>
             				<input type="text" name="sub" id="subInput" class="form-control"><br>
               				<label for="detail">상세분류</label>
@@ -94,7 +77,7 @@
 	</div>
 	
 	<div class="row">
-		<div class="col-xl col-md-6">
+		<div class="col-xl col-md">
 			<div class="flex-fill card">
 				<div class=" py-4 card-body">
 					<div class="d-flex align-items-start">
@@ -120,7 +103,7 @@
 	
 	<c:forEach var = "cnt"  begin="1" end="3">
 		<div class="row">
-			<div class="col-xl col-md-6">
+			<div class="col-xl col-md">
 				<div class="flex-fill card">
 					<div class=" py-4 card-body">
 						<div class="d-flex align-items-start">
@@ -155,15 +138,14 @@
 		</div>
 	</c:forEach>	
 <!-- form(전체 컨텐츠) submit 버튼  -->			
-	<!-- <input id="submitBtn" type="submit" value="등록"> -->
 	<div class="mb-3 text-center" style="margin-top:30px;"> 
 	<button id="submitBtn" type="submit" class="btn btn-primary px-5 py-2">	등록 </button>
 	</div>
 </form>
 	
-
-	
 </div>
+</div>
+
 
 
 
@@ -174,32 +156,12 @@
 
 
 <script>
-/* $(document).ready(function () { */
-	/* // 카테고리 가져오기
-	  window.ajax.request("/category", {}, CategorySetting, category_error)
-       /* $("#mainInput").attr("value", $("#main").val());
-       $("#middleInput").attr("value", $("#middle").val()); */
-	// 카테고리 변경 시
-  /*$("select").on("change", function (event) {
-    let type = $(this).attr("id");
-    let type_value = $(this).val();
-    window.ajax.request(`/category/${type}`,
-        {data: {type: "GET", type_value: type_value}}, CategoryTypeSuccess,
-        category_error)
-  })
-  
-})
-let error = (request) => {
-  alert(request.responseJSON.errorMessage);
-}  */
 
 // 컨텐츠 등록 버튼 클릭시
 $("#submitBtn").on("click", function(){
 	
-//let formData = new FormData($('#form')[0]);
 
 let formData = $('form').serializeArray();
-//formData.append(JSON.stringify(formDataArray));
 $.ajax({
     url: '/admin/contents',
     enctype: 'multipart/form-data',

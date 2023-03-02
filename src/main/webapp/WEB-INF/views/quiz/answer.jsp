@@ -7,8 +7,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="/css/header.css" rel="stylesheet">
-<link href="/css/footer.css" rel="stylesheet">
+<!-- <link href="/css/header.css" rel="stylesheet"> -->
+<!-- <link href="/css/footer.css" rel="stylesheet"> -->
 <link href="/css/container.css" rel="stylesheet">
 <link href="/css/login.css" rel="stylesheet">
 <link href="/css/quiz.css" rel="stylesheet">
@@ -32,7 +32,7 @@
 			<div>
 				<table id="quizTbl">
 					<c:set var="length" value="${fn:length(quizList) }" />
-					<div style="margin-top: 400px;">
+					<div>
 						<b>정답수 : ${userAnswerCnt}/3</b><br>
 					</div>
 					<div>
@@ -115,7 +115,7 @@
 								</div>
 							</table>
 							<div style="width:100%;margin-bottom:80px;">
-								<input type="button" value="매일지식 목록 바로가기" onclick="goKnowledgeList()" id="listBtn">
+								<input type="button" value="매일지식 목록 바로가기" class="btn me-md-2" style="background-color: #91ACCC;" onclick="goKnowledgeList()" id="listBtn">
 							</div>
 					</div><!-- 전체 div -->
 		</div><!-- content -->

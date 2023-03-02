@@ -25,21 +25,21 @@
     margin-bottom: 100px;
 }
 
-#quizListDiv{
-	margin-top: 300px;
-    margin-bottom: 300px;
-}
+/* #quizListDiv{ */
+/* 	margin-top: 300px; */
+/*     margin-bottom: 300px; */
+/* } */
 
 .myDiv{
 height:80px;
 border: 1px solid black;
-margin: auto;
+/* margin: auto; */
 }
 
 .myDiv2{
 height:80px;
 border: 1px solid black;
-margin: auto;
+/* margin: auto; */
 }
 
 label, #blank {
@@ -77,6 +77,6 @@ width: 100%;
 	cursor: pointer;
 }
 
-.content {
-	margin-top: 20%;
-}
+/* .content { */
+/* 	margin-top: 20%; */
+/* } */

@@ -34,22 +34,23 @@
 </style>
 </head>
 <%@include file="../common/nav.jsp" %>
-<body id="page-top" style="margin-top:15%; background-color: #F9F2ED;">
+<body id="page-top" style="background-color: #F9F2ED;">
 
 
 
 <div class="container divCss">
-            <div class="container-xxl">
+            <div class="container-lg">
                 <div class="row gx-5 align-items-center">
                     <!-- Post content-->
                     <article>
                         <header class="masthead bg-self text-center" style="background-color: #F9F2ED;" >
-    							<h2> 게시글 작성 </h2>
+    							<h2>✏ 게시글 작성 ✏</h2>
 						</header>
                             <form action="form" method="post" >
-                        <!-- Post header-->
+    						
     						<div class="mb-4">
     						
+	                            <!-- Post categories-->
     							<label for="main">카테고리</label>
                 					<select name="main" id="main">
 
@@ -67,18 +68,8 @@
 	                            <h4 class="fw-bolder mb-1"><input type="text" class="fw-bolder mb-1" name="title"></h4>
 	                            <!-- Post meta content-->
 	                            <div class="text-muted fst-italic mb-2"> <table> <tr><td> 작성자  </td><td> | ${sessionUserInfo.nickname }</td></tr></table> </div>
-	                            <!-- Post categories-->
 	                     		
     						</div>
-                        <%-- <header class="mb-4">
-                            <!-- Post title-->
-                            <p>제목</p>
-                            <h1 class="fw-bolder mb-1"><input type="text" class="fw-bolder mb-1" name="title"></h1>
-                            <!-- Post meta content-->
-                            <div class="text-muted fst-italic mb-2"> <table> <tr><td> 작성자  </td><td> | ${sessionUserInfo.nickname }</td></tr></table> </div>
-                            <!-- Post categories-->
-   
-                        </header> --%>
                        
                         <section>
                             <p class="fs-5 mb-4"> 내용</p>
@@ -100,22 +91,6 @@
                     </div>
                     </div>
                     
-     <!-- <div class="form">
-		<h3 id="main" > 게시판 </h3> <br>
-		<button id= "black" onclick="location.href='/board/list'">목록</button>
-     		<form action="form" method="post">
-				<div class="mb-3">
-				  <label for="title" class="form-label">제목</label>
-				  <input type="text" class="form-control" id="title" name ="title" placeholder="제목">
-				</div>
-				<div class="mb-3">
-				  <label for="content" class="form-label">내용</label>
-				  <textarea class="form-control" id="content" rows="3" name="content"></textarea>
-				</div>
-				<input type="hidden" name="userSeq" value="5">
-				<input type="hidden" name="categorySeq" value="5">
-				<button type="submit" class="btn btn-primary" style="background-color: #91ACCC;">등록</button>
-			</form> -->
 	</div>
 
 </body>

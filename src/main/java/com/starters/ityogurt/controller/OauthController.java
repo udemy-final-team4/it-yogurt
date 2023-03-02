@@ -42,6 +42,7 @@ public class OauthController {
 
         String redirectPath = "redirect:/user/1";
         String email = oauthService.requestAccessToken(socialLoginType, code);
+
         HttpSession session = request.getSession();
         UserDTO user = userService.getUserByUserEmail(email);
 

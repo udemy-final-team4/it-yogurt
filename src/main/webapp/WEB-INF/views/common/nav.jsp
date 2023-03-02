@@ -19,7 +19,7 @@
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav" style="word-break: keep-all;">
     <div class="container-lg">
-        <a href="/"><img src="/image/logo_white.png" style="width: 50px; height: 50px"></a> &nbsp;
+        <a href="/"><img src="/image/logo_white.png" style="width: 50px; height: 50px"></a>
         <a class="navbar-brand" href="/">It-Yogurt </a>
         <button class="navbar-toggler text-uppercase font-weight-bold text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
@@ -32,7 +32,7 @@
                 <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="<%=request.getContextPath()%>/ranking/">랭킹</a></li>
                 <c:choose>
 					<c:when test="${ sessionScope.user_seq eq 1 || sessionScope.user_seq eq 2}">	
-                    	<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="<%=request.getContextPath()%>/admin/page">회원관리</a></li>
+                    	<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="<%=request.getContextPath()%>/admin/page">관리자기능</a></li>
                 	</c:when>
 					<c:otherwise>
                     <c:if test="${not empty sessionScope.user_seq}">

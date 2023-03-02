@@ -7,8 +7,8 @@
 <html>
 <head>
  <meta charset="UTF-8">
-    <link href="/css/header.css" rel="stylesheet">
-    <link href="/css/footer.css" rel="stylesheet">
+    <!-- <link href="/css/header.css" rel="stylesheet">
+    <link href="/css/footer.css" rel="stylesheet"> -->
     <link href="/css/container.css" rel="stylesheet">
      <link href="/css/admin.css" rel="stylesheet">
      <script src="/js/user/signup.js"></script>
@@ -24,11 +24,11 @@
 </style>
 </head>
 <%@include file="../common/nav.jsp" %>
-<body id="page-top" style="background-color: #F9F2ED; margin-top:15%;">
+<body id="page-top" style="background-color: #F9F2ED;">
 <header></header>
 <div class="container divCss">
 
-<div class="container-xxl">
+<div class="container-lg">
                 <div class="col-lg-auto">
                 
                 

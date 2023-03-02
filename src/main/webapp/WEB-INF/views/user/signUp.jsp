@@ -5,8 +5,6 @@
 <head>
     <meta charset="UTF-8">
     <script src="/js/jquery-3.6.1.min.js"></script>
-    <link href="/css/header.css" rel="stylesheet">
-    <link href="/css/footer.css" rel="stylesheet">
     <link href="/css/container.css" rel="stylesheet">
     <link href="/css/user/signup.css" rel="stylesheet">
     <script src="/js/user/signup.js"></script>
@@ -14,11 +12,6 @@
     <script src="/js/util/util.js"></script>
     <title>Title</title>
 </head>
-<style>
-    #signup_form {
-        margin-top: 20%;
-    }
-</style>
 <body>
 <%@include file="../common/nav.jsp" %>
 <div class="container">
@@ -32,8 +25,9 @@
     <c:set var="isSNS" value="<%=isSNS%>"></c:set>
 
     <div class="content">
-        <form id="signup_form" class="form" type="POST" href="/user/1" >
-            <div class="form-input-email" style="margin-top:200px;">
+        <h1 id="main-title">회원가입</h1>
+        <form id="signup_form" class="form" type="POST" href="/user/1">
+            <div class="form-input-email">
                 <label for="email">이메일</label>
                 <input type="text" name="email" id="email" placeholder="이메일을 입력해주세요."
                        value=${email}>
@@ -56,17 +50,11 @@
                 <label for="phone">전화번호</label>
                 <input type="text" name="phone" id="phone"
                        placeholder="번호를 입력해주세요."></div>
-            <div class="form-input">
+            <div class="form-input" id="category">
                 <label for="main">카테고리</label>
-                <select name="main" id="main">
-
-                </select>
-                <select name="middle" id="middle">
-
-                </select>
-                <select name="sub" id="sub">
-
-                </select>
+                <select name="main" id="main"></select>
+                <select name="middle" id="middle"></select>
+                <select name="sub" id="sub"></select>
             </div>
             <div class="form-input">
                 <div class="subscribe">

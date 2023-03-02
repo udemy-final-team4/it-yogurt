@@ -10,7 +10,6 @@ $(document).ready(function () {
 
   // 카테고리 가져오기
   window.ajax.request("/category", {}, CategorySetting, category_error)
-  //window.ajax.request("/category", {data:{type : "middle",}}, MainCategorySuccess, category_error)
 
   // 카테고리 변경 시
   $("select").on("change", function (event) {
@@ -65,12 +64,6 @@ $(document).ready(function () {
     }
 
     let fd = new FormData($('#signup_form')[0]);
-    // let category = {
-    //   "main": fd.get("category_main"),
-    //   "middle": fd.get("category_middle"),
-    //   "sub": fd.get("category_sub"),
-    // }
-    // fd.append("category", category);
 
     console.log(fd);
     window.ajax.sendForm("/user/1", fd, success, error);

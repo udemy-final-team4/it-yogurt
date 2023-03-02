@@ -31,14 +31,14 @@
             <!-- Footer Social Icons-->
             <div class="col-lg-4 mb-5 mb-lg-0">
                 <h4 class="text-uppercase mb-4">SNS</h4>
-                <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
-                <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-linkedin-in"></i></a>
+                <a class="btn btn-outline-light btn-social mx-1" href="https://twitter.com/eat_it_yogurt"><i class="fab fa-fw fa-twitter"></i></a>
+                <a class="btn btn-outline-light btn-social mx-1" href="https://www.instagram.com/eat_it_yogurt/"><i class="fab fa-fw fa-linkedin-in"></i></a>
             </div>
             <!-- Footer About Text-->
             <div class="col-lg-4">
                 <h4 class="text-uppercase mb-4">연락처</h4>
                 <p class="lead mb-0">02-2078-2182</p>
-                <p class="lead mb-0">ityogurt@gmail.com</p>
+                <p class="lead mb-0">ityogurt213@gmail.com</p>
             </div>
         </div>
     </div>

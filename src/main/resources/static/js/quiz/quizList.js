@@ -90,7 +90,7 @@ let success = (result) => {
   let list = result.list;
 
   if (quizType == "wrong") {
-    $("#main").text("오답노트");
+    $("#main-title-left").text("오답노트");
   }
   else if(quizType == "top")
   {
@@ -98,13 +98,12 @@ let success = (result) => {
     let type = searchParams.get("type");
     let top = searchParams.get("top");
     let topType = {1:"가장 많이 푼 문제",2 :"가장 많이 틀린 퀴즈"};
-    $("#main").text(`${topType[type]} TOP${top}`);
+    $("#main-title-left").text(`${topType[type]} TOP${top}`);
   }
   else {
-    $("#main").text("나의 약점 문제");
+    $("#main-title-left").text("나의 약점 문제");
     if (list.length != 0) {
-      $(".content").append(`<div id="weakCategory">
-          ${result.weakCategory.sub}-${result.weakCategory.detail} 카테고리의 문제를 가장 많이 틀리셨습니다.</div>`)
+      $("#weakCategory").text(`${result.weakCategory.sub}-${result.weakCategory.detail} 카테고리의 문제를 가장 많이 틀리셨습니다.`)
     }
   }
   if (list.length == 0) {
@@ -117,10 +116,9 @@ let success = (result) => {
       let badge = quizType == "wrong" ? `선택한 답: ${list[i].userChoice}` : "";
 
       $("#quizForm").append(`
-            <input type="hidden" value="${result.userSeq}" name="userSeq">
-            <table id="${i}">
+            <table id="${i}" class="quiz-item">
               <tr id="quizListTbl">
-                 <td id="num"><br><br><br>
+                 <td id="num">
                  <div  class="badge bg-secondary text-decoration-none link-light">${badge}</div><br>  
                   Q. ${list[i].quizSeq}번<br>
                       <br>${list[i].question}<br><br>       
@@ -198,8 +196,8 @@ let pageSetting = (result) => {
 }
 
 addFilter = () => {
-  $("#header").append(`<div className="filter">
-      <select className="quiz-filter">
+  $("#header").append(`<div class="filter">
+      <select class="quiz-filter">
         <option value="5">5개씩 보기</option>
         <option value="10">10개씩 보기</option>
         <option value="20">20개씩 보기</option>

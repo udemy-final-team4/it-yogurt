@@ -10,7 +10,7 @@
     <link href="/css/header.css" rel="stylesheet">
     <link href="/css/footer.css" rel="stylesheet">
     <link href="/css/container.css" rel="stylesheet">
-    <link href="/css/quiz/wrong.css" rel="stylesheet">
+    <link href="/css/quiz/quizList.css" rel="stylesheet">
     <script src="/js/util/ajax.js"></script>
     <script src="/js/quiz/quizList.js"></script>
 
@@ -21,7 +21,8 @@
 <div class="container">
     <div class="content">
         <div id="header">
-            <h3 id="main"></h3>
+            <h1 id="main-title-left"></h1>
+            <div id="weakCategory"></div>
         </div>
         <div>
             <form action="<%=request.getContextPath()%>" id="quizForm" method=post>
