@@ -42,7 +42,7 @@
 <div class="container">
     <div class="col" id="box-check">
         <div class="row boxCheck mt-5 mb-5">
-            <h4>로그인 하셔야 문제 풀이 기록이 저장됩니다.</h4>
+            <h4>로그인 하셔야 문제 풀이 기록이 저장됩니다. </h4>
             <h4>로그인 하시겠습니까?</h4>
             <div class="box-btn mt-5">
                 <button id="btn-login" type="button" onclick="location.href='/user?access=mail&knowSeq=${knowSeq}'" class="btnCss">
