@@ -50,8 +50,7 @@ public class UserRestController {
         if (isEmailValid != null) {
             throw new ApiException(ErrorCode.SIGNUP_INVALID_EMAIL);
         }
-        CategoryDTO selectedCategory = categoryService.getCategoryByAllType(
-            categoryDTO);
+        CategoryDTO selectedCategory = categoryService.getCategoryByAllType(categoryDTO);
 
         if (userDTO.getPassword().equals("")) {
             userDTO.setPassword(null);
@@ -64,7 +63,7 @@ public class UserRestController {
         int result = userService.insertUser(userDTO);
 
         UserDTO newUser =userService.getUserByUserEmail(userDTO.getEmail());
-        emailService.sendVerificationEmail(newUser);
+//        emailService.sendVerificationEmail(newUser);
 
         return true;
     }
