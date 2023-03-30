@@ -1,5 +1,5 @@
 
-//adminContents
+//adminContents 
 // 컨텐츠 등록 버튼 클릭시
 $(document).ready(function () {
 	

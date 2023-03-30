@@ -6,7 +6,7 @@
 <html>
 <head>
  <meta charset="UTF-8">
-    <script src="/js/jquery-3.6.1.min.js"></script>
+    <script src="/js/jquery-3.6.1.min.js"></script> 
     <script src="/js/util/ajax.js"></script>
     <script src="/js/admin/admin.js"></script>
     <link href="/css/container.css" rel="stylesheet">

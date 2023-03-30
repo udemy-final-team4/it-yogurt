@@ -122,7 +122,7 @@ function go_page(pageNum){
 			console.log('error');
 		}
 	})
-}
+} 
 
 //boardListSearch
 
