@@ -19,6 +19,7 @@
     <script src="/js/util/ajax.js"></script>
     <script src="/js/util/util.js"></script>	
     <link href="/css/styles.css" rel="stylesheet" />
+    <script src="/js/board/board.js"></script>
 <title> 커뮤니티 | 게시판 | 글쓰기 </title>
 <style>
 
@@ -85,11 +86,6 @@
 	</div>
 
 </body>
-<script type="text/javascript">
-//enter => <br>
-var text = document.getElementById("content").value;
-text = text.replace(/(?:\r\n|\r|\n)/g, '<br>');
 
-</script>
 <%@include file="../common/footer.jsp" %>
 </html>

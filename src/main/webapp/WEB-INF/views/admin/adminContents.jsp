@@ -6,8 +6,9 @@
 <html>
 <head>
  <meta charset="UTF-8">
-    
+    <script src="/js/jquery-3.6.1.min.js"></script>
     <script src="/js/util/ajax.js"></script>
+    <script src="/js/admin/admin.js"></script>
     <link href="/css/container.css" rel="stylesheet">
  	<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 <title>관리자 | 문제 관리</title>
@@ -149,34 +150,4 @@
 </body>
 
 
-<script>
-
-// 컨텐츠 등록 버튼 클릭시
-$("#submitBtn").on("click", function(){
-	
-
-let formData = $('form').serializeArray();
-$.ajax({
-    url: '/admin/contents',
-    
-    type: 'POST',
-    dataType:'text',
-    contentType: 'application/json; charset=utf-8',
-    data: JSON.stringify(formData),
-    success: function(response) {
-    	alert("등록되었습니다.");
-    	window.location.href='/admin/page';
-        // 성공적으로 처리된 경우 실행될 코드
-    },
-    error: function(error) {
-    	alert("에러");
-        // 오류 발생 시 실행될 코드
-    }
-});
-	
-})
-
-
-
-</script>
 </html>

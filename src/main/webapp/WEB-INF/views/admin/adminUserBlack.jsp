@@ -7,6 +7,7 @@
 <html>
 <head>
  <meta charset="UTF-8">
+ <script src="/js/admin/admin.js"></script>
     <link href="/css/container.css" rel="stylesheet">
     <link href="/css/admin.css" rel="stylesheet">
  	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" rel="stylesheet"/>
@@ -79,72 +80,5 @@
 </div>
 </body>
 <%@include file="../common/footer.jsp" %>
-<script>
 
-function black_del(email){
-	if (window.confirm(email +"회원을 블랙리스트에서 삭제하시겠습니까?")){
-		location.href="/admin/user/black/re?email="+email;
-		alert("삭제 되었습니다.");
-	}
-	else {
-		alert("삭제가 취소되었습니다.");
-	}
-}
-
-
-function go_page(pageNum){
-
-
-
-	$.ajax({
-		url: "${pageContext.request.contextPath}/admin/user/a?page="+pageNum,
-		type: "GET",
-		dataType: "json",
-		success: function(result){
-			let list = result.blackList;
-			let content = '';
-			for(let i=0;i<list.length;i++){
-				content += '<tr>';
-				content += '<td >' + i +'</td>';
-				content +=	'<td>'+ list[i].email +'</td>';
-				content += '<td><button class= "delUserBtn" style="border-color: #C0D8C0" onclick="clicked()">삭제</button></td>';
-				content += '</tr>';
-			}
-			$('.listData').html(content);
-
-			let paging = result.paging;
-			let content2 = '';
-
-
-				content2 += '<nav aria-label="Page navigation example" style="margin: 10px;">';
-				content2 += '<ul class="pagination justify-content-center">';
-				content2 += '<li class="page-item"><a href=\'javascript:void(0);\' onclick="go_page(1); return false;" class="page-link"><i class="fas fa-angle-double-left"></i></a></li>';
-
-
-					content2 += '<li class="page-item"><a href=\'javascript:void(0);\' onclick="go_page('+(Number(paging.startPage)-1)+');return false;" class="page-link"><i class="fas fa-angle-left"></i></a></li>';
-				for (let num = Number(paging.startPage) ; num <=Number(paging.endPage); num++){
-					if (num == Number(paging.cri.page)){
-						content2 += '<li class="page-item active" style="pagination-bg: #91ACCC"><span><a href=\'javascript:void(0);\' onclick="go_page('+num+'); return false;" class="page-link">'+ num +'</a></span></li>';
-
-					}
-					else{
-						content2 += '<li class="page-item" style="pagination-bg: #91ACCC"><span><a href=\'javascript:void(0);\' onclick="go_page('+num+'); return false;" class="page-link">'+ num +'</a></span></li>';
-					}
-				}
-				if (paging.next && paging.endPage>0){
-					content2 += '<li class="page-item"><a href=\'javascript:void(0);\' onclick="go_page('+ (Number(paging.endPage)+1)+');return false;" class="page-link"><i class="fas fa-angle-right"></i></a></li>';
-				}
-				content2 += '<li class="page-item"><a href=\'javascript:void(0);\' onclick="go_page('+ Number(result.maxPage) +');return false;" class="page-link"><i class="fas fa-angle-double-right"></i></a></li>';
-				content2 += '</ul>';
-				content2 += '</nav>';
-
-
-				$('.paging').html(content2);
-		},
-		error: function(){
-			console.log('error');
-		}
-	})
-}
-</script>
 </html>

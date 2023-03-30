@@ -7,6 +7,7 @@
 <html>
 <head>
  <meta charset="UTF-8">
+ <script src="/js/admin/admin.js"></script>
     <link href="/css/container.css" rel="stylesheet">
     <link href="/css/admin.css" rel="stylesheet">
  	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" rel="stylesheet"/>
@@ -81,28 +82,5 @@
 </div>
 </body>
 <%@include file="../common/footer.jsp" %>
-<script>
 
-function clicked(clickedID,clickedName){
-	if (window.confirm(clickedName +"회원을 탈퇴시키겠습니까?"+ "\n\n"+"모든 회원 데이터가 삭제됩니다.\n")){
-		location.href="/admin/user/manage/"+clickedID;
-		alert("회원탈퇴 되었습니다.");		
-	}
-	else {
-		alert("회원 탈퇴가 취소되었습니다.");		
-	}
-}
-function black(clickedID,clickedEmail,clickedName){
-	if (window.confirm(clickedName +"회원을 블랙하시겠습니까?"+ "\n\n"+"모든 회원 데이터가 삭제됩니다.\n")){
-		location.href="/admin/user/manage/"+clickedID+"/"+clickedEmail;
-		alert("회원을 블랙했습니다.");
-	}
-	else {
-		alert("블랙이 취소되었습니다.");		
-	}
-	
-}
-
-
-</script>
 </html>

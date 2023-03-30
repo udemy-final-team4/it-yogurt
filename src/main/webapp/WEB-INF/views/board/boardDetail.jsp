@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <meta charset="UTF-8">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
@@ -13,6 +14,7 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link href="/css/admin.css" rel="stylesheet">
     <link href="/css/container.css" rel="stylesheet">
+    <script src="/js/board/board.js"></script>
     <title> 커뮤니티 | 게시판 </title>
     <style>
     </style>
@@ -173,49 +175,5 @@
 
 </body>
 
-<script>
 
-  function delboard(boardSeq) {
-    if (window.confirm("게시물을 삭제하시겠습니까?\n")) {
-      location.href = "/board/d/" + boardSeq;
-      alert("게시물 삭제 되었습니다.");
-    } else {
-      alert("삭제가 취소되었습니다.");
-    }
-  }
-
-  function reportboard(userSeq) {
-    if (window.confirm(" 게시글을 신고하시겠습니까?\n \n 한번 한 신고는 취소되지 않습니다. \n")) {
-      location.href = "/board/r/" + userSeq;
-      alert("신고되었습니다.");
-    }
-
-  }
-
-  function reportcomment(commentSeq) {
-    if (window.confirm(" 댓글을 신고하시겠습니까?\n \n 한번 한 신고는 취소되지 않습니다. \n")) {
-      location.href = "/board/comment/r/" + commentSeq;
-      alert("신고되었습니다.");
-    } else {
-
-    }
-  }
-
-  function editComment(commentSeq) {
-    let content = $('input[name=edit'+commentSeq+']').val();
-    let commentBox = "";
-    let comment = "";
-	
-    commentBox = `<form class="mb-4" action="/board/comment/\${commentSeq}" method="post"">
-		    	<input type="hidden" name="boardSeq" value=${oneboard.boardSeq }>
-		    	<input type="hidden" name="userSeq" value=${sessionScope.user_seq }>
-		    	<textarea name="content" class="form-control" rows="3" >\${content}</textarea>
-					<button type="submit" class="btn me-md-2" id="commentEdit" style="background-color: #91ACCC;" >수정</button>
-		    </form> `;
-
-    $('div[name=edit'+commentSeq+']').html(commentBox);
-    console.log("ddd");
-  }
-
-</script>
 </html>

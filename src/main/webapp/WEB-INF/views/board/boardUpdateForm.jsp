@@ -12,6 +12,7 @@
      <script src="/js/user/signup.js"></script>
     <script src="/js/util/ajax.js"></script>
     <script src="/js/util/util.js"></script>
+    <script src="/js/board/board.js"></script>
 <title> 커뮤니티 | 게시판 | 글쓰기 </title>
 <style>
 
@@ -76,8 +77,5 @@
 <%@include file="../common/footer.jsp" %>
 
 </body>
-<script type="text/javascript">
-var text = document.getElementById("content").value;
-text = text.replace(/(?:\r\n|\r|\n)/g, '<br>');
-</script>
+
 </html>
