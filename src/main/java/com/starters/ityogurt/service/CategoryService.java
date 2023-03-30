@@ -4,6 +4,8 @@ import com.starters.ityogurt.dto.CategoryDTO;
 import com.starters.ityogurt.dto.UserDTO;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.RequestBody;
+
 public interface CategoryService {
 
     List<CategoryDTO> getAllCategoryList();
@@ -24,5 +26,6 @@ public interface CategoryService {
 	int getCategoryBySub(String sub);
 	List<CategoryDTO> getMiddleCategoryGroup();
     
+	public CategoryDTO UploadContentsCategory(@RequestBody String data);
 
 }

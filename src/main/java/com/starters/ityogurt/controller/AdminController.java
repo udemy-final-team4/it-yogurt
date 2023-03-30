@@ -169,36 +169,40 @@ public class AdminController {
 			}
 			JSONObject insertData = new JSONObject();
 			
-			CategoryDTO categoryDto = new CategoryDTO();
-			KnowledgeDTO knowledgeDto = new KnowledgeDTO();
+//			CategoryDTO categoryDto = new CategoryDTO();
+//			KnowledgeDTO knowledgeDto = new KnowledgeDTO();
 			QuizDTO quizDto = new QuizDTO();
 			
-			String [] categoryData = new String [4]; 
-			String [] knowledgeData = new String [8]; 
+//			String [] categoryData = new String [4]; 
+//			String [] knowledgeData = new String [8]; 
 			String [] quizData = new String[32]; 
 			
-			for(int i=0; i<4; i++){
-				insertData = (JSONObject) insertParam.get(i);
-				String value = (String) insertData.get("value");
-				categoryData[i]= value;
-				
-			}
-			categoryDto.setMain(categoryData[0]);
-			categoryDto.setMiddle(categoryData[1]);
-			categoryDto.setSub(categoryData[2]);
-			categoryDto.setDetail(categoryData[3]);
+//			for(int i=0; i<4; i++){
+//				insertData = (JSONObject) insertParam.get(i);
+//				String value = (String) insertData.get("value");
+//				categoryData[i]= value;
+//				
+//			}
+//			categoryDto.setMain(categoryData[0]);
+//			categoryDto.setMiddle(categoryData[1]);
+//			categoryDto.setSub(categoryData[2]);
+//			categoryDto.setDetail(categoryData[3]);
+			
+			CategoryDTO categoryDto = categoryService.UploadContentsCategory(data);
 			categoryService.insertCategory(categoryDto);
 			
-			for(int i=4; i<8; i++){
-				insertData = (JSONObject) insertParam.get(i);
-				String value = (String) insertData.get("value");
-				knowledgeData[i]= value;
-				
-			}
-			knowledgeDto.setCategorySeq(Integer.parseInt(knowledgeData[4]));
-			knowledgeDto.setUserSeq(Integer.parseInt(knowledgeData[5]));
-			knowledgeDto.setTitle(knowledgeData[6]);
-			knowledgeDto.setContent(knowledgeData[7]);
+//			for(int i=4; i<8; i++){
+//				insertData = (JSONObject) insertParam.get(i);
+//				String value = (String) insertData.get("value");
+//				knowledgeData[i]= value;
+//				
+//			}
+//			knowledgeDto.setCategorySeq(Integer.parseInt(knowledgeData[4]));
+//			knowledgeDto.setUserSeq(Integer.parseInt(knowledgeData[5]));
+//			knowledgeDto.setTitle(knowledgeData[6]);
+//			knowledgeDto.setContent(knowledgeData[7]);
+			
+			KnowledgeDTO knowledgeDto = knowledgeService.UploadContentsKnowledge(data);
 			knowledgeService.uploadKnowledge(knowledgeDto);
 
 			

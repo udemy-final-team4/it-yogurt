@@ -3,6 +3,10 @@ package com.starters.ityogurt.serviceimpl;
 import java.util.List;
 import java.util.Map;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -72,6 +76,36 @@ public class KnowledgeServiceImpl implements KnowledgeService {
 	@Override
 	public int getCategorySeq(int knowSeq) {
 		return dao.getCategorySeq(knowSeq);
+	}
+
+	@Override
+	public KnowledgeDTO UploadContentsKnowledge(String data) {
+		
+
+   		JSONParser jsonParser = new JSONParser();
+		JSONArray insertParam = null;
+		try {
+			insertParam = (JSONArray) jsonParser.parse(data);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		JSONObject insertData = new JSONObject();
+		
+		KnowledgeDTO knowledgeDto = new KnowledgeDTO();
+		String [] knowledgeData = new String [8]; 
+		
+		for(int i=4; i<8; i++){
+			insertData = (JSONObject) insertParam.get(i);
+			String value = (String) insertData.get("value");
+			knowledgeData[i]= value;
+			
+		}
+		knowledgeDto.setCategorySeq(Integer.parseInt(knowledgeData[4]));
+		knowledgeDto.setUserSeq(Integer.parseInt(knowledgeData[5]));
+		knowledgeDto.setTitle(knowledgeData[6]);
+		knowledgeDto.setContent(knowledgeData[7]);
+		
+		return knowledgeDto;
 	}
 
 

@@ -3,6 +3,8 @@ package com.starters.ityogurt.service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.web.bind.annotation.RequestBody;
+
 import com.starters.ityogurt.dto.KnowledgeDTO;
 import com.starters.ityogurt.dto.QuizDTO;
 import com.starters.ityogurt.util.Criteria;
@@ -31,7 +33,7 @@ public interface KnowledgeService {
 
 	int getCategorySeq(int knowSeq);
 
-
+	public KnowledgeDTO UploadContentsKnowledge(@RequestBody String data);
 
 
 }
