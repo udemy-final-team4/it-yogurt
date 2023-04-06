@@ -159,97 +159,20 @@ public class AdminController {
    @PostMapping("/contents")
    @ResponseBody
 	  	public void UploadContents(@RequestBody String data) {
-	   		
-	   		JSONParser jsonParser = new JSONParser();
-			JSONArray insertParam = null;
-			try {
-				insertParam = (JSONArray) jsonParser.parse(data);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-			JSONObject insertData = new JSONObject();
-			
-//			CategoryDTO categoryDto = new CategoryDTO();
-//			KnowledgeDTO knowledgeDto = new KnowledgeDTO();
-			QuizDTO quizDto = new QuizDTO();
-			
-//			String [] categoryData = new String [4]; 
-//			String [] knowledgeData = new String [8]; 
-			String [] quizData = new String[32]; 
-			
-//			for(int i=0; i<4; i++){
-//				insertData = (JSONObject) insertParam.get(i);
-//				String value = (String) insertData.get("value");
-//				categoryData[i]= value;
-//				
-//			}
-//			categoryDto.setMain(categoryData[0]);
-//			categoryDto.setMiddle(categoryData[1]);
-//			categoryDto.setSub(categoryData[2]);
-//			categoryDto.setDetail(categoryData[3]);
 			
 			CategoryDTO categoryDto = categoryService.UploadContentsCategory(data);
 			categoryService.insertCategory(categoryDto);
 			
-//			for(int i=4; i<8; i++){
-//				insertData = (JSONObject) insertParam.get(i);
-//				String value = (String) insertData.get("value");
-//				knowledgeData[i]= value;
-//				
-//			}
-//			knowledgeDto.setCategorySeq(Integer.parseInt(knowledgeData[4]));
-//			knowledgeDto.setUserSeq(Integer.parseInt(knowledgeData[5]));
-//			knowledgeDto.setTitle(knowledgeData[6]);
-//			knowledgeDto.setContent(knowledgeData[7]);
-			
 			KnowledgeDTO knowledgeDto = knowledgeService.UploadContentsKnowledge(data);
 			knowledgeService.uploadKnowledge(knowledgeDto);
 
-			
-			for(int i=8; i<16; i++){
-				insertData = (JSONObject) insertParam.get(i);
-				String value = (String) insertData.get("value");
-				quizData[i]= value;
-				
-			}
-			quizDto.setQuestion(quizData[8]);
-			quizDto.setChoice1(quizData[9]);
-			quizDto.setChoice2(quizData[10]);
-			quizDto.setChoice3(quizData[11]);
-			quizDto.setChoice4(quizData[12]);
-			quizDto.setAnswer(Integer.parseInt(quizData[13]));
-			quizDto.setCommentary(quizData[14]);
-			quizDto.setKnowSeq(Integer.parseInt(quizData[15]));
+			QuizDTO quizDto = quizService.UploadContentsQuiz1(data);
 			quizService.uploadQuiz(quizDto);
-			for(int i=16; i<24; i++){
-				insertData = (JSONObject) insertParam.get(i);
-				String value = (String) insertData.get("value");
-				quizData[i]= value;
-				
-			}
-			quizDto.setQuestion(quizData[16]);
-			quizDto.setChoice1(quizData[17]);
-			quizDto.setChoice2(quizData[18]);
-			quizDto.setChoice3(quizData[19]);
-			quizDto.setChoice4(quizData[20]);
-			quizDto.setAnswer(Integer.parseInt(quizData[21]));
-			quizDto.setCommentary(quizData[22]);
-			quizDto.setKnowSeq(Integer.parseInt(quizData[23]));
+
+			quizDto = quizService.UploadContentsQuiz2(data);
 			quizService.uploadQuiz(quizDto);
-			for(int i=24; i<insertParam.size(); i++){
-				insertData = (JSONObject) insertParam.get(i);
-				String value = (String) insertData.get("value");
-				quizData[i]= value;
-				
-			}
-			quizDto.setQuestion(quizData[24]);
-			quizDto.setChoice1(quizData[25]);
-			quizDto.setChoice2(quizData[26]);
-			quizDto.setChoice3(quizData[27]);
-			quizDto.setChoice4(quizData[28]);
-			quizDto.setAnswer(Integer.parseInt(quizData[29]));
-			quizDto.setCommentary(quizData[30]);
-			quizDto.setKnowSeq(Integer.parseInt(quizData[31]));
+
+			quizDto = quizService.UploadContentsQuiz3(data);
 			quizService.uploadQuiz(quizDto);
 			
 			CategoryDTO cateDto = categoryService.getCategoryByAllType(categoryDto);
