@@ -5,7 +5,7 @@
 <html>
 <head>
  <meta charset="UTF-8">
-    <link href="/css/container.css" rel="stylesheet">
+    <link href="/css/container.css" rel="stylesheet"> 
 	  <script src="/js/admin/email.js"></script>
 <title> 마이페이지 | 관리자 </title>
 </head>

@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html>
 <head>
  <meta charset="UTF-8">
@@ -11,6 +11,7 @@
      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
 		    rel="stylesheet"/>
      <link href="/css/container.css" rel="stylesheet">
+     <script src="/js/board/board.js"></script>
 <title> 커뮤니티 | 게시판 </title>
 
 <style>
@@ -119,87 +120,7 @@
 
 
 
-<script>
 
-
-$(document).ready(function () {
-  $('#search').click(function (e) {
-    if ($('#keyword').val() == "") {
-      e.preventDefault()
-      alert("검색어를 입력해주세요!")
-      return false;
-    }
-  })
-});
-
-
-
-
-
-
-
-
-
-function go_page(pageNum){
-
-	$.ajax({
-		url: "${pageContext.request.contextPath}/board/list/a?page="+pageNum,
-		type: "GET",
-		dataType: "json",
-		success: function(result){
-			let list = result.boardList;
-			let paging = result.paging; 
-			let number = (paging.totalCount - ((paging.cri.page-1)* 10));
-			let content = '';
-			for(let i=0;i<list.length;i++){
-				content += '<tr class="tableList" onClick="window.location=\'/board/'+list[i].boardSeq+'\'">';
-				content += '<td id ="boardSeq">' + number +'</td>';
-				content += '<td><span class="badge bg-secondary text-decoration-none link-light"> '+ list[i].sub +'</span></td>';
-				content +=	'<td style="text-align: left;">'+ list[i].title+ '</td>';
-				content +=	'<td>'+ list[i].nickname + '</td>';
-				content += '<td>' + list[i].viewcount + '</td>';
-				content += '</tr>';
-				number = number-1;
-			}
-			$('.listData').html(content);	
-			
-			let content2 = '';
-			
-				
-				content2 += '<nav aria-label="Page navigation example" style="margin: 10px;">';
-				content2 += '<ul class="pagination justify-content-center">';
-				content2 += '<li class="page-item"><a href=\'javascript:void(0);\' onclick="go_page(1); return false;" class="page-link"><i class="fas fa-angle-double-left"></i></a></li>';
-								
-				/* if(paging.prev){ */
-					content2 += '<li class="page-item"><a href=\'javascript:void(0);\' onclick="go_page('+(Number(paging.startPage)-1)+');return false;" class="page-link"><i class="fas fa-angle-left"></i></a></li>';
-				/* } */
-				for (let num = Number(paging.startPage) ; num <=Number(paging.endPage); num++){
-					if (num == Number(paging.cri.page)){
-						content2 += '<li class="page-item active" style="pagination-bg: #91ACCC"><span><a href=\'javascript:void(0);\' onclick="go_page('+num+'); return false;" class="page-link">'+ num +'</a></span></li>';
-						
-					}
-					else{
-						content2 += '<li class="page-item" style="pagination-bg: #91ACCC"><span><a href=\'javascript:void(0);\' onclick="go_page('+num+'); return false;" class="page-link">'+ num +'</a></span></li>';
-					}
-				}
-				if (paging.next && paging.endPage>0){
-
-					content2 += '<li class="page-item"><a href=\'javascript:void(0);\' onclick="go_page('+ (Number(paging.endPage)+1)+');return false;" class="page-link"><i class="fas fa-angle-right"></i></a></li>';
-				}
-				content2 += '<li class="page-item"><a href=\'javascript:void(0);\' onclick="go_page('+ Number(result.maxPage) +');return false;" class="page-link"><i class="fas fa-angle-double-right"></i></a></li>';
-				content2 += '</ul>';
-				content2 += '</nav>';
-			
-			
-				$('.paging').html(content2);	
-		},
-		error: function(){
-			console.log('error');
-		}
-	})
-}
-
-</script>
 
 <%@include file="../common/footer.jsp" %>
 </html>

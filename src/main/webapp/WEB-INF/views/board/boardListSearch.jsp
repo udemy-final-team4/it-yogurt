@@ -11,6 +11,7 @@
      <link href="/css/admin.css" rel="stylesheet">
      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
 		    rel="stylesheet"/>
+	<script src="/js/board/board.js"></script>
 <title> 커뮤니티 | 게시판 </title>
 
 <style>
@@ -91,22 +92,7 @@
 
 
 
-<script>
-
-
-$(document).ready(function () {
-  $('#search').click(function (e) {
-    if ($('#keyword').val() == "") {
-      e.preventDefault()
-      alert("검색어를 입력해주세요!")
-      return false;
-    }
-  })
-});
-
-
-
-</script>
+ 
 
 <%@include file="../common/footer.jsp" %>
 </html>
